@@ -1,0 +1,457 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Begin — Find your people, build your thing</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'surface': '#FAFAFA',
+            'surface-card': '#FFFFFF',
+            'surface-subtle': '#F3F4F6',
+            'on-surface': '#111827',
+            'on-surface-variant': '#4B5563',
+            'outline': '#E5E7EB',
+            'primary': '#111827',
+            'on-primary': '#FFFFFF',
+            'accent-lime': '#A3E635',
+            'on-accent-lime': '#111827',
+            'inverse-surface': '#121316',
+            'obsidian-surface': '#070809',
+            'inverse-on-surface': '#F9FAFB',
+            'inverse-muted': '#9CA3AF',
+          },
+          fontFamily: {
+            'serif': ['"Instrument Serif"', 'serif'],
+            'display': ['"Instrument Serif"', 'serif'],
+            'headline': ['"Instrument Serif"', 'serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'sans': ['"Inter"', 'sans-serif'],
+            'mono': ['"Red Hat Mono"', 'monospace'],
+          },
+          fontSize: {
+            'display-lg': ['58px', { lineHeight: '64px', letterSpacing: '-0.5px', fontWeight: '400' }],
+            'display-lg-mobile': ['34px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '400' }],
+            'display-md': ['48px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '400' }],
+            'display-md-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-0.25px', fontWeight: '400' }],
+            'headline-lg': ['32px', { lineHeight: '36px', letterSpacing: '-0.25px', fontWeight: '400' }],
+            'headline-sm': ['20px', { lineHeight: '26px', letterSpacing: '-0.2px', fontWeight: '500' }],
+            'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+            'body-md': ['15px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '400' }],
+            'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '500' }],
+            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.6px', fontWeight: '500' }],
+          },
+          borderRadius: {
+            'xl': '24px',
+            'full': '9999px',
+          },
+          spacing: {
+            'gutter-xs': '4px',
+            'gutter-sm': '8px',
+            'gutter-md': '16px',
+            'gutter-lg': '24px',
+            'gutter-xl': '32px',
+          },
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <style>
+    .parallax-layer {
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .fade-mask-right {
+      -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0.65) 62%, rgba(0, 0, 0, 0.2) 82%, rgba(0, 0, 0, 0) 99%);
+      mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0.65) 62%, rgba(0, 0, 0, 0.2) 82%, rgba(0, 0, 0, 0) 99%);
+    }
+
+    .fade-mask-left {
+      -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0.6) 52%, rgba(0, 0, 0, 0.18) 76%, rgba(0, 0, 0, 0) 98%);
+      mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0.6) 52%, rgba(0, 0, 0, 0.18) 76%, rgba(0, 0, 0, 0) 98%);
+    }
+
+    @media (max-width: 1023px) {
+      .fade-mask-right,
+      .fade-mask-left {
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .parallax-layer { transform: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+
+  <!-- Timmo-inspired Floating Centered Pill Navbar -->
+  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-gutter-md pointer-events-none">
+    <div class="pointer-events-auto inline-flex items-center justify-between gap-gutter-lg rounded-full bg-surface-card/95 backdrop-blur-md border border-outline shadow-md px-4 py-2">
+      <a href="#hero" class="inline-flex items-center pl-2 pr-1 text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full">
+        <span data-design-text-token="headline-sm" class="font-headline text-headline-sm tracking-tight">Begin</span>
+      </a>
+
+      <nav aria-label="Primary" class="hidden md:flex items-center gap-gutter-xs">
+        <a href="#hero" class="rounded-full bg-accent-lime text-on-accent-lime px-3.5 py-1.5 font-label text-label-lg">Home</a>
+        <a href="#ecosystem" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Ecosystem</a>
+        <a href="#boards" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Boards</a>
+        <a href="#mission" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Mission</a>
+      </nav>
+
+      <a href="#waitlist" class="inline-flex items-center justify-center rounded-full bg-primary text-on-primary px-4 py-1.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+        <span data-design-text-token="label-lg">Join Begin</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- SECTION 1: Hero Section with pure, unobstructed background image -->
+    <section id="hero" data-parallax-section class="relative min-h-[1024px] overflow-hidden flex flex-col justify-center px-gutter-lg md:px-16 bg-obsidian-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+
+        <img src="01-main_image_clean.png" alt="A lone builder sitting with a glowing laptop on a sunlit hill above the clouds" class="parallax-layer absolute -top-16 inset-x-0 w-full h-[calc(100%+128px)] object-cover object-[center_82%]" data-parallax-speed="0.1">
+        <!-- Deep bottom depth blend into Section 2 -->
+        <div class="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent"></div>
+      </div>
+
+      <!-- Content left-aligned to the left ~45% of the frame (matches image aspect ratio), keeping the builder on the right clear -->
+      <div class="relative z-10 w-full md:max-w-[45%] flex flex-col items-center md:items-start text-center md:text-left gap-gutter-md">
+        <h1 data-design-text-token="display-lg" class="font-serif text-display-lg-mobile md:text-display-lg text-inverse-on-surface text-balance">Find your people, build your thing</h1>
+
+        <p data-design-text-token="body-lg" class="font-body text-body-lg text-inverse-on-surface max-w-lg text-pretty">You don&#39;t have all it figured out, find your people, bring curiosity.</p>
+
+        <div class="pt-gutter-sm">
+          <a href="#ecosystem" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-7 py-3 font-label text-label-lg shadow-sm hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
+            <span data-design-text-token="label-lg">Start building</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: Full-screen single-frame split — image left, content right -->
+    <section id="ecosystem" class="relative bg-obsidian-surface text-inverse-on-surface overflow-hidden min-h-screen flex flex-col lg:flex-row">
+
+      <!-- Left: Image — full height, fully visible in one frame -->
+      <div class="relative w-full lg:w-1/2 h-[50vw] lg:h-auto lg:min-h-screen overflow-hidden pointer-events-none flex-shrink-0">
+        <div class="w-full h-full fade-mask-right">
+          <img src="01-image2_clean.png" alt="A young builder sitting under a tree on a hillside overlooking a bright future city" class="w-full h-full object-cover object-[40%_38%]">
+        </div>
+        <!-- Top blend from hero -->
+        <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-obsidian-surface via-obsidian-surface/50 to-transparent"></div>
+        <!-- Bottom blend -->
+        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/50 to-transparent"></div>
+
+        <!-- Bottom-left editorial signature -->
+        <div class="hidden lg:flex absolute bottom-8 left-10 right-16 z-10 flex-col gap-gutter-sm">
+          <span data-design-text-token="headline-lg" class="font-serif text-headline-lg text-inverse-on-surface">Work fast. Live slow.</span>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Content — engaging two-beat editorial layout -->
+      <div id="boards" class="w-full lg:w-1/2 flex flex-col justify-center px-gutter-lg md:px-12 lg:px-16 py-16 lg:py-20 gap-12">
+
+        <!-- Beat 1: Ecosystem -->
+        <div class="flex flex-col gap-5">
+          <span class="font-mono text-label-sm uppercase tracking-widest text-accent-lime">01 — Ecosystem</span>
+          <h2 data-design-text-token="display-md" class="font-serif text-display-md-mobile md:text-display-md text-inverse-on-surface text-balance leading-tight">Turn early sparks<br>into real momentum.</h2>
+          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted max-w-sm text-pretty">From zero to something real — find your co-founder, ship your MVP, and build alongside people who actually get it.</p>
+
+          <!-- Tag pills -->
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-full border border-inverse-on-surface/15 px-3.5 py-1 font-mono text-label-sm text-inverse-muted">Co-founders</span>
+            <span class="rounded-full border border-inverse-on-surface/15 px-3.5 py-1 font-mono text-label-sm text-inverse-muted">MVPs</span>
+            <span class="rounded-full border border-inverse-on-surface/15 px-3.5 py-1 font-mono text-label-sm text-inverse-muted">Early teams</span>
+          </div>
+
+          <div>
+            <a href="#boards" class="group inline-flex items-center gap-2 font-label text-label-lg text-inverse-on-surface hover:text-accent-lime transition-colors">
+              <span>Explore the ecosystem</span>
+              <span class="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-inverse-on-surface/10"></div>
+
+        <!-- Beat 2: Boards -->
+        <div class="flex flex-col gap-5">
+          <span class="font-mono text-label-sm uppercase tracking-widest text-accent-lime">02 — Boards</span>
+          <h2 data-design-text-token="display-md" class="font-serif text-display-md-mobile md:text-display-md text-inverse-on-surface text-balance leading-tight">Boards for every<br>stage of the build.</h2>
+          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted max-w-sm text-pretty">The right room for every phase — from idea to fundraise to first hire. Each board keeps noise low and signal high.</p>
+
+          <!-- Board cards grid -->
+          <div class="grid grid-cols-2 gap-3 max-w-sm">
+            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
+              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">01</span>
+              <span class="font-label text-label-lg text-inverse-on-surface">Technology</span>
+              <span class="font-mono text-label-sm text-inverse-muted">MVPs &amp; Stack</span>
+            </div>
+            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
+              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">02</span>
+              <span class="font-label text-label-lg text-inverse-on-surface">Fundraising</span>
+              <span class="font-mono text-label-sm text-inverse-muted">Grants &amp; Angels</span>
+            </div>
+            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
+              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">03</span>
+              <span class="font-label text-label-lg text-inverse-on-surface">Hiring</span>
+              <span class="font-mono text-label-sm text-inverse-muted">First Team</span>
+            </div>
+            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
+              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">04</span>
+              <span class="font-label text-label-lg text-inverse-on-surface">Go-to-Market</span>
+              <span class="font-mono text-label-sm text-inverse-muted">First Users</span>
+            </div>
+          </div>
+
+          <div>
+            <a href="#mission" class="group inline-flex items-center gap-2 font-label text-label-lg text-inverse-on-surface hover:text-accent-lime transition-colors">
+              <span>Explore all boards</span>
+              <span class="transition-transform group-hover:translate-x-1">→</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: Scroll-driven word-reveal — large editorial typography & grand section height -->
+    <section id="mission" class="relative bg-obsidian-surface min-h-[130vh] md:min-h-[150vh] py-36 md:py-56 lg:py-64 px-gutter-lg md:px-16 lg:px-20 flex flex-col justify-center items-center">
+      <!-- Top / bottom atmospheric blends -->
+      <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-obsidian-surface via-obsidian-surface/80 to-transparent pointer-events-none"></div>
+      <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/80 to-transparent pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto w-full text-center">
+        <p id="mission-text"
+           class="font-serif text-[clamp(1.85rem,3.4vw,3.25rem)] leading-[1.38] md:leading-[1.42] tracking-[-0.015em] select-none text-balance"
+           aria-label="Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next — hoping that somewhere along the way, all the pieces finally come together.">
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Final Waitlist section with full-bleed 01-image4_clean-9d59c2.png -->
+    <section id="waitlist" data-parallax-section class="relative min-h-[1024px] overflow-hidden flex flex-col items-center justify-start pt-24 md:pt-28 pb-20 px-gutter-lg bg-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="parallax-layer absolute -top-16 inset-x-0 w-full h-[calc(100%+128px)]" data-parallax-speed="0.08">
+          <img src="01-image4_clean.png" alt="Two builders standing together on a lush grassy arch overlooking a sea of clouds" class="w-full h-full object-cover object-[center_82%]">
+          <!-- Curved 'begin' typography bending along the bridge arch and blending into the sunlit mist -->
+          <svg viewBox="0 0 1000 260" class="absolute top-[57%] md:top-[48%] left-1/2 -translate-x-1/2 w-[82%] max-w-[780px] h-auto overflow-visible mix-blend-multiply opacity-30 select-none" aria-hidden="true">
+            <defs>
+              <path id="bridge-curve" d="M 120,205 Q 500,110 880,205" fill="none"></path>
+              <linearGradient id="bridge-text-fade" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#253324" stop-opacity="0.72"></stop>
+                <stop offset="65%" stop-color="#253324" stop-opacity="0.38"></stop>
+                <stop offset="100%" stop-color="#253324" stop-opacity="0.04"></stop>
+              </linearGradient>
+            </defs>
+            <text fill="url(#bridge-text-fade)" class="font-serif italic" font-size="118" letter-spacing="14">
+              <textPath href="#bridge-curve" startOffset="50%" text-anchor="middle">begin</textPath>
+            </text>
+          </svg>
+        </div>
+        <!-- Seamless top cloud-mist blend from Section 3 + bottom depth blend into Footer -->
+        <div class="absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-surface via-surface/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent"></div>
+      </div>
+
+      <!-- Content positioned in the luminous upper sky so the two builders on the arch below stay completely clear -->
+      <div class="relative z-10 max-w-2xl mx-auto w-full flex flex-col items-center text-center gap-gutter-md">
+        <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-on-surface">Early Access</span>
+
+        <h2 data-design-text-token="display-lg" class="font-serif text-display-lg-mobile md:text-display-lg text-on-surface text-balance">Cross the bridge with the people who get it.</h2>
+
+        <p data-design-text-token="body-lg" class="font-body text-body-lg text-on-surface max-w-lg text-pretty">We&#39;re opening Begin in small waves of builders, founders, and curious minds. Leave your email to claim your spot.</p>
+
+        <form id="waitlist-form" class="w-full max-w-md pt-gutter-sm flex flex-col sm:flex-row items-stretch sm:items-center gap-gutter-sm rounded-3xl sm:rounded-full bg-surface-card/95 backdrop-blur-md border border-outline shadow-md p-1.5">
+          <label for="waitlist-email" class="sr-only">Email address</label>
+          <input id="waitlist-email" type="email" required placeholder="you@example.com" class="flex-1 bg-transparent border-0 px-4 py-2.5 font-body text-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 focus:outline-none">
+          <button type="submit" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+            <span data-design-text-token="label-lg">Join the waitlist</span>
+          </button>
+        </form>
+
+        <p id="waitlist-status" data-design-text-token="label-sm" class="hidden font-mono text-label-sm text-on-surface bg-surface-card/90 border border-outline rounded-full px-4 py-1.5" role="status">You&#39;re on the list — we&#39;ll reach out soon.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Long Editorial Footer (consistent with Floating Pill Navbar & Obsidian Sections) -->
+  <footer class="bg-obsidian-surface text-inverse-on-surface pt-16 pb-12 px-gutter-lg md:px-16">
+    <div class="max-w-6xl mx-auto flex flex-col gap-12">
+
+
+      <!-- Main Multi-Column Long Footer Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pt-4">
+        <!-- Brand Ethos Column -->
+        <div class="lg:col-span-5 flex flex-col gap-gutter-md pr-0 lg:pr-8">
+          <h3 data-design-text-token="headline-lg" class="font-serif text-headline-lg text-inverse-on-surface">Work fast. Live slow.</h3>
+          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted max-w-sm text-pretty">A quiet, high-signal home for next-generation founders, student builders, and early-stage teams turning sparks into real companies.</p>
+          <div class="pt-gutter-xs">
+            <a href="#waitlist" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
+              <span data-design-text-token="label-lg">Claim early access</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Sections -->
+        <div class="lg:col-span-2 flex flex-col gap-gutter-md">
+          <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Journey</span>
+          <ul class="flex flex-col gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="#hero" class="hover:text-accent-lime transition-colors">Home</a></li>
+            <li><a href="#ecosystem" class="hover:text-accent-lime transition-colors">Ecosystem</a></li>
+            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Boards</a></li>
+            <li><a href="#mission" class="hover:text-accent-lime transition-colors">Our Mission</a></li>
+            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">Waitlist</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Boards -->
+        <div class="lg:col-span-3 flex flex-col gap-gutter-md">
+          <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Boards</span>
+          <ul class="flex flex-col gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Technology &amp; MVPs</a></li>
+            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Fundraising &amp; Grants</a></li>
+            <li><a href="#boards" class="hover:text-accent-lime transition-colors">First Team Hiring</a></li>
+            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Go-to-Market</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Connect -->
+        <div class="lg:col-span-2 flex flex-col gap-gutter-md">
+          <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Connect</span>
+          <ul class="flex flex-col gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">begin.build</a></li>
+            <li><a href="mailto:hello@begin.build" class="hover:text-accent-lime transition-colors">hello@begin.build</a></li>
+            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">X / Twitter</a></li>
+            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Signature Strip -->
+      <div class="border-t border-inverse-on-surface/15 pt-8 flex flex-col sm:flex-row items-center justify-between gap-gutter-md font-mono text-label-sm text-inverse-muted">
+        <span>© 2025 Begin. Built for curious minds.</span>
+        <div class="flex items-center gap-gutter-lg">
+          <span>ideas • mvp • scale</span>
+          <a href="#hero" class="rounded-full border border-inverse-on-surface/20 px-4 py-1.5 text-inverse-on-surface hover:bg-inverse-on-surface/10 transition-colors">Back to top</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var waitlistForm = document.getElementById('waitlist-form');
+      var waitlistStatus = document.getElementById('waitlist-status');
+      var waitlistInput = document.getElementById('waitlist-email');
+      if (waitlistForm && waitlistStatus) {
+        waitlistForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (waitlistInput && !waitlistInput.value.trim()) return;
+          waitlistStatus.classList.remove('hidden');
+          if (waitlistInput) waitlistInput.value = '';
+        });
+      }
+
+      var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      var sections = Array.prototype.slice.call(document.querySelectorAll('[data-parallax-section]'));
+      if (!sections.length) return;
+
+      var ticking = false;
+      function updateParallax() {
+        var vh = window.innerHeight || 1;
+        for (var i = 0; i < sections.length; i++) {
+          var layer = sections[i].querySelector('.parallax-layer');
+          if (!layer) continue;
+          var rect = sections[i].getBoundingClientRect();
+          var speed = parseFloat(layer.getAttribute('data-parallax-speed')) || 0.08;
+          var rawDelta = (vh / 2 - (rect.top + rect.height / 2)) * speed;
+          var delta = Math.max(-48, Math.min(48, rawDelta));
+          layer.style.transform = 'translate3d(0, ' + delta.toFixed(2) + 'px, 0)';
+        }
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      updateParallax();
+    })();
+
+      /* ── Scroll-driven word reveal (Section 3 / Mission) — large typography reveal ── */
+    (function () {
+      var textEl = document.getElementById('mission-text');
+      if (!textEl) return;
+
+      var message = 'Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next \u2014 hoping that somewhere along the way, all the pieces finally come together.';
+
+      /* Split into individual word spans */
+      var words = message.split(' ');
+      textEl.innerHTML = words.map(function (w) {
+        return '<span class="reveal-word" style="color:rgba(249,250,251,0.12);transition:color 0.22s cubic-bezier(0.16, 1, 0.3, 1)">' + w + '</span>';
+      }).join(' ');
+
+      var wordEls = textEl.querySelectorAll('.reveal-word');
+      var total   = wordEls.length;
+      var ticking = false;
+
+      function updateReveal() {
+        var rect = textEl.getBoundingClientRect();
+        var vh   = window.innerHeight;
+
+        /*
+         * Progressive scroll scrub:
+         * — reveal begins when top of text reaches 80% from top of viewport
+         * — reveal reaches 100% when bottom of text is around 30% from top of viewport
+         */
+        var scrolled = vh * 0.80 - rect.top;
+        var range    = rect.height + vh * 0.50;
+        var progress = Math.max(0, Math.min(1, scrolled / range));
+
+        /* Smooth rolling gradient window (~8 words) */
+        var win = 8 / total;
+
+        for (var i = 0; i < total; i++) {
+          var wp         = i / (total - 1);
+          var brightness = Math.max(0, Math.min(1, (progress - wp + win) / win));
+          var alpha      = 0.12 + brightness * 0.88;
+          wordEls[i].style.color = 'rgba(249,250,251,' + alpha.toFixed(3) + ')';
+        }
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(updateReveal);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      updateReveal();
+    })();
+  </script>
+
+
+
+</body></html>
