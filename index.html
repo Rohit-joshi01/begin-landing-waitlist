@@ -477,12 +477,9 @@
 
           <!-- Question 2: Email (with live verification) -->
           <div class="flex flex-col gap-1.5">
-            <div class="flex items-center justify-between">
-              <label for="form-email" class="font-label text-xs sm:text-[13px] font-medium text-inverse-on-surface">
-                Email address <span class="text-accent-lime">*</span>
-              </label>
-              <span id="form-email-badge" class="hidden text-[10px] font-mono tracking-wide px-2 py-0.5 rounded-full"></span>
-            </div>
+            <label for="form-email" class="font-label text-xs sm:text-[13px] font-medium text-inverse-on-surface">
+              Email address <span class="text-accent-lime">*</span>
+            </label>
             <div class="relative">
               <input type="email"
                      id="form-email"
@@ -818,11 +815,7 @@
           if (res.isValid) {
             emailInput.classList.remove('border-red-400');
             emailInput.classList.add('border-accent-lime');
-            if (emailBadge) {
-              emailBadge.textContent = '✓ Verified format';
-              emailBadge.className = 'text-[10px] font-mono tracking-wide px-2 py-0.5 rounded-full bg-accent-lime/10 text-accent-lime border border-accent-lime/20';
-              emailBadge.classList.remove('hidden');
-            }
+            if (emailBadge) emailBadge.classList.add('hidden');
             if (emailStatusIcon) {
               emailStatusIcon.innerHTML = '<svg class="w-4 h-4 text-accent-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>';
               emailStatusIcon.classList.remove('opacity-0');
