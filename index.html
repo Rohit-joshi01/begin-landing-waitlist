@@ -125,22 +125,22 @@
 
   <main>
     <!-- SECTION 1: Hero Section with pure, unobstructed background image -->
-    <section id="hero" data-parallax-section class="relative min-h-[100svh] lg:min-h-[1024px] overflow-hidden flex flex-col justify-center px-5 sm:px-8 md:px-16 pt-24 pb-16 sm:py-24 bg-obsidian-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
+    <section id="hero" data-parallax-section class="relative min-h-[100svh] lg:min-h-[1024px] overflow-hidden flex flex-col justify-start md:justify-center px-5 sm:px-8 md:px-16 pt-28 xs:pt-32 sm:pt-36 md:pt-0 pb-16 sm:py-24 bg-obsidian-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
 
-        <img src="01-main_image_clean.png" alt="A lone builder sitting with a glowing laptop on a sunlit hill above the clouds" class="parallax-layer absolute -top-16 inset-x-0 w-full h-[calc(100%+128px)] object-cover object-[center_82%]" data-parallax-speed="0.1">
+        <img src="01-main_image_clean.png" alt="A lone builder sitting with a glowing laptop on a sunlit hill above the clouds" class="parallax-layer absolute -top-8 sm:-top-16 inset-x-0 w-full h-[calc(100%+64px)] sm:h-[calc(100%+128px)] object-cover object-[center_65%] sm:object-[center_82%]" data-parallax-speed="0.1">
         <!-- Deep bottom depth blend into Section 2 -->
-        <div class="absolute inset-x-0 bottom-0 h-40 sm:h-52 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-32 sm:h-52 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent pointer-events-none"></div>
       </div>
 
-      <!-- Content in original place (left-aligned on desktop, centered on mobile), keeping the builder on the right clear -->
-      <div class="relative z-10 w-full md:max-w-[48%] flex flex-col items-center md:items-start text-center md:text-left gap-5 sm:gap-6">
-        <h1 data-design-text-token="display-lg" class="font-serif text-[34px] xs:text-[40px] sm:text-[56px] md:text-[68px] lg:text-[76px] leading-[1.08] text-inverse-on-surface tracking-tight text-balance">Find your people,<br>build your thing</h1>
+      <!-- Content positioned in clear sky at top on mobile, left-aligned on desktop; keeping the lone builder completely clear -->
+      <div class="relative z-10 w-full md:max-w-[48%] flex flex-col items-center md:items-start text-center md:text-left gap-3.5 xs:gap-4 sm:gap-6 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-none mx-auto md:mx-0">
+        <h1 data-design-text-token="display-lg" class="font-serif text-[30px] xs:text-[36px] sm:text-[54px] md:text-[68px] lg:text-[76px] leading-[1.08] text-inverse-on-surface tracking-tight text-balance">Find your people,<br>build your thing</h1>
 
-        <p data-design-text-token="body-lg" class="font-body text-base xs:text-lg sm:text-xl md:text-[22px] md:leading-[32px] text-inverse-on-surface/90 max-w-md text-pretty">You don&#39;t have all it figured out, find your people, and start building something meaningful together.</p>
+        <p data-design-text-token="body-lg" class="font-body text-sm xs:text-base sm:text-lg md:text-[22px] md:leading-[32px] text-inverse-on-surface/90 max-w-xs xs:max-w-sm sm:max-w-md text-pretty">You don&#39;t have all it figured out, find your people, and start building something meaningful together.</p>
 
-        <div class="pt-2">
-          <a href="#mission" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-7 sm:px-8 py-3 sm:py-3.5 font-label text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
+        <div class="pt-1 xs:pt-2">
+          <a href="#mission" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 xs:px-7 sm:px-8 py-2.5 xs:py-3 sm:py-3.5 font-label text-sm xs:text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
             <span data-design-text-token="label-lg">Start Building</span>
           </a>
         </div>
