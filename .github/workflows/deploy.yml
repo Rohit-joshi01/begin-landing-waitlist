@@ -1,22 +1,18 @@
-name: CI / Deploy to GitHub Pages
+name: CI / Deploy to Vercel
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
-# Sets GITHUB_TOKEN permissions for GitHub Pages deployment
 permissions:
   contents: read
-  pages: write
-  id-token: write
+  pull-requests: write  # needed to post preview URL comments on PRs
 
-# Allow only one concurrent deployment, cancel in-progress runs
 concurrency:
-  group: pages
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -38,7 +34,7 @@ jobs:
       - name: Install html-validate
         run: npm install -g html-validate
 
-      - name: Run HTML validation
+      - name: Write html-validate config
         run: |
           cat > .htmlvalidate.json << 'EOF'
           {
@@ -50,47 +46,68 @@ jobs:
             }
           }
           EOF
-          html-validate index.html
+
+      - name: Run HTML validation
+        run: html-validate index.html
 
   # ─────────────────────────────────────────────
-  # JOB 2 — Build (copy assets, optimise images)
+  # JOB 2 — Deploy Preview (PRs only)
   # ─────────────────────────────────────────────
-  build:
-    name: Build site
+  preview:
+    name: Deploy Preview to Vercel
     needs: validate
     runs-on: ubuntu-latest
-    # Only build on pushes to main (not PRs)
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'pull_request'
+    outputs:
+      preview_url: ${{ steps.deploy.outputs.preview-url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Copy files to dist/
-        run: |
-          mkdir -p dist
-          cp index.html dist/
-          cp *.png dist/
-          cp begin-logo.png dist/ 2>/dev/null || true
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to Vercel (preview)
+        id: deploy
+        uses: amondnet/vercel-action@v25
         with:
-          path: dist/
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          # no --prod flag → preview deployment
+
+      - name: Comment preview URL on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const url = '${{ steps.deploy.outputs.preview-url }}';
+            const body = `## 🔍 Preview Deployment\n\n| | |\n|---|---|\n| **Preview URL** | ${url} |\n| **Commit** | \`${{ github.sha }}\` |\n| **Branch** | \`${{ github.head_ref }}\` |\n\nDeployed by GitHub Actions ✅`;
+            github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
 
   # ─────────────────────────────────────────────
-  # JOB 3 — Deploy to GitHub Pages
+  # JOB 3 — Deploy Production (main branch only)
   # ─────────────────────────────────────────────
-  deploy:
-    name: Deploy to GitHub Pages
-    needs: build
+  production:
+    name: Deploy Production to Vercel
+    needs: validate
     runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      name: production
+      url: ${{ steps.deploy.outputs.preview-url }}
     steps:
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel (production)
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./
