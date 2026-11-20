@@ -159,6 +159,34 @@
       backface-visibility: hidden;
     }
 
+    /* Custom Modal Scrollbar */
+    .custom-modal-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-modal-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 9999px;
+    }
+    .custom-modal-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 9999px;
+    }
+    .custom-modal-scroll::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    /* Waitlist Choice Card selected state */
+    .choice-card.is-selected {
+      border-color: #A3E635 !important;
+      background-color: rgba(163, 230, 53, 0.09) !important;
+    }
+    .choice-card.is-selected .choice-dot {
+      border-color: #A3E635 !important;
+    }
+    .choice-card.is-selected .choice-dot-inner {
+      transform: scale(1) !important;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .parallax-layer { transform: none !important; }
@@ -183,9 +211,9 @@
         <a href="#ecosystem" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Manifesto</a>
       </nav>
 
-      <a href="https://app.youform.com/forms/iln9dnmz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-3 xs:px-3.5 sm:px-4 py-1 xs:py-1.5 font-label text-[11px] xs:text-xs sm:text-label-lg font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0">
+      <button type="button" class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-3 xs:px-3.5 sm:px-4 py-1 xs:py-1.5 font-label text-[11px] xs:text-xs sm:text-label-lg font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 cursor-pointer">
         <span data-design-text-token="label-lg">Join Begin</span>
-      </a>
+      </button>
     </div>
   </header>
 
@@ -314,21 +342,6 @@
           <div id="page4-bg-container" class="absolute inset-0 z-0 overflow-hidden pointer-events-none will-change-transform" aria-hidden="true">
             <div id="page4-bg-layer" class="absolute -top-12 inset-x-0 w-full h-[calc(100%+96px)] will-change-transform">
               <img src="01-image4_clean.png" alt="Two builders standing together on a lush grassy arch overlooking a sea of clouds" class="w-full h-full object-cover object-[center_82%] sm:object-[center_80%]">
-              
-              <!-- Curved 'begin' typography bending along the bridge arch and blending into the sunlit mist -->
-              <svg viewBox="0 0 1000 260" class="absolute top-[62%] xs:top-[59%] sm:top-[54%] md:top-[48%] left-1/2 -translate-x-1/2 w-[92%] sm:w-[82%] max-w-[780px] h-auto overflow-hidden mix-blend-multiply opacity-30 select-none pointer-events-none" aria-hidden="true">
-                <defs>
-                  <path id="bridge-curve" d="M 120,205 Q 500,110 880,205" fill="none"></path>
-                  <linearGradient id="bridge-text-fade" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stop-color="#253324" stop-opacity="0.72"></stop>
-                    <stop offset="65%" stop-color="#253324" stop-opacity="0.38"></stop>
-                    <stop offset="100%" stop-color="#253324" stop-opacity="0.04"></stop>
-                  </linearGradient>
-                </defs>
-                <text fill="url(#bridge-text-fade)" class="font-serif italic" font-size="118" letter-spacing="14">
-                  <textPath href="#bridge-curve" startOffset="50%" text-anchor="middle">begin</textPath>
-                </text>
-              </svg>
             </div>
             
             <!-- Atmospheric blends: Top mist blend + Bottom obsidian blend to footer -->
@@ -348,9 +361,9 @@
             <p data-design-text-token="body-lg" class="font-body text-[clamp(13px,3vw,18px)] leading-[1.48] text-on-surface/90 max-w-lg text-pretty">We&#39;re opening Begin in small waves of builders, founders, and curious minds. Join the waitlist and claim your spot.</p>
 
             <div class="pt-1 xs:pt-1.5 sm:pt-2 w-full sm:w-auto">
-              <a href="https://app.youform.com/forms/iln9dnmz" target="_blank" rel="noopener noreferrer" class="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 xs:px-7 sm:px-8 py-2.5 xs:py-3 sm:py-3.5 font-label text-sm xs:text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
+              <button type="button" class="open-waitlist-btn inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 xs:px-7 sm:px-8 py-2.5 xs:py-3 sm:py-3.5 font-label text-sm xs:text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer">
                 <span data-design-text-token="label-lg">Join the waitlist</span>
-              </a>
+              </button>
             </div>
           </div>
 
@@ -371,9 +384,9 @@
           <h3 data-design-text-token="headline-lg" class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface">Work fast. Live slow.</h3>
           <p data-design-text-token="body-md" class="font-body text-sm sm:text-body-md text-inverse-muted max-w-sm text-pretty leading-relaxed">A quiet, high-signal home for next-generation founders, student builders, and early-stage teams turning sparks into real companies.</p>
           <div class="pt-1 sm:pt-gutter-xs">
-            <a href="https://app.youform.com/forms/iln9dnmz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
+            <button type="button" class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer">
               <span data-design-text-token="label-lg">Claim early access</span>
-            </a>
+            </button>
           </div>
         </div>
 
@@ -399,22 +412,669 @@
     </div>
   </footer>
 
+  <!-- ============================================================== -->
+  <!-- COMPACT WAITLIST APPLICATION MODAL (Begin Design System)       -->
+  <!-- ============================================================== -->
+  <div id="waitlist-modal"
+       class="fixed inset-0 z-[100] flex items-center justify-center p-3 xs:p-4 sm:p-6 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 ease-out"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="modal-title">
 
+    <!-- Modal Card Container (Compact sizing: max-w-[460px] to not look too big) -->
+    <div id="modal-card"
+         class="relative w-full max-w-[460px] max-h-[90vh] flex flex-col rounded-2xl sm:rounded-3xl bg-[#0D0E12] border border-white/15 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.85)] text-inverse-on-surface transform scale-95 translate-y-3 transition-all duration-300 ease-out overflow-hidden">
+      
+      <!-- Top Ambient Gradient Accent Line -->
+      <div class="h-1 w-full bg-gradient-to-r from-accent-lime/20 via-accent-lime to-accent-lime/20 flex-shrink-0"></div>
+
+      <!-- Scrollable Modal Content Container -->
+      <div class="overflow-y-auto px-5 xs:px-6 sm:px-7 py-5 xs:py-6 flex flex-col gap-4 sm:gap-5 custom-modal-scroll">
+        
+        <!-- Header: Early Access Badge & Close Button -->
+        <div class="flex items-center justify-between gap-3">
+          <div class="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 font-mono text-[10px] tracking-widest text-accent-lime uppercase">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-lime animate-pulse"></span>
+            Early Access
+          </div>
+          <button type="button"
+                  id="modal-close-btn"
+                  aria-label="Close modal"
+                  class="rounded-full p-1.5 text-inverse-muted hover:text-inverse-on-surface hover:bg-white/10 transition-colors cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Title & Subtitle -->
+        <div class="flex flex-col gap-1">
+          <h2 id="modal-title" class="font-serif text-2xl xs:text-[26px] sm:text-3xl text-inverse-on-surface leading-tight">
+            Join the inner circle
+          </h2>
+          <p class="font-body text-xs xs:text-[13px] sm:text-sm text-inverse-muted leading-relaxed">
+            Answer a few quick questions to reserve your early invite to Begin.
+          </p>
+        </div>
+
+        <!-- Form State: Inputs & Questions -->
+        <form id="waitlist-application-form" novalidate class="flex flex-col gap-4">
+          
+          <!-- Question 1: Name -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-name" class="font-label text-xs sm:text-[13px] font-medium text-inverse-on-surface">
+              Your name <span class="text-accent-lime">*</span>
+            </label>
+            <input type="text"
+                   id="form-name"
+                   name="name"
+                   required
+                   autocomplete="name"
+                   placeholder="e.g. Alex Morgan"
+                   class="w-full rounded-xl bg-white/[0.04] border border-white/10 px-3.5 py-2.5 text-sm text-inverse-on-surface placeholder:text-inverse-muted/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-name-error" class="hidden text-[11px] font-mono text-red-400 mt-0.5"></p>
+          </div>
+
+          <!-- Question 2: Email (with live verification) -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-email" class="font-label text-xs sm:text-[13px] font-medium text-inverse-on-surface">
+              Email address <span class="text-accent-lime">*</span>
+            </label>
+            <div class="relative">
+              <input type="email"
+                     id="form-email"
+                     name="email"
+                     required
+                     autocomplete="email"
+                     placeholder="you@domain.com"
+                     class="w-full rounded-xl bg-white/[0.04] border border-white/10 px-3.5 py-2.5 pr-9 text-sm text-inverse-on-surface placeholder:text-inverse-muted/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+              <div id="form-email-status-icon" class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-0 transition-opacity">
+                <!-- Checkmark / icon injected dynamically -->
+              </div>
+            </div>
+            <div id="form-email-feedback" class="hidden flex flex-col gap-1 mt-0.5">
+              <p id="form-email-error-text" class="text-[11px] font-mono text-red-400"></p>
+              <div id="form-email-suggestion" class="hidden">
+                <button type="button" id="form-email-suggestion-btn" class="inline-flex items-center gap-1 text-[11px] font-mono text-accent-lime hover:underline cursor-pointer">
+                  <span>Did you mean </span><strong id="form-email-suggested-domain"></strong><span>? (Click to fix)</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question 3: Mobile No -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-phone" class="font-label text-xs sm:text-[13px] font-medium text-inverse-on-surface">
+              Mobile no <span class="text-accent-lime">*</span>
+            </label>
+            <input type="tel"
+                   id="form-phone"
+                   name="phone"
+                   required
+                   autocomplete="tel"
+                   placeholder="+1 (555) 000-0000 or 10-digit number"
+                   class="w-full rounded-xl bg-white/[0.04] border border-white/10 px-3.5 py-2.5 text-sm text-inverse-on-surface placeholder:text-inverse-muted/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-phone-error" class="hidden text-[11px] font-mono text-red-400 mt-0.5"></p>
+          </div>
+
+          <!-- Question 4: City -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-city" class="font-label text-xs sm:text-[13px] font-medium text-inverse-on-surface">
+              Which city are you based in? <span class="text-accent-lime">*</span>
+            </label>
+            <input type="text"
+                   id="form-city"
+                   name="city"
+                   required
+                   placeholder="e.g. Bengaluru, San Francisco, London..."
+                   class="w-full rounded-xl bg-white/[0.04] border border-white/10 px-3.5 py-2.5 text-sm text-inverse-on-surface placeholder:text-inverse-muted/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-city-error" class="hidden text-[11px] font-mono text-red-400 mt-0.5"></p>
+          </div>
+
+          <!-- Question 5: What describes you the best? (Select one) -->
+          <fieldset class="flex flex-col gap-2 pt-1 border-0 p-0 m-0">
+            <legend class="font-label text-xs sm:text-[13px] font-medium text-inverse-on-surface mb-1">
+              What describes you the best? <span class="text-accent-lime">*</span>
+              <span class="block text-[11px] font-normal text-inverse-muted">Select one option</span>
+            </legend>
+
+            <div class="grid grid-cols-1 gap-2" id="profile-options-container">
+              
+              <!-- Option 1 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 cursor-pointer transition-all">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Want to start a startup" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-inverse-on-surface">Want to start a startup</span>
+                </div>
+              </label>
+
+              <!-- Option 2 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 cursor-pointer transition-all">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Already building a startup" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-inverse-on-surface">Already building a startup</span>
+                </div>
+              </label>
+
+              <!-- Option 3 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 cursor-pointer transition-all">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Interested in joining a startup" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-inverse-on-surface">Interested in joining a startup</span>
+                </div>
+              </label>
+
+              <!-- Option 4 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] hover:border-white/20 cursor-pointer transition-all">
+                <div class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Just curious" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-white/30 flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-inverse-on-surface">Just curious</span>
+                </div>
+              </label>
+
+            </div>
+            <p id="form-profile-error" class="hidden text-[11px] font-mono text-red-400 mt-0.5"></p>
+          </fieldset>
+
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button type="submit"
+                    id="modal-submit-btn"
+                    class="w-full py-3 px-6 rounded-full bg-accent-lime text-on-accent-lime font-label text-sm sm:text-base font-semibold hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-accent-lime/10">
+              <span id="modal-submit-text">Submit</span>
+              <svg id="modal-submit-spinner" class="hidden animate-spin h-4 w-4 text-on-accent-lime" viewBox="0 0 24 24" fill="none">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <p id="form-general-error" class="hidden text-xs text-center text-red-400 font-mono"></p>
+        </form>
+
+        <!-- Success Screen View (Hidden by default, shown upon successful submission) -->
+        <div id="modal-success-view" class="hidden flex-col items-center text-center py-6 gap-4">
+          <div class="w-14 h-14 rounded-full bg-accent-lime/15 border border-accent-lime/30 flex items-center justify-center text-accent-lime">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <h3 class="font-serif text-2xl sm:text-3xl text-inverse-on-surface">You&#39;re on the list.</h3>
+            <p class="font-body text-xs sm:text-sm text-inverse-muted max-w-xs mx-auto">
+              We&#39;ve saved your spot for early access. Check your email inbox soon for your invite.
+            </p>
+          </div>
+          <button type="button"
+                  id="modal-success-close-btn"
+                  class="mt-2 py-2 px-6 rounded-full bg-white/10 hover:bg-white/15 text-inverse-on-surface text-xs sm:text-sm font-medium transition-colors cursor-pointer">
+            Close
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <script>
+    /* Direct Supabase Client Configuration (Enables direct submissions on VS Code Live Server / Static hosts) */
+    window.BEGIN_SUPABASE_CONFIG = {
+      url: 'https://wbbytuqzkotzugdhwtme.supabase.co',
+      anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiYnl0dXF6a290enVnZGh3dG1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxOTM0OTUsImV4cCI6MjExMDc2OTQ5NX0.Jtn04msrpOWRbyS1JEbTfCqK0NzW6wYU1QAX9-zf1lM'
+    };
+
     /* ── GSAP ScrollTrigger: High-Performance Zoom & 3D Spatial Scroll Fly-Out ── */
     window.addEventListener('DOMContentLoaded', function () {
-      var waitlistForm = document.getElementById('waitlist-form');
-      var waitlistInput = document.getElementById('waitlist-email');
-      if (waitlistForm) {
-        waitlistForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          var email = waitlistInput ? encodeURIComponent(waitlistInput.value.trim()) : '';
-          var targetUrl = 'https://app.youform.com/forms/iln9dnmz' + (email ? '?email=' + email : '');
-          window.open(targetUrl, '_blank', 'noopener,noreferrer');
-          if (waitlistInput) waitlistInput.value = '';
+      /* ── Waitlist Application Modal & Form Controller ── */
+      (function initWaitlistModal() {
+        var modal = document.getElementById('waitlist-modal');
+        var modalCard = document.getElementById('modal-card');
+        var closeBtn = document.getElementById('modal-close-btn');
+        var successCloseBtn = document.getElementById('modal-success-close-btn');
+        var form = document.getElementById('waitlist-application-form');
+        var successView = document.getElementById('modal-success-view');
+        var openButtons = document.querySelectorAll('.open-waitlist-btn');
+
+        // Form Fields
+        var nameInput = document.getElementById('form-name');
+        var emailInput = document.getElementById('form-email');
+        var phoneInput = document.getElementById('form-phone');
+        var cityInput = document.getElementById('form-city');
+        var radioCards = document.querySelectorAll('.choice-card');
+        var submitBtn = document.getElementById('modal-submit-btn');
+        var submitText = document.getElementById('modal-submit-text');
+        var submitSpinner = document.getElementById('modal-submit-spinner');
+
+        // Error & Feedback Elements
+        var nameError = document.getElementById('form-name-error');
+        var emailBadge = document.getElementById('form-email-badge');
+        var emailStatusIcon = document.getElementById('form-email-status-icon');
+        var emailFeedback = document.getElementById('form-email-feedback');
+        var emailErrorText = document.getElementById('form-email-error-text');
+        var emailSuggestion = document.getElementById('form-email-suggestion');
+        var emailSuggestedDomain = document.getElementById('form-email-suggested-domain');
+        var emailSuggestionBtn = document.getElementById('form-email-suggestion-btn');
+        var phoneError = document.getElementById('form-phone-error');
+        var cityError = document.getElementById('form-city-error');
+        var profileError = document.getElementById('form-profile-error');
+        var generalError = document.getElementById('form-general-error');
+
+        var currentSuggestedEmail = '';
+
+        function openModal() {
+          if (!modal) return;
+          modal.classList.remove('opacity-0', 'pointer-events-none');
+          modal.classList.add('opacity-100', 'pointer-events-auto');
+          if (modalCard) {
+            modalCard.classList.remove('scale-95', 'translate-y-3');
+            modalCard.classList.add('scale-100', 'translate-y-0');
+          }
+          document.body.style.overflow = 'hidden';
+          if (nameInput) setTimeout(function () { nameInput.focus(); }, 150);
+        }
+
+        function closeModal() {
+          if (!modal) return;
+          modal.classList.remove('opacity-100', 'pointer-events-auto');
+          modal.classList.add('opacity-0', 'pointer-events-none');
+          if (modalCard) {
+            modalCard.classList.remove('scale-100', 'translate-y-0');
+            modalCard.classList.add('scale-95', 'translate-y-3');
+          }
+          document.body.style.overflow = '';
+        }
+
+        // Trigger Listeners
+        openButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openModal();
+          });
         });
-      }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (successCloseBtn) successCloseBtn.addEventListener('click', closeModal);
+
+        // Click outside modal card to close
+        if (modal) {
+          modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+              closeModal();
+            }
+          });
+        }
+
+        // ESC key to close
+        window.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && modal && modal.classList.contains('opacity-100')) {
+            closeModal();
+          }
+        });
+
+        // Radio choice card selection
+        radioCards.forEach(function (card) {
+          var radio = card.querySelector('.choice-radio');
+          card.addEventListener('click', function () {
+            radioCards.forEach(function (c) {
+              c.classList.remove('is-selected');
+            });
+            card.classList.add('is-selected');
+            if (radio) {
+              radio.checked = true;
+            }
+            if (profileError) profileError.classList.add('hidden');
+          });
+        });
+
+        // Email Verification Logic
+        var commonDomainTypos = {
+          'gmial.com': 'gmail.com',
+          'gmaill.com': 'gmail.com',
+          'gmai.com': 'gmail.com',
+          'gamil.com': 'gmail.com',
+          'gmaul.com': 'gmail.com',
+          'hotmial.com': 'hotmail.com',
+          'hotmai.com': 'hotmail.com',
+          'outlok.com': 'outlook.com',
+          'outloo.com': 'outlook.com',
+          'yaho.com': 'yahoo.com',
+          'yahooo.com': 'yahoo.com',
+          'iclud.com': 'icloud.com'
+        };
+
+        var fakeAddressPrefixes = ['test', 'asdf', 'fake', 'admin', 'example', 'noreply', 'temp'];
+
+        function verifyEmailString(email) {
+          email = (email || '').trim().toLowerCase();
+          if (!email) return { isValid: false, reason: 'Email address is required.' };
+
+          // Basic RFC 5322 regex format
+          var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+          if (!regex.test(email)) {
+            return { isValid: false, reason: 'Please enter a valid email format (e.g. name@domain.com).' };
+          }
+
+          var parts = email.split('@');
+          var user = parts[0];
+          var domain = parts[1];
+
+          // Domain checks
+          if (!domain || domain.indexOf('.') === -1) {
+            return { isValid: false, reason: 'Email domain must have a valid extension (e.g. .com, .io).' };
+          }
+
+          var tld = domain.split('.').pop();
+          if (!tld || tld.length < 2 || /\d/.test(tld)) {
+            return { isValid: false, reason: 'Email domain extension is invalid.' };
+          }
+
+          // Typo check
+          if (commonDomainTypos[domain]) {
+            var corrected = user + '@' + commonDomainTypos[domain];
+            return { isValid: false, reason: 'Possible typo in email domain.', suggestion: corrected, suggestedDomain: commonDomainTypos[domain] };
+          }
+
+          // Obvious placeholder checks
+          if (fakeAddressPrefixes.indexOf(user) !== -1 && (domain === 'test.com' || domain === 'example.com' || domain === 'fake.com')) {
+            return { isValid: false, reason: 'Please enter a real, active email address.' };
+          }
+
+          // Disposable check
+          var disposableDomains = ['tempmail.com', 'mailinator.com', '10minutemail.com', 'guerrillamail.com', 'trashmail.com'];
+          if (disposableDomains.indexOf(domain) !== -1) {
+            return { isValid: false, reason: 'Temporary or disposable email addresses are not accepted.' };
+          }
+
+          return { isValid: true };
+        }
+
+        function checkEmailLive() {
+          if (!emailInput) return;
+          var val = emailInput.value.trim();
+          if (!val) {
+            if (emailBadge) emailBadge.classList.add('hidden');
+            if (emailStatusIcon) emailStatusIcon.classList.add('opacity-0');
+            if (emailFeedback) emailFeedback.classList.add('hidden');
+            emailInput.classList.remove('border-accent-lime', 'border-red-400');
+            return;
+          }
+
+          var res = verifyEmailString(val);
+          if (res.isValid) {
+            emailInput.classList.remove('border-red-400');
+            emailInput.classList.add('border-accent-lime');
+            if (emailBadge) emailBadge.classList.add('hidden');
+            if (emailStatusIcon) {
+              emailStatusIcon.innerHTML = '<svg class="w-4 h-4 text-accent-lime" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>';
+              emailStatusIcon.classList.remove('opacity-0');
+            }
+            if (emailFeedback) emailFeedback.classList.add('hidden');
+          } else {
+            emailInput.classList.remove('border-accent-lime');
+            emailInput.classList.add('border-red-400');
+            if (emailBadge) emailBadge.classList.add('hidden');
+            if (emailStatusIcon) {
+              emailStatusIcon.innerHTML = '<svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"></circle><line x1="12" y1="8" x2="12" y2="12" stroke-width="2"></line><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"></line></svg>';
+              emailStatusIcon.classList.remove('opacity-0');
+            }
+            if (emailFeedback) emailFeedback.classList.remove('hidden');
+            if (emailErrorText) emailErrorText.textContent = res.reason;
+            if (res.suggestion && emailSuggestion && emailSuggestedDomain) {
+              currentSuggestedEmail = res.suggestion;
+              emailSuggestedDomain.textContent = '@' + res.suggestedDomain;
+              emailSuggestion.classList.remove('hidden');
+            } else if (emailSuggestion) {
+              emailSuggestion.classList.add('hidden');
+            }
+          }
+        }
+
+        if (emailInput) {
+          emailInput.addEventListener('input', checkEmailLive);
+          emailInput.addEventListener('blur', checkEmailLive);
+        }
+
+        if (emailSuggestionBtn) {
+          emailSuggestionBtn.addEventListener('click', function () {
+            if (currentSuggestedEmail && emailInput) {
+              emailInput.value = currentSuggestedEmail;
+              checkEmailLive();
+            }
+          });
+        }
+
+        // Live reset errors on input
+        if (nameInput) {
+          nameInput.addEventListener('input', function () {
+            if (nameError) nameError.classList.add('hidden');
+            nameInput.classList.remove('border-red-400');
+          });
+        }
+        if (phoneInput) {
+          phoneInput.addEventListener('input', function () {
+            if (phoneError) phoneError.classList.add('hidden');
+            phoneInput.classList.remove('border-red-400');
+          });
+        }
+        if (cityInput) {
+          cityInput.addEventListener('input', function () {
+            if (cityError) cityError.classList.add('hidden');
+            cityInput.classList.remove('border-red-400');
+          });
+        }
+
+        // Form Submit
+        if (form) {
+          form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            if (generalError) generalError.classList.add('hidden');
+
+            var nameVal = (nameInput ? nameInput.value.trim() : '');
+            var emailVal = (emailInput ? emailInput.value.trim() : '');
+            var phoneVal = (phoneInput ? phoneInput.value.trim() : '');
+            var cityVal = (cityInput ? cityInput.value.trim() : '');
+            var selectedRadio = form.querySelector('input[name="profile"]:checked');
+            var profileVal = selectedRadio ? selectedRadio.value : '';
+
+            var hasError = false;
+
+            // Validate Name
+            if (!nameVal || nameVal.length < 2) {
+              if (nameError) {
+                nameError.textContent = 'Please enter your full name.';
+                nameError.classList.remove('hidden');
+              }
+              if (nameInput) nameInput.classList.add('border-red-400');
+              if (!hasError && nameInput) nameInput.focus();
+              hasError = true;
+            }
+
+            // Validate Email
+            var emailCheck = verifyEmailString(emailVal);
+            if (!emailCheck.isValid) {
+              if (emailFeedback) emailFeedback.classList.remove('hidden');
+              if (emailErrorText) emailErrorText.textContent = emailCheck.reason;
+              if (emailInput) emailInput.classList.add('border-red-400');
+              if (!hasError && emailInput) emailInput.focus();
+              hasError = true;
+            }
+
+            // Validate Phone (allow digits, +, -, space, brackets, min 8 digits)
+            var cleanPhone = phoneVal.replace(/[^0-9+]/g, '');
+            var digitCount = (cleanPhone.match(/\d/g) || []).length;
+            if (!cleanPhone || digitCount < 8 || digitCount > 15) {
+              if (phoneError) {
+                phoneError.textContent = 'Please enter a valid mobile number (min. 10 digits).';
+                phoneError.classList.remove('hidden');
+              }
+              if (phoneInput) phoneInput.classList.add('border-red-400');
+              if (!hasError && phoneInput) phoneInput.focus();
+              hasError = true;
+            }
+
+            // Validate City
+            if (!cityVal || cityVal.length < 2) {
+              if (cityError) {
+                cityError.textContent = 'Please enter your current city.';
+                cityError.classList.remove('hidden');
+              }
+              if (cityInput) cityInput.classList.add('border-red-400');
+              if (!hasError && cityInput) cityInput.focus();
+              hasError = true;
+            }
+
+            // Validate Profile Choice
+            if (!profileVal) {
+              if (profileError) {
+                profileError.textContent = 'Please select one option that describes you.';
+                profileError.classList.remove('hidden');
+              }
+              hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Set Loading UI
+            if (submitBtn) submitBtn.disabled = true;
+            if (submitText) submitText.textContent = 'Reserving your spot...';
+            if (submitSpinner) submitSpinner.classList.remove('hidden');
+
+            var payload = {
+              name: nameVal,
+              email: emailVal.toLowerCase(),
+              phone: phoneVal,
+              city: cityVal,
+              profile: profileVal,
+              submittedAt: new Date().toISOString()
+            };
+
+            // 1. Save locally to localStorage backup so leads are NEVER lost
+            try {
+              var stored = JSON.parse(localStorage.getItem('begin_waitlist_records') || '[]');
+              stored.push(payload);
+              localStorage.setItem('begin_waitlist_records', JSON.stringify(stored));
+            } catch (err) {
+              console.warn('LocalStorage save warning:', err);
+            }
+
+            // 2. Dispatch to /api/waitlist endpoint or direct Supabase
+            var savedSuccessfully = false;
+            var apiError = null;
+
+            async function saveDirectToSupabase() {
+              var cfg = window.BEGIN_SUPABASE_CONFIG;
+              if (!cfg || !cfg.url || !cfg.anonKey) return false;
+              var cleanSbUrl = cfg.url.trim().replace(/\/+$/, '');
+              if (cleanSbUrl.endsWith('/rest/v1')) {
+                cleanSbUrl = cleanSbUrl.slice(0, -'/rest/v1'.length).replace(/\/+$/, '');
+              }
+              var sbResp = await fetch(cleanSbUrl + '/rest/v1/waitlist', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'apikey': cfg.anonKey,
+                  'Authorization': 'Bearer ' + cfg.anonKey,
+                  'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                  name: payload.name,
+                  email: payload.email,
+                  phone: payload.phone,
+                  city: payload.city,
+                  profile: payload.profile
+                })
+              });
+              if (sbResp.ok || sbResp.status === 201) {
+                return true;
+              }
+              var sbErrText = await sbResp.text();
+              // If duplicate email, consider it already recorded
+              if (sbResp.status === 409 || sbErrText.includes('duplicate key') || sbErrText.includes('unique constraint')) {
+                return true;
+              }
+              throw new Error(sbErrText || ('Supabase status ' + sbResp.status));
+            }
+
+            // Step A: Attempt serverless /api/waitlist first (works on Vercel & Node server)
+            try {
+              var resp = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              if (resp.ok) {
+                savedSuccessfully = true;
+              } else if (resp.status === 405 || resp.status === 404) {
+                // Static server detected (VS Code Live Server or static host) -> directly insert into Supabase
+                console.log('Static server detected (status ' + resp.status + '). Directly saving to Supabase...');
+                try {
+                  savedSuccessfully = await saveDirectToSupabase();
+                } catch (sbErr) {
+                  apiError = sbErr.message || 'Direct Supabase insert failed.';
+                }
+              } else {
+                var errData = await resp.json().catch(function () { return {}; });
+                apiError = errData.error || ('Server error ' + resp.status);
+              }
+            } catch (netErr) {
+              // Network error or local file preview -> fallback to direct Supabase
+              try {
+                savedSuccessfully = await saveDirectToSupabase();
+              } catch (sbErr) {
+                apiError = sbErr.message || 'Could not connect to database.';
+              }
+            }
+
+            if (!savedSuccessfully && apiError) {
+              if (submitSpinner) submitSpinner.classList.add('hidden');
+              if (submitText) submitText.textContent = 'Submit';
+              if (submitBtn) submitBtn.disabled = false;
+              if (generalError) {
+                generalError.textContent = 'Database error: ' + apiError;
+                generalError.classList.remove('hidden');
+              }
+              return;
+            }
+
+            // Transition to Success State
+            setTimeout(function () {
+              if (submitSpinner) submitSpinner.classList.add('hidden');
+              if (submitText) submitText.textContent = 'Submit';
+              if (submitBtn) submitBtn.disabled = false;
+
+              // Hide form, show success
+              form.classList.add('hidden');
+              if (successView) {
+                successView.classList.remove('hidden');
+                successView.classList.add('flex');
+              }
+
+              // Reset form fields
+              form.reset();
+              radioCards.forEach(function (c) { c.classList.remove('is-selected'); });
+              if (emailBadge) emailBadge.classList.add('hidden');
+              if (emailStatusIcon) emailStatusIcon.classList.add('opacity-0');
+              if (emailFeedback) emailFeedback.classList.add('hidden');
+              if (nameInput) nameInput.classList.remove('border-accent-lime', 'border-red-400');
+              if (emailInput) emailInput.classList.remove('border-accent-lime', 'border-red-400');
+              if (phoneInput) phoneInput.classList.remove('border-accent-lime', 'border-red-400');
+              if (cityInput) cityInput.classList.remove('border-accent-lime', 'border-red-400');
+            }, 500);
+          });
+        }
+      })();
 
       var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

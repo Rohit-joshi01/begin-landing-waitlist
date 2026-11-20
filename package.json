@@ -1,0 +1,10 @@
+{
+  "name": "begin-landing-waitlist",
+  "version": "1.0.0",
+  "description": "Begin Landing Page & Waitlist",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  }
+}
