@@ -6,6 +6,13 @@
   <script>
     tailwind.config = {
       theme: {
+        screens: {
+          'xs': '420px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+        },
         extend: {
           colors: {
             'surface': '#FAFAFA',
@@ -61,6 +68,12 @@
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <style>
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
     .parallax-layer {
       will-change: transform;
       transform: translate3d(0, 0, 0);
@@ -93,20 +106,18 @@
 <body class="bg-surface text-on-surface font-body antialiased">
 
   <!-- Timmo-inspired Floating Centered Pill Navbar -->
-  <header class="fixed top-6 inset-x-0 z-50 flex justify-center px-gutter-md pointer-events-none">
-    <div class="pointer-events-auto inline-flex items-center justify-between gap-gutter-lg rounded-full bg-surface-card/95 backdrop-blur-md border border-outline shadow-md px-4 py-2">
-      <a href="#hero" class="inline-flex items-center pl-2 pr-1 text-on-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full">
-        <span data-design-text-token="headline-sm" class="font-headline text-headline-sm tracking-tight">Begin</span>
+  <header class="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-3 sm:px-gutter-md pointer-events-none">
+    <div class="pointer-events-auto inline-flex items-center justify-between gap-3 sm:gap-gutter-lg rounded-full bg-surface-card/95 backdrop-blur-md border border-outline shadow-md px-3.5 sm:px-4 py-1.5 sm:py-2 max-w-[calc(100vw-1.5rem)]">
+      <a href="#hero" class="inline-flex items-center pl-1 sm:pl-2 pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full">
+        <img src="begin-logo.png" alt="Begin" class="h-4 sm:h-5 w-auto object-contain">
       </a>
 
       <nav aria-label="Primary" class="hidden md:flex items-center gap-gutter-xs">
-        <a href="#hero" class="rounded-full bg-accent-lime text-on-accent-lime px-3.5 py-1.5 font-label text-label-lg">Home</a>
-        <a href="#ecosystem" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Ecosystem</a>
-        <a href="#boards" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Boards</a>
-        <a href="#mission" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Mission</a>
+        <a href="#mission" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Reality</a>
+        <a href="#ecosystem" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Manifesto</a>
       </nav>
 
-      <a href="#waitlist" class="inline-flex items-center justify-center rounded-full bg-primary text-on-primary px-4 py-1.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+      <a href="https://app.youform.com/forms/iln9dnmz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-3.5 sm:px-4 py-1.5 font-label text-xs sm:text-label-lg font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0">
         <span data-design-text-token="label-lg">Join Begin</span>
       </a>
     </div>
@@ -114,138 +125,105 @@
 
   <main>
     <!-- SECTION 1: Hero Section with pure, unobstructed background image -->
-    <section id="hero" data-parallax-section class="relative min-h-[1024px] overflow-hidden flex flex-col justify-center px-gutter-lg md:px-16 bg-obsidian-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
+    <section id="hero" data-parallax-section class="relative min-h-[100svh] lg:min-h-[1024px] overflow-hidden flex flex-col justify-center px-5 sm:px-8 md:px-16 pt-24 pb-16 sm:py-24 bg-obsidian-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
 
         <img src="01-main_image_clean.png" alt="A lone builder sitting with a glowing laptop on a sunlit hill above the clouds" class="parallax-layer absolute -top-16 inset-x-0 w-full h-[calc(100%+128px)] object-cover object-[center_82%]" data-parallax-speed="0.1">
         <!-- Deep bottom depth blend into Section 2 -->
-        <div class="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-40 sm:h-52 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent"></div>
       </div>
 
-      <!-- Content left-aligned to the left ~45% of the frame (matches image aspect ratio), keeping the builder on the right clear -->
-      <div class="relative z-10 w-full md:max-w-[45%] flex flex-col items-center md:items-start text-center md:text-left gap-gutter-md">
-        <h1 data-design-text-token="display-lg" class="font-serif text-display-lg-mobile md:text-display-lg text-inverse-on-surface text-balance">Find your people, build your thing</h1>
+      <!-- Content in original place (left-aligned on desktop, centered on mobile), keeping the builder on the right clear -->
+      <div class="relative z-10 w-full md:max-w-[48%] flex flex-col items-center md:items-start text-center md:text-left gap-5 sm:gap-6">
+        <h1 data-design-text-token="display-lg" class="font-serif text-[34px] xs:text-[40px] sm:text-[56px] md:text-[68px] lg:text-[76px] leading-[1.08] text-inverse-on-surface tracking-tight text-balance">Find your people,<br>build your thing</h1>
 
-        <p data-design-text-token="body-lg" class="font-body text-body-lg text-inverse-on-surface max-w-lg text-pretty">You don&#39;t have all it figured out, find your people, bring curiosity.</p>
+        <p data-design-text-token="body-lg" class="font-body text-base xs:text-lg sm:text-xl md:text-[22px] md:leading-[32px] text-inverse-on-surface/90 max-w-md text-pretty">You don&#39;t have all it figured out, find your people, and start building something meaningful together.</p>
 
-        <div class="pt-gutter-sm">
-          <a href="#ecosystem" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-7 py-3 font-label text-label-lg shadow-sm hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
-            <span data-design-text-token="label-lg">Start building</span>
+        <div class="pt-2">
+          <a href="#mission" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-7 sm:px-8 py-3 sm:py-3.5 font-label text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
+            <span data-design-text-token="label-lg">Start Building</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 2: Full-screen single-frame split — image left, content right -->
+    <!-- SECTION 2: Scroll-driven word-reveal — large editorial typography & grand section height -->
+    <section id="mission" class="relative bg-obsidian-surface min-h-[110vh] md:min-h-[150vh] py-24 sm:py-36 md:py-56 lg:py-64 px-5 sm:px-8 md:px-16 lg:px-20 flex flex-col justify-center items-center">
+      <!-- Top / bottom atmospheric blends -->
+      <div class="absolute inset-x-0 top-0 h-24 sm:h-32 bg-gradient-to-b from-obsidian-surface via-obsidian-surface/80 to-transparent pointer-events-none"></div>
+      <div class="absolute inset-x-0 bottom-0 h-24 sm:h-32 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/80 to-transparent pointer-events-none"></div>
+
+      <div class="max-w-5xl mx-auto w-full text-center">
+        <p id="mission-text"
+           class="font-serif text-[clamp(1.45rem,4.5vw,3.25rem)] leading-[1.4] md:leading-[1.42] tracking-[-0.015em] select-none text-balance"
+           aria-label="Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next — hoping that somewhere along the way, all the pieces finally come together.">
+        </p>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Full-screen single-frame split — image left, content right -->
     <section id="ecosystem" class="relative bg-obsidian-surface text-inverse-on-surface overflow-hidden min-h-screen flex flex-col lg:flex-row">
 
       <!-- Left: Image — full height, fully visible in one frame -->
-      <div class="relative w-full lg:w-1/2 h-[50vw] lg:h-auto lg:min-h-screen overflow-hidden pointer-events-none flex-shrink-0">
+      <div class="relative w-full lg:w-1/2 h-[75vw] sm:h-[60vw] max-h-[520px] min-h-[280px] lg:max-h-none lg:min-h-0 lg:h-auto lg:min-h-screen overflow-hidden pointer-events-none flex-shrink-0">
         <div class="w-full h-full fade-mask-right">
-          <img src="01-image2_clean.png" alt="A young builder sitting under a tree on a hillside overlooking a bright future city" class="w-full h-full object-cover object-[40%_38%]">
+          <img src="01-image2_clean.png" alt="A young builder sitting under a tree on a hillside overlooking a bright future city" class="w-full h-full object-cover object-[40%_35%]">
         </div>
-        <!-- Top blend from hero -->
-        <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-obsidian-surface via-obsidian-surface/50 to-transparent"></div>
+        <!-- Top blend from mission -->
+        <div class="absolute inset-x-0 top-0 h-24 sm:h-32 bg-gradient-to-b from-obsidian-surface via-obsidian-surface/50 to-transparent"></div>
         <!-- Bottom blend -->
-        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/50 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-24 sm:h-32 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/50 to-transparent"></div>
 
         <!-- Bottom-left editorial signature -->
         <div class="hidden lg:flex absolute bottom-8 left-10 right-16 z-10 flex-col gap-gutter-sm">
           <span data-design-text-token="headline-lg" class="font-serif text-headline-lg text-inverse-on-surface">Work fast. Live slow.</span>
-
-          </div>
         </div>
       </div>
 
-      <!-- Right: Content — engaging two-beat editorial layout -->
-      <div id="boards" class="w-full lg:w-1/2 flex flex-col justify-center px-gutter-lg md:px-12 lg:px-16 py-16 lg:py-20 gap-12">
+      <!-- Right: Content — Rich, expansive editorial layout that fills the space -->
+      <div id="boards" class="w-full lg:w-1/2 flex flex-col justify-center px-5 sm:px-10 md:px-12 lg:px-16 py-12 sm:py-16 lg:py-24 gap-10 sm:gap-12 max-w-2xl mx-auto lg:mx-0">
 
         <!-- Beat 1: Ecosystem -->
-        <div class="flex flex-col gap-5">
-          <span class="font-mono text-label-sm uppercase tracking-widest text-accent-lime">01 — Ecosystem</span>
-          <h2 data-design-text-token="display-md" class="font-serif text-display-md-mobile md:text-display-md text-inverse-on-surface text-balance leading-tight">Turn early sparks<br>into real momentum.</h2>
-          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted max-w-sm text-pretty">From zero to something real — find your co-founder, ship your MVP, and build alongside people who actually get it.</p>
+        <div class="flex flex-col gap-4 sm:gap-5">
 
-          <!-- Tag pills -->
-          <div class="flex flex-wrap gap-2">
-            <span class="rounded-full border border-inverse-on-surface/15 px-3.5 py-1 font-mono text-label-sm text-inverse-muted">Co-founders</span>
-            <span class="rounded-full border border-inverse-on-surface/15 px-3.5 py-1 font-mono text-label-sm text-inverse-muted">MVPs</span>
-            <span class="rounded-full border border-inverse-on-surface/15 px-3.5 py-1 font-mono text-label-sm text-inverse-muted">Early teams</span>
+          <h2 data-design-text-token="display-md" class="font-serif text-[28px] xs:text-[32px] sm:text-display-md-mobile md:text-display-md text-inverse-on-surface text-balance leading-tight">Turn early sparks<br>into real momentum.</h2>
+          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted text-pretty leading-relaxed">From zero to something real — find your co-founder, ship your MVP, and build alongside people who actually get it. No vanity metrics, no performative networking.</p>
+
+          <!-- Tag pills with active member stats -->
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-xs sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Co-founders </span>
+            <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-xs sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">MVPs &amp; Shipping </span>
+            <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-xs sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Early Teams </span>
           </div>
 
-          <div>
-            <a href="#boards" class="group inline-flex items-center gap-2 font-label text-label-lg text-inverse-on-surface hover:text-accent-lime transition-colors">
-              <span>Explore the ecosystem</span>
-              <span class="transition-transform group-hover:translate-x-1">→</span>
-            </a>
-          </div>
         </div>
 
         <!-- Divider -->
         <div class="border-t border-inverse-on-surface/10"></div>
 
         <!-- Beat 2: Boards -->
-        <div class="flex flex-col gap-5">
-          <span class="font-mono text-label-sm uppercase tracking-widest text-accent-lime">02 — Boards</span>
-          <h2 data-design-text-token="display-md" class="font-serif text-display-md-mobile md:text-display-md text-inverse-on-surface text-balance leading-tight">Boards for every<br>stage of the build.</h2>
-          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted max-w-sm text-pretty">The right room for every phase — from idea to fundraise to first hire. Each board keeps noise low and signal high.</p>
+        <div class="flex flex-col gap-5 sm:gap-6">
 
-          <!-- Board cards grid -->
-          <div class="grid grid-cols-2 gap-3 max-w-sm">
-            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
-              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">01</span>
-              <span class="font-label text-label-lg text-inverse-on-surface">Technology</span>
-              <span class="font-mono text-label-sm text-inverse-muted">MVPs &amp; Stack</span>
-            </div>
-            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
-              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">02</span>
-              <span class="font-label text-label-lg text-inverse-on-surface">Fundraising</span>
-              <span class="font-mono text-label-sm text-inverse-muted">Grants &amp; Angels</span>
-            </div>
-            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
-              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">03</span>
-              <span class="font-label text-label-lg text-inverse-on-surface">Hiring</span>
-              <span class="font-mono text-label-sm text-inverse-muted">First Team</span>
-            </div>
-            <div class="group flex flex-col gap-1 p-4 rounded-2xl border border-inverse-on-surface/10 hover:border-accent-lime/40 hover:bg-inverse-on-surface/5 transition-all cursor-default">
-              <span class="font-mono text-label-sm text-accent-lime/60 group-hover:text-accent-lime transition-colors">04</span>
-              <span class="font-label text-label-lg text-inverse-on-surface">Go-to-Market</span>
-              <span class="font-mono text-label-sm text-inverse-muted">First Users</span>
-            </div>
-          </div>
+          <h2 data-design-text-token="display-md" class="font-serif text-[28px] xs:text-[32px] sm:text-display-md-mobile md:text-display-md text-inverse-on-surface text-balance leading-tight">Boards for every<br>stage of the build.</h2>
+          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted text-pretty leading-relaxed">The right room for every phase — from idea to fundraise to first hire. Each board keeps noise low and signal high.</p>
 
-          <div>
-            <a href="#mission" class="group inline-flex items-center gap-2 font-label text-label-lg text-inverse-on-surface hover:text-accent-lime transition-colors">
-              <span>Explore all boards</span>
-              <span class="transition-transform group-hover:translate-x-1">→</span>
-            </a>
+          <div class="flex flex-wrap gap-2 pt-1">
+            <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-xs sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Idea </span>
+            <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-xs sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Fundraise</span>
+            <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-3 py-1 sm:px-3.5 sm:py-1.5 font-mono text-xs sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Hire</span>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- SECTION 3: Scroll-driven word-reveal — large editorial typography & grand section height -->
-    <section id="mission" class="relative bg-obsidian-surface min-h-[130vh] md:min-h-[150vh] py-36 md:py-56 lg:py-64 px-gutter-lg md:px-16 lg:px-20 flex flex-col justify-center items-center">
-      <!-- Top / bottom atmospheric blends -->
-      <div class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-obsidian-surface via-obsidian-surface/80 to-transparent pointer-events-none"></div>
-      <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/80 to-transparent pointer-events-none"></div>
-
-      <div class="max-w-5xl mx-auto w-full text-center">
-        <p id="mission-text"
-           class="font-serif text-[clamp(1.85rem,3.4vw,3.25rem)] leading-[1.38] md:leading-[1.42] tracking-[-0.015em] select-none text-balance"
-           aria-label="Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next — hoping that somewhere along the way, all the pieces finally come together.">
-        </p>
-      </div>
-    </section>
-
     <!-- SECTION 4: Final Waitlist section with full-bleed 01-image4_clean-9d59c2.png -->
-    <section id="waitlist" data-parallax-section class="relative min-h-[1024px] overflow-hidden flex flex-col items-center justify-start pt-24 md:pt-28 pb-20 px-gutter-lg bg-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
+    <section id="waitlist" data-parallax-section class="relative min-h-[660px] sm:min-h-[800px] lg:min-h-[1024px] overflow-hidden flex flex-col items-center justify-start pt-24 sm:pt-32 md:pt-40 lg:pt-44 pb-16 sm:pb-20 px-5 sm:px-8 bg-surface" data-stitch-vh="min-h-[1024px]===min-h-screen">
       <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div class="parallax-layer absolute -top-16 inset-x-0 w-full h-[calc(100%+128px)]" data-parallax-speed="0.08">
           <img src="01-image4_clean.png" alt="Two builders standing together on a lush grassy arch overlooking a sea of clouds" class="w-full h-full object-cover object-[center_82%]">
           <!-- Curved 'begin' typography bending along the bridge arch and blending into the sunlit mist -->
-          <svg viewBox="0 0 1000 260" class="absolute top-[57%] md:top-[48%] left-1/2 -translate-x-1/2 w-[82%] max-w-[780px] h-auto overflow-visible mix-blend-multiply opacity-30 select-none" aria-hidden="true">
+          <svg viewBox="0 0 1000 260" class="absolute top-[60%] sm:top-[57%] md:top-[48%] left-1/2 -translate-x-1/2 w-[92%] sm:w-[82%] max-w-[780px] h-auto overflow-hidden mix-blend-multiply opacity-30 select-none pointer-events-none" aria-hidden="true">
             <defs>
               <path id="bridge-curve" d="M 120,205 Q 500,110 880,205" fill="none"></path>
               <linearGradient id="bridge-text-fade" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -260,106 +238,78 @@
           </svg>
         </div>
         <!-- Seamless top cloud-mist blend from Section 3 + bottom depth blend into Footer -->
-        <div class="absolute inset-x-0 top-0 h-52 bg-gradient-to-b from-surface via-surface/65 to-transparent"></div>
-        <div class="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent"></div>
+        <div class="absolute inset-x-0 top-0 h-40 sm:h-52 bg-gradient-to-b from-surface via-surface/65 to-transparent"></div>
+        <div class="absolute inset-x-0 bottom-0 h-36 sm:h-44 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/65 to-transparent"></div>
       </div>
 
-      <!-- Content positioned in the luminous upper sky so the two builders on the arch below stay completely clear -->
-      <div class="relative z-10 max-w-2xl mx-auto w-full flex flex-col items-center text-center gap-gutter-md">
+      <!-- Content positioned slightly higher, perfectly centered in the open sky above the bridge arch -->
+      <div class="relative z-10 max-w-2xl mx-auto w-full flex flex-col items-center text-center gap-4 sm:gap-gutter-md">
         <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-on-surface">Early Access</span>
 
-        <h2 data-design-text-token="display-lg" class="font-serif text-display-lg-mobile md:text-display-lg text-on-surface text-balance">Cross the bridge with the people who get it.</h2>
+        <h2 data-design-text-token="display-lg" class="font-serif text-[28px] xs:text-[34px] sm:text-display-lg-mobile md:text-display-lg text-on-surface text-balance leading-tight">Cross the bridge with the people who get it.</h2>
 
-        <p data-design-text-token="body-lg" class="font-body text-body-lg text-on-surface max-w-lg text-pretty">We&#39;re opening Begin in small waves of builders, founders, and curious minds. Leave your email to claim your spot.</p>
+        <p data-design-text-token="body-lg" class="font-body text-base xs:text-lg sm:text-body-lg text-on-surface max-w-lg text-pretty">We&#39;re opening Begin in small waves of builders, founders, and curious minds. Join the waitlist and claim your spot.</p>
 
-        <form id="waitlist-form" class="w-full max-w-md pt-gutter-sm flex flex-col sm:flex-row items-stretch sm:items-center gap-gutter-sm rounded-3xl sm:rounded-full bg-surface-card/95 backdrop-blur-md border border-outline shadow-md p-1.5">
-          <label for="waitlist-email" class="sr-only">Email address</label>
-          <input id="waitlist-email" type="email" required placeholder="you@example.com" class="flex-1 bg-transparent border-0 px-4 py-2.5 font-body text-body-md text-on-surface placeholder:text-on-surface-variant focus:ring-0 focus:outline-none">
-          <button type="submit" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+        <div class="pt-2 w-full sm:w-auto">
+          <a href="https://app.youform.com/forms/iln9dnmz" target="_blank" rel="noopener noreferrer" class="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-7 sm:px-8 py-3 sm:py-3.5 font-label text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
             <span data-design-text-token="label-lg">Join the waitlist</span>
-          </button>
-        </form>
-
-        <p id="waitlist-status" data-design-text-token="label-sm" class="hidden font-mono text-label-sm text-on-surface bg-surface-card/90 border border-outline rounded-full px-4 py-1.5" role="status">You&#39;re on the list — we&#39;ll reach out soon.</p>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
   <!-- Long Editorial Footer (consistent with Floating Pill Navbar & Obsidian Sections) -->
-  <footer class="bg-obsidian-surface text-inverse-on-surface pt-16 pb-12 px-gutter-lg md:px-16">
-    <div class="max-w-6xl mx-auto flex flex-col gap-12">
-
+  <footer class="bg-obsidian-surface text-inverse-on-surface pt-12 sm:pt-16 pb-12 px-5 sm:px-8 md:px-16">
+    <div class="max-w-6xl mx-auto flex flex-col gap-8 sm:gap-12">
 
       <!-- Main Multi-Column Long Footer Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pt-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pt-2 sm:pt-4">
         <!-- Brand Ethos Column -->
-        <div class="lg:col-span-5 flex flex-col gap-gutter-md pr-0 lg:pr-8">
-          <h3 data-design-text-token="headline-lg" class="font-serif text-headline-lg text-inverse-on-surface">Work fast. Live slow.</h3>
-          <p data-design-text-token="body-md" class="font-body text-body-md text-inverse-muted max-w-sm text-pretty">A quiet, high-signal home for next-generation founders, student builders, and early-stage teams turning sparks into real companies.</p>
-          <div class="pt-gutter-xs">
-            <a href="#waitlist" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
+        <div class="lg:col-span-6 flex flex-col gap-3 sm:gap-gutter-md pr-0 lg:pr-12">
+          <h3 data-design-text-token="headline-lg" class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface">Work fast. Live slow.</h3>
+          <p data-design-text-token="body-md" class="font-body text-sm sm:text-body-md text-inverse-muted max-w-sm text-pretty leading-relaxed">A quiet, high-signal home for next-generation founders, student builders, and early-stage teams turning sparks into real companies.</p>
+          <div class="pt-1 sm:pt-gutter-xs">
+            <a href="https://app.youform.com/forms/iln9dnmz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
               <span data-design-text-token="label-lg">Claim early access</span>
             </a>
           </div>
         </div>
 
-        <!-- Column 2: Sections -->
-        <div class="lg:col-span-2 flex flex-col gap-gutter-md">
+        <!-- Column 2: Journey -->
+        <div class="lg:col-span-3 flex flex-col gap-3 sm:gap-gutter-md">
           <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Journey</span>
-          <ul class="flex flex-col gap-3 font-body text-body-md text-inverse-on-surface">
-            <li><a href="#hero" class="hover:text-accent-lime transition-colors">Home</a></li>
-            <li><a href="#ecosystem" class="hover:text-accent-lime transition-colors">Ecosystem</a></li>
-            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Boards</a></li>
-            <li><a href="#mission" class="hover:text-accent-lime transition-colors">Our Mission</a></li>
-            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">Waitlist</a></li>
+          <ul class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="#mission" class="hover:text-accent-lime transition-colors">Reality</a></li>
+            <li><a href="#ecosystem" class="hover:text-accent-lime transition-colors">Manifesto</a></li>
           </ul>
         </div>
 
-        <!-- Column 3: Boards -->
-        <div class="lg:col-span-3 flex flex-col gap-gutter-md">
-          <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Boards</span>
-          <ul class="flex flex-col gap-3 font-body text-body-md text-inverse-on-surface">
-            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Technology &amp; MVPs</a></li>
-            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Fundraising &amp; Grants</a></li>
-            <li><a href="#boards" class="hover:text-accent-lime transition-colors">First Team Hiring</a></li>
-            <li><a href="#boards" class="hover:text-accent-lime transition-colors">Go-to-Market</a></li>
-          </ul>
-        </div>
-
-        <!-- Column 4: Connect -->
-        <div class="lg:col-span-2 flex flex-col gap-gutter-md">
+        <!-- Column 3: Connect -->
+        <div class="lg:col-span-3 flex flex-col gap-3 sm:gap-gutter-md">
           <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Connect</span>
-          <ul class="flex flex-col gap-3 font-body text-body-md text-inverse-on-surface">
-            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">begin.build</a></li>
-            <li><a href="mailto:hello@begin.build" class="hover:text-accent-lime transition-colors">hello@begin.build</a></li>
-            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">X / Twitter</a></li>
-            <li><a href="#waitlist" class="hover:text-accent-lime transition-colors">GitHub</a></li>
+          <ul class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="mailto:thebeginteam@gmail.com" class="hover:text-accent-lime transition-colors break-all">thebeginteam@gmail.com</a></li>
+            <li><a href="https://x.com/getbegin" target="_blank" rel="noopener noreferrer" class="hover:text-accent-lime transition-colors">x/@getbegin</a></li>
           </ul>
-        </div>
-      </div>
-
-      <!-- Bottom Signature Strip -->
-      <div class="border-t border-inverse-on-surface/15 pt-8 flex flex-col sm:flex-row items-center justify-between gap-gutter-md font-mono text-label-sm text-inverse-muted">
-        <span>© 2025 Begin. Built for curious minds.</span>
-        <div class="flex items-center gap-gutter-lg">
-          <span>ideas • mvp • scale</span>
-          <a href="#hero" class="rounded-full border border-inverse-on-surface/20 px-4 py-1.5 text-inverse-on-surface hover:bg-inverse-on-surface/10 transition-colors">Back to top</a>
         </div>
       </div>
 
     </div>
   </footer>
 
+
+
   <script>
     (function () {
       var waitlistForm = document.getElementById('waitlist-form');
-      var waitlistStatus = document.getElementById('waitlist-status');
       var waitlistInput = document.getElementById('waitlist-email');
-      if (waitlistForm && waitlistStatus) {
+      if (waitlistForm) {
         waitlistForm.addEventListener('submit', function (e) {
           e.preventDefault();
-          if (waitlistInput && !waitlistInput.value.trim()) return;
-          waitlistStatus.classList.remove('hidden');
+          var email = waitlistInput ? encodeURIComponent(waitlistInput.value.trim()) : '';
+          var targetUrl = 'https://app.youform.com/forms/iln9dnmz' + (email ? '?email=' + email : '');
+          window.open(targetUrl, '_blank', 'noopener,noreferrer');
           if (waitlistInput) waitlistInput.value = '';
         });
       }
