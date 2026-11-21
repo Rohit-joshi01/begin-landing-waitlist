@@ -49,7 +49,6 @@ jobs:
         run: html-validate index.html
 
   # JOB 2 — Deploy Preview (PRs only)
-
   preview:
     name: Deploy Preview to Vercel
     needs: validate
@@ -71,16 +70,25 @@ jobs:
             echo "has_token=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: Setup Node.js
+        if: steps.check_token.outputs.has_token == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Vercel CLI
+        if: steps.check_token.outputs.has_token == 'true'
+        run: npm install -g vercel@latest
+
       - name: Deploy to Vercel (preview)
         if: steps.check_token.outputs.has_token == 'true'
         id: deploy
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./
-          # no --prod flag → preview deployment
+        run: |
+          DEPLOY_URL=$(vercel --token ${{ secrets.VERCEL_TOKEN }} --yes 2>&1 | tail -1)
+          echo "preview-url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Comment preview URL on PR
         if: steps.check_token.outputs.has_token == 'true' && steps.deploy.outputs.preview-url != ''
@@ -97,7 +105,6 @@ jobs:
             });
 
   # JOB 3 — Deploy Production (main branch only)
-
   production:
     name: Deploy Production to Vercel
     needs: validate
@@ -117,13 +124,23 @@ jobs:
             echo "has_token=true" >> $GITHUB_OUTPUT
           fi
 
+      - name: Setup Node.js
+        if: steps.check_token.outputs.has_token == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Vercel CLI
+        if: steps.check_token.outputs.has_token == 'true'
+        run: npm install -g vercel@latest
+
       - name: Deploy to Vercel (production)
         if: steps.check_token.outputs.has_token == 'true'
         id: deploy
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: "--prod"
-          working-directory: ./
+        run: |
+          DEPLOY_URL=$(vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes 2>&1 | tail -1)
+          echo "deployment-url=$DEPLOY_URL" >> $GITHUB_OUTPUT
+          echo "✅ Deployed to: $DEPLOY_URL"
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
