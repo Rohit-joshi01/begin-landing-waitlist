@@ -57,17 +57,18 @@ html, body {
 }
 
 .spatial-container {
-  perspective: 1200px;
+  perspective: 1000px;
+  perspective-origin: center center;
   transform-style: preserve-3d;
   will-change: transform;
 }
 
 .spatial-word {
   display: inline-block;
-  transform-style: preserve-3d;
   will-change: transform, opacity, color;
   backface-visibility: hidden;
-  margin-right: 0.28em;
+  -webkit-font-smoothing: antialiased;
+  transform-origin: center center;
 }
 
 .page3-layer {

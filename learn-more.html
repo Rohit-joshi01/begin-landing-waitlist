@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More — Begin</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        screens: {
+          'xs': '420px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+        },
+        extend: {
+          colors: {
+            'surface': '#FAFAFA',
+            'surface-card': '#FFFFFF',
+            'surface-subtle': '#F3F4F6',
+            'on-surface': '#111827',
+            'on-surface-variant': '#4B5563',
+            'outline': '#E5E7EB',
+            'primary': '#111827',
+            'on-primary': '#FFFFFF',
+            'accent-lime': '#A3E635',
+            'on-accent-lime': '#111827',
+          },
+          fontFamily: {
+            'serif': ['"Instrument Serif"', 'serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'mono': ['"Red Hat Mono"', 'monospace'],
+          },
+          borderRadius: {
+            'xl': '24px',
+          },
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex items-center justify-center p-4 xs:p-6 sm:p-10 selection:bg-accent-lime selection:text-on-accent-lime">
+
+  <main class="w-full max-w-3xl my-auto py-6 xs:py-8 sm:py-12">
+    <!-- Subtle Back Navigation -->
+    <div class="mb-4 sm:mb-6">
+      <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        <span>Back to Home</span>
+      </a>
+    </div>
+
+    <!-- Content Card Container (Styled identically to the User Info Form Card) -->
+    <div class="relative w-full rounded-2xl sm:rounded-3xl bg-surface-card border border-outline shadow-xl overflow-hidden">
+      
+      <!-- Top Ambient Gradient Accent Line (Identical to Form Top Line) -->
+      <div class="h-1 w-full bg-gradient-to-r from-accent-lime/30 via-accent-lime to-accent-lime/30 flex-shrink-0"></div>
+
+      <!-- Inner Content (Only the exact text requested) -->
+      <div class="p-6 xs:p-8 sm:p-12 md:p-14 flex flex-col gap-6 sm:gap-8">
+        
+        <p class="font-body text-sm xs:text-base sm:text-lg md:text-[19px] text-on-surface-variant leading-[1.8] sm:leading-[1.85] text-pretty">
+          Begin is a venture execution platform that helps founders turn ideas into real businesses by managing their entire execution journey in one place. Founders can create ventures, set milestones, organise tasks, assign responsibilities, log progress, track blockers, and manage their team&#39;s work. They can discover skilled and committed people from nearby colleges and communities based on their skills, interests, availability, and willingness to contribute. Through real collaborations, users build a trusted reputation based on reliability, consistency, communication, ownership, and quality of work, earning badges that reflect their contributions. Begin also helps founders find early users, recruit product testers, collect feedback, and improve their products through real-world insights. Its biggest differentiator is combining venture execution with hyperlocal people discovery and collaboration-based trust, creating a network where founders don&#39;t just find people but build lasting working relationships. As ventures progress, Begin becomes their central place to manage work, discover opportunities, collaborate, learn, and decide what comes next.
+        </p>
+
+        <p class="font-serif text-2xl xs:text-[26px] sm:text-3xl md:text-4xl text-on-surface leading-snug pt-6 sm:pt-8 border-t border-outline text-center text-balance">
+          Find your people. Own your execution. Build something real.
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
