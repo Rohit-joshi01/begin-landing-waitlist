@@ -230,7 +230,7 @@
                alt="A lone builder sitting with a glowing laptop on a sunlit hill above the clouds"
                id="hero-bg-img"
                class="w-full h-full object-cover object-[center_65%] sm:object-[center_82%] will-change-transform">
-          
+
           <!-- Bottom blend into obsidian -->
           <div class="absolute inset-x-0 bottom-0 h-36 sm:h-56 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/70 to-transparent pointer-events-none"></div>
         </div>
@@ -297,8 +297,7 @@
         <div id="mission" class="mission-reveal-layer spatial-container absolute inset-0 z-20 flex flex-col justify-center items-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-20 pointer-events-none opacity-0 will-change-transform">
           <div class="max-w-5xl mx-auto w-full text-center pointer-events-auto spatial-container">
             <p id="mission-text"
-               class="font-serif text-[clamp(1.08rem,3.4vw,2.95rem)] leading-[1.36] md:leading-[1.42] tracking-[-0.015em] select-none text-balance text-inverse-on-surface spatial-container"
-               aria-label="Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next — hoping that somewhere along the way, all the pieces finally come together.">
+               class="font-serif text-[clamp(1.08rem,3.4vw,2.95rem)] leading-[1.36] md:leading-[1.42] tracking-[-0.015em] select-none text-balance text-inverse-on-surface spatial-container">
             </p>
           </div>
         </div>
@@ -334,13 +333,13 @@
 
         <!-- LAYER 7 (z-45): Page 4 (Waitlist & Bridge Arch) — Overlays on 3rd card in full size -->
         <div id="waitlist" class="page4-layer absolute inset-0 z-40 w-full h-full bg-[#FAFAFA] text-on-surface overflow-hidden flex flex-col items-center justify-start pt-14 xs:pt-16 sm:pt-24 md:pt-32 pb-10 sm:pb-16 px-4 xs:px-6 sm:px-8 pointer-events-none will-change-transform" style="z-index: 45; background-color: #FAFAFA;">
-          
+
           <!-- Background image with inner counter-parallax layer -->
           <div id="page4-bg-container" class="absolute inset-0 z-0 overflow-hidden pointer-events-none will-change-transform" aria-hidden="true">
             <div id="page4-bg-layer" class="absolute -top-12 inset-x-0 w-full h-[calc(100%+96px)] will-change-transform">
               <img src="01-image4_clean.png" alt="Two builders standing together on a lush grassy arch overlooking a sea of clouds" class="w-full h-full object-cover object-[center_82%] sm:object-[center_80%]">
             </div>
-            
+
             <!-- Atmospheric blends: Top mist blend + Bottom obsidian blend to footer -->
             <div class="absolute inset-x-0 top-0 h-28 sm:h-44 bg-gradient-to-b from-surface via-surface/60 to-transparent"></div>
             <div class="absolute inset-x-0 bottom-0 h-24 sm:h-36 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/60 to-transparent"></div>
@@ -421,18 +420,18 @@
     <!-- Modal Card Container (Compact sizing: max-w-[460px] to not look too big) -->
     <div id="modal-card"
          class="relative w-full max-w-[460px] max-h-[90vh] flex flex-col rounded-2xl sm:rounded-3xl bg-surface border border-outline shadow-2xl text-on-surface transform scale-95 translate-y-3 transition-all duration-300 ease-out overflow-hidden">
-      
+
       <!-- Top Ambient Gradient Accent Line -->
       <div class="h-1 w-full bg-gradient-to-r from-accent-lime/30 via-accent-lime to-accent-lime/30 flex-shrink-0"></div>
 
       <!-- Scrollable Modal Content Container -->
       <div class="overflow-y-auto px-5 xs:px-6 sm:px-7 py-5 xs:py-6 flex flex-col gap-4 sm:gap-5 custom-modal-scroll">
-        
+
         <!-- Header: Early Access Badge & Close Button -->
         <div class="flex items-center justify-between gap-3">
-          <div class="inline-flex items-center gap-1.5">
-            
-            
+          <div class="inline-flex items-center gap-1.5 rounded-full border border-outline bg-surface-card px-2.5 py-0.5 font-mono text-[10px] tracking-widest text-on-surface uppercase shadow-xs">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-lime"></span>
+            Early Access
           </div>
           <button type="button"
                   id="modal-close-btn"
@@ -456,7 +455,7 @@
 
         <!-- Form State: Inputs & Questions -->
         <form id="waitlist-application-form" novalidate class="flex flex-col gap-4">
-          
+
           <!-- Question 1: Name -->
           <div class="flex flex-col gap-1.5">
             <label for="form-name" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
@@ -536,49 +535,49 @@
             </legend>
 
             <div class="grid grid-cols-1 gap-2" id="profile-options-container">
-              
+
               <!-- Option 1 -->
               <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
-                <div class="flex items-center gap-3">
+                <span class="flex items-center gap-3">
                   <input type="radio" name="profile" value="Want to start a startup" required class="sr-only choice-radio">
                   <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
                     <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
                   </span>
                   <span class="text-xs sm:text-[13px] font-medium text-on-surface">Want to start a startup</span>
-                </div>
+                </span>
               </label>
 
               <!-- Option 2 -->
               <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
-                <div class="flex items-center gap-3">
+                <span class="flex items-center gap-3">
                   <input type="radio" name="profile" value="Already building a startup" required class="sr-only choice-radio">
                   <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
                     <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
                   </span>
                   <span class="text-xs sm:text-[13px] font-medium text-on-surface">Already building a startup</span>
-                </div>
+                </span>
               </label>
 
               <!-- Option 3 -->
               <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
-                <div class="flex items-center gap-3">
+                <span class="flex items-center gap-3">
                   <input type="radio" name="profile" value="Interested in joining a startup" required class="sr-only choice-radio">
                   <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
                     <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
                   </span>
                   <span class="text-xs sm:text-[13px] font-medium text-on-surface">Interested in joining a startup</span>
-                </div>
+                </span>
               </label>
 
               <!-- Option 4 -->
               <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
-                <div class="flex items-center gap-3">
+                <span class="flex items-center gap-3">
                   <input type="radio" name="profile" value="Just curious" required class="sr-only choice-radio">
                   <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
                     <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
                   </span>
                   <span class="text-xs sm:text-[13px] font-medium text-on-surface">Just curious</span>
-                </div>
+                </span>
               </label>
 
             </div>
