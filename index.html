@@ -170,9 +170,9 @@
 
         <!-- LAYER 4 (z-20): Page 2 Manifesto / Reality Text Layer (IN FRONT of Page 3!) -->
         <div id="mission" class="mission-reveal-layer spatial-container absolute inset-0 z-20 flex flex-col justify-center items-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-20 pointer-events-none opacity-0 will-change-transform">
-          <div class="max-w-5xl mx-auto w-full text-center pointer-events-auto spatial-container">
+          <div class="max-w-4xl lg:max-w-5xl mx-auto w-full text-center pointer-events-auto px-2 xs:px-4">
             <p id="mission-text"
-               class="font-serif text-[clamp(1.08rem,3.4vw,2.95rem)] leading-[1.36] md:leading-[1.42] tracking-[-0.015em] select-none text-balance text-inverse-on-surface spatial-container">
+               class="font-serif text-[clamp(1.02rem,3.2vw,2.85rem)] leading-[1.40] md:leading-[1.44] tracking-normal select-none text-center text-inverse-on-surface">
             </p>
           </div>
         </div>
@@ -190,19 +190,21 @@
 
             <p data-design-text-token="body-lg" class="font-body text-[clamp(13px,3.4vw,20px)] leading-[1.48] text-inverse-on-surface/90 max-w-xs xs:max-w-sm sm:max-w-md text-pretty">You don&#39;t have all it figured out, find your people, and start building something meaningful together.</p>
 
-            <div class="pt-1 xs:pt-2 flex items-center gap-3 w-full sm:w-auto justify-center md:justify-start">
-              <a href="#mission" class="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 xs:px-7 sm:px-8 py-2.5 xs:py-3 sm:py-3.5 font-label text-sm xs:text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
-                <span data-design-text-token="label-lg">Start Building</span>
-              </a>
-            </div>
+            <!-- Desktop CTA Button (Visible on md+ desktop view) -->
           </div>
 
-          <!-- Subtle scroll indicator at bottom -->
-          <div id="scroll-hint" class="hidden xs:flex absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1 sm:gap-1.5 text-inverse-muted/70 pointer-events-none transition-opacity duration-300">
-            <span class="text-[10px] sm:text-[11px] font-mono tracking-widest uppercase">Scroll to explore</span>
-            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+          <!-- Bottom Action Container: On responsive / mobile view, button appears directly above 'Scroll to explore' -->
+          <div id="hero-bottom-actions" class="absolute bottom-3 xs:bottom-4 sm:bottom-6 inset-x-0 z-10 flex flex-col items-center gap-2 xs:gap-2.5 px-4 pointer-events-auto">
+            <!-- Mobile CTA Button (Only when responsive / minimized / mobile view) -->
+
+
+            <!-- Scroll indicator at bottom -->
+            <div id="scroll-hint" class="flex flex-col items-center gap-1 sm:gap-1.5 text-inverse-muted/70 pointer-events-none transition-opacity duration-300">
+              <span class="text-[10px] sm:text-[11px] font-mono tracking-widest uppercase">Scroll to explore</span>
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -252,7 +254,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pt-2 sm:pt-4">
         <!-- Brand Ethos Column -->
         <div class="lg:col-span-6 flex flex-col gap-3 sm:gap-gutter-md pr-0 lg:pr-12">
-          <h3 data-design-text-token="headline-lg" class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface">Work fast. Live slow.</h3>
+          <h3 data-design-text-token="headline-lg" class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface">Begin</h3>
           <p data-design-text-token="body-md" class="font-body text-sm sm:text-body-md text-inverse-muted max-w-sm text-pretty leading-relaxed">A quiet, high-signal home for next-generation founders, student builders, and early-stage teams turning sparks into real companies.</p>
           <div class="pt-1 sm:pt-gutter-xs">
             <button type="button" class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer">
@@ -267,6 +269,14 @@
           <ul class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface">
             <li><a href="#mission" class="hover:text-accent-lime transition-colors">Reality</a></li>
             <li><a href="#ecosystem" class="hover:text-accent-lime transition-colors">Manifesto</a></li>
+            <li>
+              <a href="learn-more.html" target="_blank" class="inline-flex items-center gap-1 hover:text-accent-lime transition-colors group">
+                <span >Learn more</span>
+                <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -388,7 +398,21 @@
             <p id="form-phone-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
           </div>
 
-          <!-- Question 4: City -->
+          <!-- Question 4: LinkedIn Profile -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-linkedin" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
+              LinkedIn profile <span class="text-accent-lime">*</span>
+            </label>
+            <input type="text"
+                   id="form-linkedin"
+                   name="linkedin"
+                   required
+                   placeholder="e.g. linkedin.com/in/yourprofile"
+                   class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-linkedin-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
+          </div>
+
+          <!-- Question 5: City -->
           <div class="flex flex-col gap-1.5">
             <label for="form-city" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
               Which city are you based in? <span class="text-accent-lime">*</span>
@@ -402,7 +426,7 @@
             <p id="form-city-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
           </div>
 
-          <!-- Question 5: What describes you the best? (Select one) -->
+          <!-- Question 6: What describes you the best? (Select one) -->
           <fieldset class="flex flex-col gap-2 pt-1 border-0 p-0 m-0">
             <legend class="font-label text-xs sm:text-[13px] font-medium text-on-surface mb-1">
               What describes you the best? <span class="text-accent-lime">*</span>
@@ -522,6 +546,7 @@
         var nameInput = document.getElementById('form-name');
         var emailInput = document.getElementById('form-email');
         var phoneInput = document.getElementById('form-phone');
+        var linkedinInput = document.getElementById('form-linkedin');
         var cityInput = document.getElementById('form-city');
         var radioCards = document.querySelectorAll('.choice-card');
         var submitBtn = document.getElementById('modal-submit-btn');
@@ -538,6 +563,7 @@
         var emailSuggestedDomain = document.getElementById('form-email-suggested-domain');
         var emailSuggestionBtn = document.getElementById('form-email-suggestion-btn');
         var phoneError = document.getElementById('form-phone-error');
+        var linkedinError = document.getElementById('form-linkedin-error');
         var cityError = document.getElementById('form-city-error');
         var profileError = document.getElementById('form-profile-error');
         var generalError = document.getElementById('form-general-error');
@@ -739,6 +765,12 @@
             phoneInput.classList.remove('border-red-500');
           });
         }
+        if (linkedinInput) {
+          linkedinInput.addEventListener('input', function () {
+            if (linkedinError) linkedinError.classList.add('hidden');
+            linkedinInput.classList.remove('border-red-500');
+          });
+        }
         if (cityInput) {
           cityInput.addEventListener('input', function () {
             if (cityError) cityError.classList.add('hidden');
@@ -755,6 +787,7 @@
             var nameVal = (nameInput ? nameInput.value.trim() : '');
             var emailVal = (emailInput ? emailInput.value.trim() : '');
             var phoneVal = (phoneInput ? phoneInput.value.trim() : '');
+            var linkedinVal = (linkedinInput ? linkedinInput.value.trim() : '');
             var cityVal = (cityInput ? cityInput.value.trim() : '');
             var selectedRadio = form.querySelector('input[name="profile"]:checked');
             var profileVal = selectedRadio ? selectedRadio.value : '';
@@ -795,6 +828,17 @@
               hasError = true;
             }
 
+            // Validate LinkedIn Profile
+            if (!linkedinVal || linkedinVal.length < 3) {
+              if (linkedinError) {
+                linkedinError.textContent = 'Please enter your LinkedIn profile link.';
+                linkedinError.classList.remove('hidden');
+              }
+              if (linkedinInput) linkedinInput.classList.add('border-red-500');
+              if (!hasError && linkedinInput) linkedinInput.focus();
+              hasError = true;
+            }
+
             // Validate City
             if (!cityVal || cityVal.length < 2) {
               if (cityError) {
@@ -822,10 +866,16 @@
             if (submitText) submitText.textContent = 'Reserving your spot...';
             if (submitSpinner) submitSpinner.classList.remove('hidden');
 
+            var cleanLinkedin = linkedinVal;
+            if (cleanLinkedin && !/^https?:\/\//i.test(cleanLinkedin) && /^(www\.)?linkedin\.com/i.test(cleanLinkedin)) {
+              cleanLinkedin = 'https://' + cleanLinkedin;
+            }
+
             var payload = {
               name: nameVal,
               email: emailVal.toLowerCase(),
               phone: phoneVal,
+              linkedin: cleanLinkedin,
               city: cityVal,
               profile: profileVal,
               submittedAt: new Date().toISOString()
@@ -851,26 +901,49 @@
               if (cleanSbUrl.endsWith('/rest/v1')) {
                 cleanSbUrl = cleanSbUrl.slice(0, -'/rest/v1'.length).replace(/\/+$/, '');
               }
-              var sbResp = await fetch(cleanSbUrl + '/rest/v1/waitlist', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                  'apikey': cfg.anonKey,
-                  'Authorization': 'Bearer ' + cfg.anonKey,
-                  'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify({
+
+              var insertData = {
+                name: payload.name,
+                email: payload.email,
+                phone: payload.phone,
+                linkedin: payload.linkedin,
+                city: payload.city,
+                profile: payload.profile
+              };
+
+              async function postToTable(data) {
+                return await fetch(cleanSbUrl + '/rest/v1/waitlist', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': cfg.anonKey,
+                    'Authorization': 'Bearer ' + cfg.anonKey,
+                    'Prefer': 'return=minimal'
+                  },
+                  body: JSON.stringify(data)
+                });
+              }
+
+              var sbResp = await postToTable(insertData);
+              if (sbResp.ok || sbResp.status === 201) {
+                return true;
+              }
+              var sbErrText = await sbResp.text();
+
+              // If column 'linkedin' is not yet created in user's Supabase table, retry without it
+              if (sbErrText.includes('linkedin') || (sbResp.status === 400 && sbErrText.includes('column'))) {
+                var fallbackData = {
                   name: payload.name,
                   email: payload.email,
                   phone: payload.phone,
                   city: payload.city,
                   profile: payload.profile
-                })
-              });
-              if (sbResp.ok || sbResp.status === 201) {
-                return true;
+                };
+                var retryResp = await postToTable(fallbackData);
+                if (retryResp.ok || retryResp.status === 201) return true;
+                sbErrText = await retryResp.text();
               }
-              var sbErrText = await sbResp.text();
+
               // If duplicate email, consider it already recorded
               if (sbResp.status === 409 || sbErrText.includes('duplicate key') || sbErrText.includes('unique constraint')) {
                 return true;
@@ -941,6 +1014,7 @@
               if (nameInput) nameInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
               if (emailInput) emailInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
               if (phoneInput) phoneInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
+              if (linkedinInput) linkedinInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
               if (cityInput) cityInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
             }, 500);
           });
@@ -956,7 +1030,7 @@
         var message = 'Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next \u2014 hoping that somewhere along the way, all the pieces finally come together.';
         var words = message.split(' ');
         missionText.innerHTML = words.map(function (w, i) {
-          return '<span class="spatial-word" data-word-idx="' + i + '" style="color:rgba(249,250,251,0.14)">' + w + '</span>';
+          return '<span class="spatial-word" data-word-idx="' + i + '" style="color:rgba(249,250,251,0.25)">' + w + '</span>';
         }).join(' ');
         wordEls = Array.prototype.slice.call(missionText.querySelectorAll('.spatial-word'));
       }
@@ -1093,18 +1167,18 @@
         0.15
       );
 
-      /* 7. Progressive word illumination to pure crisp white (Progress 0.18 to 0.38) */
+      /* 7. Progressive word illumination to pure crisp white (Progress 0.15 to 0.24) */
       var total = wordEls.length;
       wordEls.forEach(function (el, i) {
-        var illumTime = 0.18 + (i / total) * 0.17;
+        var illumTime = 0.15 + (i / total) * 0.08;
         zoomTimeline.to(el, {
           color: 'rgba(249, 250, 251, 1)',
           ease: 'power1.inOut',
-          duration: 0.035
+          duration: 0.025
         }, illumTime);
       });
 
-      /* 8. PEACEFUL READING PAUSE (Progress 0.38 to 0.48): Text is completely white, stable, and clear */
+      /* 8. PEACEFUL READING PAUSE (Progress 0.24 to 0.48): Text is completely white, stable, and clear */
 
       /* 9. 3D SPATIAL ZOOM FLY-OUT FOR WORDS (Progress 0.48 to 0.66):
             Words launch forward in waves towards the camera with responsive screen-width scaling */
@@ -1290,7 +1364,7 @@
           e.preventDefault();
           var trigger = ScrollTrigger.getById('hero-scroll-zoom');
           if (trigger) {
-            var targetScroll = trigger.start + (trigger.end - trigger.start) * 0.35;
+            var targetScroll = trigger.start + (trigger.end - trigger.start) * 0.24;
             window.scrollTo({ top: targetScroll, behavior: 'smooth' });
           }
         });

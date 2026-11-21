@@ -101,7 +101,12 @@ const server = http.createServer(async (req, res) => {
 
   // 3. Static File Server
   if (pathname === '/') pathname = '/index.html';
-  const filePath = path.join(__dirname, decodeURIComponent(pathname));
+  let filePath = path.join(__dirname, decodeURIComponent(pathname));
+
+  // Support clean URLs without .html extension
+  if (!path.extname(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath += '.html';
+  }
 
   // Security: prevent path traversal outside workspace
   if (!filePath.startsWith(__dirname)) {

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn More — Begin</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        screens: {
+          'xs': '420px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
+        },
+        extend: {
+          colors: {
+            'surface': '#FAFAFA',
+            'surface-card': '#FFFFFF',
+            'surface-subtle': '#F3F4F6',
+            'on-surface': '#111827',
+            'on-surface-variant': '#4B5563',
+            'outline': '#E5E7EB',
+            'primary': '#111827',
+            'on-primary': '#FFFFFF',
+            'accent-lime': '#A3E635',
+            'on-accent-lime': '#111827',
+            'inverse-surface': '#121316',
+            'obsidian-surface': '#070809',
+            'inverse-on-surface': '#F9FAFB',
+            'inverse-muted': '#9CA3AF',
+          },
+          fontFamily: {
+            'serif': ['"Instrument Serif"', 'serif'],
+            'display': ['"Instrument Serif"', 'serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'mono': ['"Red Hat Mono"', 'monospace'],
+          },
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-obsidian-surface text-inverse-on-surface font-serif antialiased min-h-screen selection:bg-accent-lime selection:text-on-accent-lime relative flex flex-col justify-center">
+
+  <!-- Fixed Cinematic Background (Unified with Page 1 Hero) -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <img src="01-main_image_clean.png"
+         alt=""
+         aria-hidden="true"
+         class="w-full h-full object-cover object-[center_65%] sm:object-[center_82%] opacity-20 filter blur-[1px]">
+    <div class="absolute inset-0 bg-gradient-to-b from-obsidian-surface/90 via-obsidian-surface/85 to-obsidian-surface"></div>
+  </div>
+
+  <!-- Content Container (Directly on Background, No Card, No Button) -->
+  <main class="relative z-10 w-full max-w-4xl mx-auto px-5 xs:px-7 sm:px-10 md:px-14 py-16 xs:py-20 sm:py-28 flex flex-col my-auto">
+
+    <!-- Living Narrative with Uneven, Organic Rhythmic Spacing -->
+    <div class="flex flex-col font-serif text-xl xs:text-2xl sm:text-3xl md:text-[32px] text-inverse-on-surface leading-[1.38] sm:leading-[1.42] text-pretty">
+      
+      <!-- Stanza 1: The Core Definition -->
+      <p class="pb-4 sm:pb-6">
+        Begin is a venture execution platform that helps founders turn ideas into real businesses by managing their entire execution journey in one place.
+      </p>
+
+      <!-- Stanza 2: The Execution Engine (Paired with Stanza 1, followed by a deeper pause) -->
+      <p class="pb-12 sm:pb-16">
+        Founders can create ventures, set milestones, organise tasks, assign responsibilities, log progress, track blockers, and manage their team&#39;s work.
+      </p>
+
+      <!-- Stanza 3: Hyperlocal Discovery -->
+      <p class="pb-3 sm:pb-4">
+        They can discover skilled and committed people from nearby colleges and communities based on their skills, interests, availability, and willingness to contribute.
+      </p>
+
+      <!-- Stanza 4: Trust & Reputation Badges (Tight continuation from Stanza 3, then a medium breath) -->
+      <p class="pb-9 sm:pb-12">
+        Through real collaborations, users build a trusted reputation based on reliability, consistency, communication, ownership, and quality of work, earning badges that reflect their contributions.
+      </p>
+
+      <!-- Stanza 5: Early Users & Testers (Stand-alone thought followed by dramatic expansion) -->
+      <p class="pb-14 sm:pb-20">
+        Begin also helps founders find early users, recruit product testers, collect feedback, and improve their products through real-world insights.
+      </p>
+
+      <!-- Stanza 6: The Core Differentiator -->
+      <p class="pb-5 sm:pb-7">
+        Its biggest differentiator is combining venture execution with hyperlocal people discovery and collaboration-based trust, creating a network where founders don&#39;t just find people but build lasting working relationships.
+      </p>
+
+      <!-- Stanza 7: The Vision & Central Workspace -->
+      <p class="pb-0">
+        As ventures progress, Begin becomes their central place to manage work, discover opportunities, collaborate, learn, and decide what comes next.
+      </p>
+
+    </div>
+
+    <!-- Closing Manifesto Statement (Matching 'Find your people, build your thing') -->
+    <div class="pt-12 sm:pt-20 border-t border-inverse-on-surface/15 mt-12 sm:mt-16">
+      <h2 class="font-serif text-[clamp(28px,5.5vw,56px)] leading-[1.12] text-inverse-on-surface tracking-tight text-balance">
+        Find your people,<br> Build your thing.
+      </h2>
+    </div>
+
+  </main>
+
+</body>
+</html>

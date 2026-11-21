@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, city, profile } = req.body || {};
+    const { name, email, phone, city, profile, linkedin } = req.body || {};
 
     // Validate presence of all required fields
     if (!name || !email || !phone || !city || !profile) {
@@ -42,7 +42,8 @@ export default async function handler(req, res) {
       email: emailClean,
       phone: String(phone).trim(),
       city: String(city).trim(),
-      profile: String(profile).trim()
+      profile: String(profile).trim(),
+      ...(linkedin ? { linkedin: String(linkedin).trim() } : {})
     };
 
     // ── Option A: Supabase Integration ──
@@ -56,7 +57,7 @@ export default async function handler(req, res) {
       if (cleanUrl.endsWith('/rest/v1')) {
         cleanUrl = cleanUrl.slice(0, -'/rest/v1'.length).replace(/\/+$/, '');
       }
-      const response = await fetch(`${cleanUrl}/rest/v1/waitlist`, {
+      let response = await fetch(`${cleanUrl}/rest/v1/waitlist`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,8 +69,33 @@ export default async function handler(req, res) {
       });
 
       if (!response.ok) {
-        const errorText = await response.text();
+        let errorText = await response.text();
         console.error('Supabase error:', errorText);
+
+        // If the 'linkedin' column is not yet present in Supabase table schema, retry without it
+        if (submission.linkedin && (errorText.includes('linkedin') || (response.status === 400 && errorText.includes('column')))) {
+          const fallback = {
+            name: submission.name,
+            email: submission.email,
+            phone: submission.phone,
+            city: submission.city,
+            profile: submission.profile
+          };
+          response = await fetch(`${cleanUrl}/rest/v1/waitlist`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': supabaseKey,
+              'Authorization': `Bearer ${supabaseKey}`,
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(fallback)
+          });
+          if (!response.ok) {
+            errorText = await response.text();
+          }
+        }
+
         // If duplicate email error (code 23505 in postgres)
         if (errorText.includes('duplicate key') || errorText.includes('unique constraint') || response.status === 409) {
           return res.status(200).json({
@@ -78,7 +104,9 @@ export default async function handler(req, res) {
             data: submission
           });
         }
-        return res.status(500).json({ error: 'Failed to insert record into Supabase: ' + errorText });
+        if (!response.ok) {
+          return res.status(500).json({ error: 'Failed to insert record into Supabase: ' + errorText });
+        }
       }
 
       return res.status(200).json({
