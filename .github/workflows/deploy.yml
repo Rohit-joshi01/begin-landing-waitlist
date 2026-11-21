@@ -54,6 +54,9 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     outputs:
       preview_url: ${{ steps.deploy.outputs.preview-url }}
     steps:
@@ -80,15 +83,20 @@ jobs:
         if: steps.check_token.outputs.has_token == 'true'
         run: npm install -g vercel@latest
 
+      - name: Pull Vercel Environment Information
+        if: steps.check_token.outputs.has_token == 'true'
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        if: steps.check_token.outputs.has_token == 'true'
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: Deploy to Vercel (preview)
         if: steps.check_token.outputs.has_token == 'true'
         id: deploy
         run: |
-          DEPLOY_URL=$(vercel --token ${{ secrets.VERCEL_TOKEN }} --yes 2>&1 | tail -1)
+          DEPLOY_URL=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})
           echo "preview-url=$DEPLOY_URL" >> $GITHUB_OUTPUT
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Comment preview URL on PR
         if: steps.check_token.outputs.has_token == 'true' && steps.deploy.outputs.preview-url != ''
@@ -110,6 +118,9 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -134,13 +145,18 @@ jobs:
         if: steps.check_token.outputs.has_token == 'true'
         run: npm install -g vercel@latest
 
+      - name: Pull Vercel Environment Information
+        if: steps.check_token.outputs.has_token == 'true'
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        if: steps.check_token.outputs.has_token == 'true'
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: Deploy to Vercel (production)
         if: steps.check_token.outputs.has_token == 'true'
         id: deploy
         run: |
-          DEPLOY_URL=$(vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --yes 2>&1 | tail -1)
+          DEPLOY_URL=$(vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }})
           echo "deployment-url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           echo "✅ Deployed to: $DEPLOY_URL"
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
