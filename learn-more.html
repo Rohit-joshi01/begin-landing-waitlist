@@ -27,14 +27,16 @@
             'on-primary': '#FFFFFF',
             'accent-lime': '#A3E635',
             'on-accent-lime': '#111827',
+            'inverse-surface': '#121316',
+            'obsidian-surface': '#070809',
+            'inverse-on-surface': '#F9FAFB',
+            'inverse-muted': '#9CA3AF',
           },
           fontFamily: {
             'serif': ['"Instrument Serif"', 'serif'],
+            'display': ['"Instrument Serif"', 'serif'],
             'body': ['"Inter"', 'sans-serif'],
             'mono': ['"Red Hat Mono"', 'monospace'],
-          },
-          borderRadius: {
-            'xl': '24px',
           },
         }
       }
@@ -43,61 +45,67 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-surface text-on-surface font-body antialiased min-h-screen flex items-center justify-center p-4 xs:p-6 sm:p-10 selection:bg-accent-lime selection:text-on-accent-lime">
+<body class="bg-obsidian-surface text-inverse-on-surface font-serif antialiased min-h-screen selection:bg-accent-lime selection:text-on-accent-lime relative flex flex-col justify-center">
 
-  <main class="w-full max-w-3xl my-auto py-6 xs:py-8 sm:py-12">
-    <!-- Subtle Back Navigation -->
-    <div class="mb-4 sm:mb-6">
-      <a href="index.html" class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-on-surface-variant hover:text-on-surface transition-colors">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-        <span>Back to Home</span>
-      </a>
-    </div>
+  <!-- Fixed Cinematic Background (Unified with Page 1 Hero) -->
+  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    <img src="01-main_image_clean.png"
+         alt=""
+         aria-hidden="true"
+         class="w-full h-full object-cover object-[center_65%] sm:object-[center_82%] opacity-20 filter blur-[1px]">
+    <div class="absolute inset-0 bg-gradient-to-b from-obsidian-surface/90 via-obsidian-surface/85 to-obsidian-surface"></div>
+  </div>
 
-    <!-- Content Card Container (Styled identically to the User Info Form Card) -->
-    <div class="relative w-full rounded-2xl sm:rounded-3xl bg-surface-card border border-outline shadow-xl overflow-hidden">
+  <!-- Content Container (Directly on Background, No Card, No Button) -->
+  <main class="relative z-10 w-full max-w-4xl mx-auto px-5 xs:px-7 sm:px-10 md:px-14 py-16 xs:py-20 sm:py-28 flex flex-col my-auto">
+
+    <!-- Living Narrative with Uneven, Organic Rhythmic Spacing -->
+    <div class="flex flex-col font-serif text-xl xs:text-2xl sm:text-3xl md:text-[32px] text-inverse-on-surface leading-[1.38] sm:leading-[1.42] text-pretty">
       
-      <!-- Top Ambient Gradient Accent Line (Identical to Form Top Line) -->
-      <div class="h-1 w-full bg-gradient-to-r from-accent-lime/30 via-accent-lime to-accent-lime/30 flex-shrink-0"></div>
+      <!-- Stanza 1: The Core Definition -->
+      <p class="pb-4 sm:pb-6">
+        Begin is a venture execution platform that helps founders turn ideas into real businesses by managing their entire execution journey in one place.
+      </p>
 
-      <!-- Inner Content Area -->
-      <div class="p-6 xs:p-8 sm:p-12 md:p-14 flex flex-col gap-6 sm:gap-8">
-        
-        <!-- Living Italic Narrative with Breathing Room & Thought Stanzas -->
-        <div class="flex flex-col gap-5 sm:gap-6 font-body italic text-sm xs:text-base sm:text-lg md:text-[18px] text-on-surface-variant leading-[1.85] sm:leading-[1.9]">
-          
-          <p class="text-pretty">
-            Begin is a venture execution platform that helps founders turn ideas into real businesses by managing their entire execution journey in one place.
-            Founders can create ventures, set milestones, organise tasks, assign responsibilities, log progress, track blockers, and manage their team&#39;s work.
-          </p>
+      <!-- Stanza 2: The Execution Engine (Paired with Stanza 1, followed by a deeper pause) -->
+      <p class="pb-12 sm:pb-16">
+        Founders can create ventures, set milestones, organise tasks, assign responsibilities, log progress, track blockers, and manage their team&#39;s work.
+      </p>
 
-          <p class="text-pretty">
-            They can discover skilled and committed people from nearby colleges and communities based on their skills, interests, availability, and willingness to contribute.
-            Through real collaborations, users build a trusted reputation based on reliability, consistency, communication, ownership, and quality of work, earning badges that reflect their contributions.
-          </p>
+      <!-- Stanza 3: Hyperlocal Discovery -->
+      <p class="pb-3 sm:pb-4">
+        They can discover skilled and committed people from nearby colleges and communities based on their skills, interests, availability, and willingness to contribute.
+      </p>
 
-          <p class="text-pretty">
-            Begin also helps founders find early users, recruit product testers, collect feedback, and improve their products through real-world insights.
-            Its biggest differentiator is combining venture execution with hyperlocal people discovery and collaboration-based trust, creating a network where founders don&#39;t just find people but build lasting working relationships.
-          </p>
+      <!-- Stanza 4: Trust & Reputation Badges (Tight continuation from Stanza 3, then a medium breath) -->
+      <p class="pb-9 sm:pb-12">
+        Through real collaborations, users build a trusted reputation based on reliability, consistency, communication, ownership, and quality of work, earning badges that reflect their contributions.
+      </p>
 
-          <p class="text-pretty">
-            As ventures progress, Begin becomes their central place to manage work, discover opportunities, collaborate, learn, and decide what comes next.
-          </p>
+      <!-- Stanza 5: Early Users & Testers (Stand-alone thought followed by dramatic expansion) -->
+      <p class="pb-14 sm:pb-20">
+        Begin also helps founders find early users, recruit product testers, collect feedback, and improve their products through real-world insights.
+      </p>
 
-        </div>
+      <!-- Stanza 6: The Core Differentiator -->
+      <p class="pb-5 sm:pb-7">
+        Its biggest differentiator is combining venture execution with hyperlocal people discovery and collaboration-based trust, creating a network where founders don&#39;t just find people but build lasting working relationships.
+      </p>
 
-        <!-- Closing Manifesto Statement -->
-        <div class="pt-6 sm:pt-8 border-t border-outline">
-          <p class="font-serif italic text-2xl xs:text-[26px] sm:text-3xl md:text-4xl text-on-surface leading-snug text-center text-balance">
-            Find your people. Own your execution. Build something real.
-          </p>
-        </div>
+      <!-- Stanza 7: The Vision & Central Workspace -->
+      <p class="pb-0">
+        As ventures progress, Begin becomes their central place to manage work, discover opportunities, collaborate, learn, and decide what comes next.
+      </p>
 
-      </div>
     </div>
+
+    <!-- Closing Manifesto Statement (Matching 'Find your people, build your thing') -->
+    <div class="pt-12 sm:pt-20 border-t border-inverse-on-surface/15 mt-12 sm:mt-16">
+      <h2 class="font-serif text-[clamp(28px,5.5vw,56px)] leading-[1.12] text-inverse-on-surface tracking-tight text-balance">
+        Find your people,<br> Build your thing.
+      </h2>
+    </div>
+
   </main>
 
 </body>

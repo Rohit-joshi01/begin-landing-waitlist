@@ -190,19 +190,21 @@
 
             <p data-design-text-token="body-lg" class="font-body text-[clamp(13px,3.4vw,20px)] leading-[1.48] text-inverse-on-surface/90 max-w-xs xs:max-w-sm sm:max-w-md text-pretty">You don&#39;t have all it figured out, find your people, and start building something meaningful together.</p>
 
-            <div class="pt-1 xs:pt-2 flex items-center gap-3 w-full sm:w-auto justify-center md:justify-start">
-              <a href="#mission" class="inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 xs:px-7 sm:px-8 py-2.5 xs:py-3 sm:py-3.5 font-label text-sm xs:text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface">
-                <span data-design-text-token="label-lg">Start Building</span>
-              </a>
-            </div>
+            <!-- Desktop CTA Button (Visible on md+ desktop view) -->
           </div>
 
-          <!-- Subtle scroll indicator at bottom -->
-          <div id="scroll-hint" class="hidden xs:flex absolute bottom-3 sm:bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1 sm:gap-1.5 text-inverse-muted/70 pointer-events-none transition-opacity duration-300">
-            <span class="text-[10px] sm:text-[11px] font-mono tracking-widest uppercase">Scroll to explore</span>
-            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
+          <!-- Bottom Action Container: On responsive / mobile view, button appears directly above 'Scroll to explore' -->
+          <div id="hero-bottom-actions" class="absolute bottom-3 xs:bottom-4 sm:bottom-6 inset-x-0 z-10 flex flex-col items-center gap-2 xs:gap-2.5 px-4 pointer-events-auto">
+            <!-- Mobile CTA Button (Only when responsive / minimized / mobile view) -->
+
+
+            <!-- Scroll indicator at bottom -->
+            <div id="scroll-hint" class="flex flex-col items-center gap-1 sm:gap-1.5 text-inverse-muted/70 pointer-events-none transition-opacity duration-300">
+              <span class="text-[10px] sm:text-[11px] font-mono tracking-widest uppercase">Scroll to explore</span>
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -252,7 +254,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pt-2 sm:pt-4">
         <!-- Brand Ethos Column -->
         <div class="lg:col-span-6 flex flex-col gap-3 sm:gap-gutter-md pr-0 lg:pr-12">
-          <h3 data-design-text-token="headline-lg" class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface">Work fast. Live slow.</h3>
+          <h3 data-design-text-token="headline-lg" class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface">Begin</h3>
           <p data-design-text-token="body-md" class="font-body text-sm sm:text-body-md text-inverse-muted max-w-sm text-pretty leading-relaxed">A quiet, high-signal home for next-generation founders, student builders, and early-stage teams turning sparks into real companies.</p>
           <div class="pt-1 sm:pt-gutter-xs">
             <button type="button" class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer">
@@ -267,7 +269,14 @@
           <ul class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface">
             <li><a href="#mission" class="hover:text-accent-lime transition-colors">Reality</a></li>
             <li><a href="#ecosystem" class="hover:text-accent-lime transition-colors">Manifesto</a></li>
-            <li><a href="learn-more.html" class="hover:text-accent-lime transition-colors">Learn more</a></li>
+            <li>
+              <a href="learn-more.html" target="_blank" class="inline-flex items-center gap-1 hover:text-accent-lime transition-colors group">
+                <span >Learn more</span>
+                <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
+                </svg>
+              </a>
+            </li>
           </ul>
         </div>
 
