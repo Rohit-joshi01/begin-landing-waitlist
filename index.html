@@ -137,7 +137,7 @@
           </div>
 
           <!-- Right: Editorial Content -->
-          <div id="boards" class="w-full md:w-1/2 flex flex-col justify-center px-4 xs:px-6 sm:px-8 md:px-10 lg:px-16 py-3 xs:py-4 sm:py-6 md:py-10 lg:py-16 gap-2.5 xs:gap-3 sm:gap-4 lg:gap-7 max-w-2xl mx-auto md:mx-0 overflow-y-auto md:overflow-visible pointer-events-auto">
+          <div id="boards" class="w-full md:w-1/2 flex flex-col justify-center px-4 xs:px-6 sm:px-8 md:px-10 lg:px-16 py-3 xs:py-4 sm:py-6 md:py-10 lg:py-16 gap-2.5 xs:gap-3 sm:gap-4 lg:gap-7 max-w-2xl mx-auto md:mx-0 overflow-visible touch-pan-y pointer-events-auto">
             <!-- Beat 1: Ecosystem -->
             <div class="flex flex-col gap-1.5 xs:gap-2 sm:gap-3">
               <h2 data-design-text-token="display-md" class="font-serif text-[clamp(20px,3.6vw,44px)] text-inverse-on-surface text-balance leading-tight">Turn early sparks<br>into real momentum.</h2>
@@ -1049,6 +1049,15 @@
 
       gsap.registerPlugin(ScrollTrigger);
 
+      /* Ignore vertical address bar expansions/collapses on mobile browsers, preventing jitter and jumps */
+      ScrollTrigger.config({
+        ignoreMobileResize: true,
+        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load'
+      });
+
+      var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
+      var isMobile = window.innerWidth < 768;
+
       var heroWrapper = document.getElementById('hero-wrapper');
       var scrollStage = document.getElementById('scroll-stage');
       var heroBgImg = document.getElementById('hero-bg-img');
@@ -1073,16 +1082,19 @@
         gsap.set(waitlistLayer, { yPercent: 100, y: 0, x: 0 });
       }
 
-      /* Main Scroll-Triggered Pin Timeline with Natural Pacing */
+      /* Main Scroll-Triggered Pin Timeline with Natural Responsive Pacing */
       var zoomTimeline = gsap.timeline({
         scrollTrigger: {
           id: 'hero-scroll-zoom',
           trigger: heroWrapper,
           start: 'top top',
-          end: '+=640%',
+          end: function () {
+            return window.innerWidth < 768 ? '+=420%' : '+=640%';
+          },
           pin: scrollStage,
-          scrub: 0.7,
-          anticipatePin: 1,
+          pinSpacing: true,
+          scrub: isTouchDevice ? 0.25 : 0.7,
+          anticipatePin: isMobile ? 0 : 1,
           invalidateOnRefresh: true,
           onUpdate: function (self) {
             if (scrollHint) {
@@ -1231,19 +1243,35 @@
              - 3rd Page (Ecosystem) appears from behind the text and SLOWLY UNBLURS!
              - Corners and sides are dark at first, then smoothly gain their original color */
       if (ecosystemLayer) {
-        zoomTimeline.fromTo(ecosystemLayer,
-          { opacity: 0, scale: 0.90, filter: 'blur(12px)' },
-          {
-            opacity: 1,
-            scale: 1.0,
-            filter: 'blur(0px)',
-            ease: 'power2.out',
-            duration: 0.14,
-            pointerEvents: 'auto',
-            force3D: true
-          },
-          0.62
-        );
+        if (isMobile) {
+          /* On mobile screens, omit filter: blur(...) to avoid high GPU convolution cost that causes stutter */
+          zoomTimeline.fromTo(ecosystemLayer,
+            { opacity: 0, scale: 0.94 },
+            {
+              opacity: 1,
+              scale: 1.0,
+              ease: 'power2.out',
+              duration: 0.14,
+              pointerEvents: 'auto',
+              force3D: true
+            },
+            0.62
+          );
+        } else {
+          zoomTimeline.fromTo(ecosystemLayer,
+            { opacity: 0, scale: 0.90, filter: 'blur(12px)' },
+            {
+              opacity: 1,
+              scale: 1.0,
+              filter: 'blur(0px)',
+              ease: 'power2.out',
+              duration: 0.14,
+              pointerEvents: 'auto',
+              force3D: true
+            },
+            0.62
+          );
+        }
       }
 
       /* Corners and sides dark at first, then fade out vignette so sides & corners gain their original color */
@@ -1283,7 +1311,13 @@
             if (w < 768) return '24px';
             return '36px';
           },
-          boxShadow: '0 35px 85px -15px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.11), 0 0 45px rgba(163, 230, 53, 0.08)',
+          boxShadow: function () {
+            var w = window.innerWidth;
+            if (w < 768) {
+              return '0 12px 30px -8px rgba(0, 0, 0, 0.75)';
+            }
+            return '0 35px 85px -15px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.11), 0 0 45px rgba(163, 230, 53, 0.08)';
+          },
           y: function () { return window.innerWidth < 768 ? -12 : -22; },
           opacity: 0,
           ease: 'power2.inOut',
@@ -1402,13 +1436,18 @@
         });
       });
 
-      /* Debounced window resize handler to keep ScrollTrigger pixel-perfect on any tab or screen resize */
+      /* Debounced window resize handler: only refreshes if width changes (e.g. orientation change or desktop window resize),
+         preventing mobile address bar show/hide from constantly recalculating layout and jumping */
       var resizeTimeout;
+      var lastWidth = window.innerWidth;
       window.addEventListener('resize', function () {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(function () {
-          ScrollTrigger.refresh();
-        }, 120);
+        if (window.innerWidth !== lastWidth) {
+          lastWidth = window.innerWidth;
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function () {
+            ScrollTrigger.refresh();
+          }, 150);
+        }
       });
     });
   </script>
