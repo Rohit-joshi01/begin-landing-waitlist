@@ -252,7 +252,7 @@
   </main>
 
   <!-- Long Editorial Footer (consistent with Floating Pill Navbar & Obsidian Sections) -->
-  <footer class="bg-obsidian-surface text-inverse-on-surface pt-12 sm:pt-16 pb-12 px-5 sm:px-8 md:px-16">
+  <footer class="relative z-50 bg-obsidian-surface text-inverse-on-surface pt-12 sm:pt-16 pb-12 px-5 sm:px-8 md:px-16">
     <div class="max-w-6xl mx-auto flex flex-col gap-8 sm:gap-12">
 
       <!-- Main Multi-Column Long Footer Grid -->
@@ -272,6 +272,7 @@
         <div class="lg:col-span-3 flex flex-col gap-3 sm:gap-gutter-md">
           <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Journey</span>
           <ul class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="#hero" class="hover:text-accent-lime transition-colors">Back to top &uarr;</a></li>
             <li><a href="#mission" class="hover:text-accent-lime transition-colors">Reality</a></li>
             <li><a href="#ecosystem" class="hover:text-accent-lime transition-colors">Manifesto</a></li>
             <li>
@@ -1059,8 +1060,7 @@
 
       /* Ignore vertical address bar expansions/collapses on mobile browsers, preventing jitter and jumps */
       ScrollTrigger.config({
-        ignoreMobileResize: true,
-        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load'
+        ignoreMobileResize: true
       });
 
       var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
@@ -1102,7 +1102,7 @@
           pin: scrollStage,
           pinSpacing: true,
           scrub: isTouchDevice ? 0.25 : 0.7,
-          anticipatePin: isMobile ? 0 : 1,
+          anticipatePin: 0,
           invalidateOnRefresh: true,
           onUpdate: function (self) {
             if (scrollHint) {
@@ -1394,10 +1394,9 @@
         );
       }
 
-      /* 13. PAGE 4 COMFORTABLE PRESENCE ON SCREEN (Progress 1.05 to 1.18)
-             Page 4 ("Cross the bridge with the people who get it" / "Join the waitlist")
-             remains 100% visible, stable, full-bleed, and interactive on the display! */
-      zoomTimeline.to({}, { duration: 0.13 }, 1.05);
+      /* 13. PAGE 4 SEAMLESS PRESENCE (Progress 1.05 to 1.08)
+             Page 4 remains visible & interactive, transitioning immediately when scrolling up */
+      zoomTimeline.to({}, { duration: 0.03 }, 1.05);
 
       /* Smooth Anchor Navigation for #hero, #mission, #ecosystem, and #waitlist */
       var missionAnchors = document.querySelectorAll('a[href="#mission"]');
