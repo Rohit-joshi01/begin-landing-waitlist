@@ -71,6 +71,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
+  <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="bg-surface text-on-surface font-body antialiased">
 
@@ -958,19 +963,22 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
               });
-              if (resp.ok) {
+              var respData = null;
+              try { respData = await resp.json(); } catch (e) {}
+
+              if (resp.ok && respData && (respData.message === 'Successfully saved to Supabase waitlist.' || respData.success)) {
                 savedSuccessfully = true;
-              } else if (resp.status === 405 || resp.status === 404) {
-                // Static server detected (VS Code Live Server or static host) -> directly insert into Supabase
-                console.log('Static server detected (status ' + resp.status + '). Directly saving to Supabase...');
+              } else {
+                // If server did not explicitly confirm Supabase save, fall back to direct Supabase insert
                 try {
                   savedSuccessfully = await saveDirectToSupabase();
                 } catch (sbErr) {
-                  apiError = sbErr.message || 'Direct Supabase insert failed.';
+                  if (resp.ok) {
+                    savedSuccessfully = true;
+                  } else {
+                    apiError = sbErr.message || (respData && respData.error) || ('Server error ' + resp.status);
+                  }
                 }
-              } else {
-                var errData = await resp.json().catch(function () { return {}; });
-                apiError = errData.error || ('Server error ' + resp.status);
               }
             } catch (netErr) {
               // Network error or local file preview -> fallback to direct Supabase
