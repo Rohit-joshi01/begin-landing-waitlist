@@ -47,9 +47,9 @@ export default async function handler(req, res) {
     };
 
     // ── Option A: Supabase Integration ──
-    // Uses environment variables set in Vercel or .env
-    const supabaseUrl = process.env.SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY;
+    // Uses environment variables set in Vercel or .env, falling back to configured project credentials
+    const supabaseUrl = process.env.SUPABASE_URL || 'https://wbbytuqzkotzugdhwtme.supabase.co';
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiYnl0dXF6a290enVnZGh3dG1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxOTM0OTUsImV4cCI6MjExMDc2OTQ5NX0.Jtn04msrpOWRbyS1JEbTfCqK0NzW6wYU1QAX9-zf1lM';
 
     if (supabaseUrl && supabaseKey) {
       // Normalize URL: strip trailing slashes and any trailing /rest/v1
