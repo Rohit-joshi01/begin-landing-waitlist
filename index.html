@@ -1,2239 +1,1474 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Begin - Find your people, build your thing</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          screens: {
-            xs: "420px",
-            sm: "640px",
-            md: "768px",
-            lg: "1024px",
-            xl: "1280px",
-          },
-          extend: {
-            colors: {
-              surface: "#FAFAFA",
-              "surface-card": "#FFFFFF",
-              "surface-subtle": "#F3F4F6",
-              "on-surface": "#111827",
-              "on-surface-variant": "#4B5563",
-              outline: "#E5E7EB",
-              primary: "#111827",
-              "on-primary": "#FFFFFF",
-              "accent-lime": "#A3E635",
-              "on-accent-lime": "#111827",
-              "inverse-surface": "#121316",
-              "obsidian-surface": "#070809",
-              "inverse-on-surface": "#F9FAFB",
-              "inverse-muted": "#9CA3AF",
-            },
-            fontFamily: {
-              serif: ['"Instrument Serif"', "serif"],
-              display: ['"Instrument Serif"', "serif"],
-              headline: ['"Instrument Serif"', "serif"],
-              body: ['"Inter"', "sans-serif"],
-              label: ['"Inter"', "sans-serif"],
-              sans: ['"Inter"', "sans-serif"],
-              mono: ['"Red Hat Mono"', "monospace"],
-            },
-            fontSize: {
-              "display-lg": [
-                "58px",
-                {
-                  lineHeight: "64px",
-                  letterSpacing: "-0.5px",
-                  fontWeight: "400",
-                },
-              ],
-              "display-lg-mobile": [
-                "34px",
-                {
-                  lineHeight: "40px",
-                  letterSpacing: "-0.25px",
-                  fontWeight: "400",
-                },
-              ],
-              "display-md": [
-                "48px",
-                {
-                  lineHeight: "52px",
-                  letterSpacing: "-0.5px",
-                  fontWeight: "400",
-                },
-              ],
-              "display-md-mobile": [
-                "32px",
-                {
-                  lineHeight: "36px",
-                  letterSpacing: "-0.25px",
-                  fontWeight: "400",
-                },
-              ],
-              "headline-lg": [
-                "32px",
-                {
-                  lineHeight: "36px",
-                  letterSpacing: "-0.25px",
-                  fontWeight: "400",
-                },
-              ],
-              "headline-sm": [
-                "20px",
-                {
-                  lineHeight: "26px",
-                  letterSpacing: "-0.2px",
-                  fontWeight: "500",
-                },
-              ],
-              "body-lg": [
-                "18px",
-                { lineHeight: "28px", letterSpacing: "0px", fontWeight: "400" },
-              ],
-              "body-md": [
-                "15px",
-                { lineHeight: "24px", letterSpacing: "0px", fontWeight: "400" },
-              ],
-              "label-lg": [
-                "14px",
-                { lineHeight: "20px", letterSpacing: "0px", fontWeight: "500" },
-              ],
-              "label-sm": [
-                "12px",
-                {
-                  lineHeight: "16px",
-                  letterSpacing: "0.6px",
-                  fontWeight: "500",
-                },
-              ],
-            },
-            borderRadius: {
-              xl: "24px",
-              full: "9999px",
-            },
-            spacing: {
-              "gutter-xs": "4px",
-              "gutter-sm": "8px",
-              "gutter-md": "16px",
-              "gutter-lg": "24px",
-              "gutter-xl": "32px",
-            },
-          },
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Begin — Find your people, build your thing</title>
+  <link rel="icon" type="image/png" href="begin-logo.png">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        screens: {
+          'xs': '420px',
+          'sm': '640px',
+          'md': '768px',
+          'lg': '1024px',
+          'xl': '1280px',
         },
-      };
-    </script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap"
-      rel="stylesheet"
-    />
-    <!-- GSAP & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- Vercel Analytics -->
-    <script>
-      window.va =
-        window.va ||
-        function () {
-          (window.vaq = window.vaq || []).push(arguments);
-        };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
-  </head>
-  <body class="bg-surface text-on-surface font-body antialiased">
-    <!-- Timmo-inspired Floating Centered Pill Navbar -->
-    <header
-      id="main-header"
-      class="fixed top-3 xs:top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-2.5 xs:px-3 sm:px-gutter-md pointer-events-none will-change-transform"
-    >
-      <div
-        class="pointer-events-auto inline-flex items-center justify-between gap-2 xs:gap-3 sm:gap-gutter-lg rounded-full bg-surface-card/95 backdrop-blur-md border border-outline shadow-md px-3 xs:px-3.5 sm:px-4 py-1.5 sm:py-2 max-w-[calc(100vw-1.25rem)] sm:max-w-[calc(100vw-1.5rem)]"
-      >
-        <a
-          href="#hero"
-          class="inline-flex items-center pl-1 sm:pl-2 pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full shrink-0"
-        >
-          <img
-            src="begin-logo.png"
-            alt="Begin"
-            class="h-3.5 xs:h-4 sm:h-5 w-auto object-contain"
-          />
-        </a>
+        extend: {
+          colors: {
+            'surface': '#FAFAFA',
+            'surface-card': '#FFFFFF',
+            'surface-subtle': '#F3F4F6',
+            'on-surface': '#111827',
+            'on-surface-variant': '#4B5563',
+            'outline': '#E5E7EB',
+            'primary': '#111827',
+            'on-primary': '#FFFFFF',
+            'accent-lime': '#A3E635',
+            'on-accent-lime': '#111827',
+            'inverse-surface': '#121316',
+            'obsidian-surface': '#070809',
+            'inverse-on-surface': '#F9FAFB',
+            'inverse-muted': '#9CA3AF',
+          },
+          fontFamily: {
+            'serif': ['"Instrument Serif"', 'serif'],
+            'display': ['"Instrument Serif"', 'serif'],
+            'headline': ['"Instrument Serif"', 'serif'],
+            'body': ['"Inter"', 'sans-serif'],
+            'label': ['"Inter"', 'sans-serif'],
+            'sans': ['"Inter"', 'sans-serif'],
+            'mono': ['"Red Hat Mono"', 'monospace'],
+          },
+          fontSize: {
+            'display-lg': ['58px', { lineHeight: '64px', letterSpacing: '-0.5px', fontWeight: '400' }],
+            'display-lg-mobile': ['34px', { lineHeight: '40px', letterSpacing: '-0.25px', fontWeight: '400' }],
+            'display-md': ['48px', { lineHeight: '52px', letterSpacing: '-0.5px', fontWeight: '400' }],
+            'display-md-mobile': ['32px', { lineHeight: '36px', letterSpacing: '-0.25px', fontWeight: '400' }],
+            'headline-lg': ['32px', { lineHeight: '36px', letterSpacing: '-0.25px', fontWeight: '400' }],
+            'headline-sm': ['20px', { lineHeight: '26px', letterSpacing: '-0.2px', fontWeight: '500' }],
+            'body-lg': ['18px', { lineHeight: '28px', letterSpacing: '0px', fontWeight: '400' }],
+            'body-md': ['15px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '400' }],
+            'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '500' }],
+            'label-sm': ['12px', { lineHeight: '16px', letterSpacing: '0.6px', fontWeight: '500' }],
+          },
+          borderRadius: {
+            'xl': '24px',
+            'full': '9999px',
+          },
+          spacing: {
+            'gutter-xs': '4px',
+            'gutter-sm': '8px',
+            'gutter-md': '16px',
+            'gutter-lg': '24px',
+            'gutter-xl': '32px',
+          },
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=Red+Hat+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
 
-        <nav
-          aria-label="Primary"
-          class="hidden md:flex items-center gap-gutter-xs"
-        >
-          <a
-            href="#mission"
-            class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors"
-            >Reality</a
-          >
-          <a
-            href="#ecosystem"
-            class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors"
-            >Manifesto</a
-          >
-        </nav>
+  <!-- Timmo-inspired Floating Centered Pill Navbar -->
+  <header id="main-header" class="fixed top-3 xs:top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-2.5 xs:px-3 sm:px-gutter-md pointer-events-none will-change-transform">
+    <div class="pointer-events-auto inline-flex items-center justify-between gap-2 xs:gap-3 sm:gap-gutter-lg rounded-full bg-surface-card/95 backdrop-blur-md border border-outline shadow-md px-3 xs:px-3.5 sm:px-4 py-1.5 sm:py-2 max-w-[calc(100vw-1.25rem)] sm:max-w-[calc(100vw-1.5rem)]">
+      <a href="#hero" class="inline-flex items-center pl-1 sm:pl-2 pr-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full shrink-0">
+        <img src="begin-logo.png" alt="Begin" class="h-3.5 xs:h-4 sm:h-5 w-auto object-contain">
+      </a>
 
-        <button
-          type="button"
-          class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-3 xs:px-3.5 sm:px-4 py-1 xs:py-1.5 font-label text-[11px] xs:text-xs sm:text-label-lg font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 cursor-pointer"
-        >
-          <span data-design-text-token="label-lg">Join Begin</span>
-        </button>
+      <nav aria-label="Primary" class="hidden md:flex items-center gap-gutter-xs">
+        <a href="#mission" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Reality</a>
+        <a href="#ecosystem" class="rounded-full px-3.5 py-1.5 font-label text-label-lg text-on-surface-variant hover:text-on-surface transition-colors">Manifesto</a>
+      </nav>
+
+      <button type="button" class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-3 xs:px-3.5 sm:px-4 py-1 xs:py-1.5 font-label text-[11px] xs:text-xs sm:text-label-lg font-medium hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary shrink-0 cursor-pointer">
+        <span data-design-text-token="label-lg">Join Begin</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- UNIFIED 3-PAGE PINNED CINEMATIC SCROLL STAGE -->
+    <!-- Page 1: Hero -> Page 2: Reality (Manifesto) -> Page 3: Ecosystem (Appears from behind text) -->
+    <section id="hero-wrapper" class="relative w-full bg-obsidian-surface overflow-hidden">
+      <!-- Pinned Scroll Stage (100dvh / 100svh / 100vh - fully responsive) -->
+      <div id="scroll-stage" class="relative w-full viewport-screen overflow-hidden bg-obsidian-surface">
+
+        <!-- LAYER 1 (z-0): Page 1 Hero Background Image -->
+        <div id="hero-bg-layer" class="absolute inset-0 z-0 overflow-hidden pointer-events-none will-change-transform">
+          <img src="01-main_image_clean.png"
+               alt="A lone builder sitting with a glowing laptop on a sunlit hill above the clouds"
+               id="hero-bg-img"
+               class="w-full h-full object-cover object-[center_65%] sm:object-[center_82%] will-change-transform">
+
+          <!-- Bottom blend into obsidian -->
+          <div class="absolute inset-x-0 bottom-0 h-36 sm:h-56 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/70 to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- LAYER 2 (z-5): Darkening Overlay (Turns background pitch black on transition to Page 2) -->
+        <div id="hero-darken-overlay" class="absolute inset-0 z-5 bg-obsidian-surface opacity-0 pointer-events-none will-change-opacity"></div>
+
+        <!-- LAYER 3 (z-10): Page 3 (Ecosystem & Boards) — Positioned BEHIND the text! Appears out of background -->
+        <div id="ecosystem" class="page3-layer absolute inset-0 z-10 w-full h-full bg-obsidian-surface text-inverse-on-surface overflow-hidden flex flex-col md:flex-row pointer-events-none opacity-0 will-change-transform">
+          <!-- Edge Vignette: Dark corners & sides that smoothly clear away to reveal original colors -->
+          <div id="ecosystem-vignette" class="absolute inset-0 pointer-events-none z-20 will-change-opacity"
+               style="background: radial-gradient(ellipse at center, rgba(7,8,9,0) 25%, rgba(7,8,9,0.78) 65%, rgba(7,8,9,0.98) 100%);">
+          </div>
+
+          <!-- Left: Image (Side-by-side down to 768px; on mobile, generous height with clear builder framing) -->
+          <div class="relative w-full md:w-1/2 h-[34vh] xs:h-[36vh] sm:h-[40vh] md:h-full max-h-[460px] md:max-h-none overflow-hidden pointer-events-none flex-shrink-0">
+            <div class="w-full h-full fade-mask-right">
+              <img src="01-image2_clean.png" alt="A young builder sitting under a tree on a hillside overlooking a bright future city" class="w-full h-full object-cover object-[38%_30%] md:object-[40%_35%]">
+            </div>
+            <!-- Top atmospheric blend -->
+            <div class="absolute inset-x-0 top-0 h-10 sm:h-20 bg-gradient-to-b from-obsidian-surface/60 via-obsidian-surface/30 to-transparent"></div>
+            <!-- Subtle bottom blend only on mobile stacked view -->
+            <div class="md:hidden absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-obsidian-surface/80 to-transparent"></div>
+
+            <!-- Bottom-left editorial signature (visible on tablet & desktop) -->
+            <div class="hidden md:flex absolute bottom-6 lg:bottom-8 left-6 lg:left-10 right-8 lg:right-16 z-10 flex-col gap-gutter-sm">
+              <span data-design-text-token="headline-lg" class="font-serif text-xl lg:text-headline-lg text-inverse-on-surface">Work fast. Live slow.</span>
+            </div>
+          </div>
+
+          <!-- Right: Editorial Content -->
+          <div id="boards" class="w-full md:w-1/2 flex flex-col justify-center px-4 xs:px-6 sm:px-8 md:px-10 lg:px-16 py-3 xs:py-4 sm:py-6 md:py-10 lg:py-16 gap-2.5 xs:gap-3 sm:gap-4 lg:gap-7 max-w-2xl mx-auto md:mx-0 overflow-visible touch-pan-y pointer-events-auto">
+            <!-- Beat 1: Ecosystem -->
+            <div class="flex flex-col gap-1.5 xs:gap-2 sm:gap-3">
+              <h2 data-design-text-token="display-md" class="font-serif text-[clamp(20px,3.6vw,44px)] text-inverse-on-surface text-balance leading-tight">Turn early sparks<br>into real momentum.</h2>
+              <p data-design-text-token="body-md" class="font-body text-[11px] xs:text-xs sm:text-body-md text-inverse-muted text-pretty leading-relaxed">From zero to something real — find your co-founder, ship your MVP, and build alongside people who actually get it. No vanity metrics, no performative networking.</p>
+
+              <!-- Tag pills -->
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-0.5">
+                <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Co-founders </span>
+                <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">MVPs &amp; Shipping </span>
+                <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Early Teams </span>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-inverse-on-surface/10"></div>
+
+            <!-- Beat 2: Boards -->
+            <div class="flex flex-col gap-1.5 xs:gap-2 sm:gap-3">
+              <h2 data-design-text-token="display-md" class="font-serif text-[clamp(20px,3.6vw,44px)] text-inverse-on-surface text-balance leading-tight">Boards for every<br>stage of the build.</h2>
+              <p data-design-text-token="body-md" class="font-body text-[11px] xs:text-xs sm:text-body-md text-inverse-muted text-pretty leading-relaxed">The right room for every phase — from idea to fundraise to first hire. Each board keeps noise low and signal high.</p>
+
+              <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-0.5">
+                <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Idea </span>
+                <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Fundraise</span>
+                <span class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors">Hire</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAYER 4 (z-20): Page 2 Manifesto / Reality Text Layer (IN FRONT of Page 3!) -->
+        <div id="mission" class="mission-reveal-layer spatial-container absolute inset-0 z-20 flex flex-col justify-center items-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-20 pointer-events-none opacity-0 will-change-transform">
+          <div class="max-w-4xl lg:max-w-5xl mx-auto w-full text-center pointer-events-auto px-2 xs:px-4">
+            <p id="mission-text"
+               class="font-serif text-[clamp(1.02rem,3.2vw,2.85rem)] leading-[1.40] md:leading-[1.44] tracking-normal select-none text-center text-inverse-on-surface">
+            </p>
+          </div>
+        </div>
+
+        <!-- LAYER 5 (z-30): Page 1 Corner Framing (Vines & Clouds - Page 1 Only!) -->
+        <div id="corner-framing-container"
+             class="corner-framing-container absolute inset-0 z-30 pointer-events-none overflow-hidden will-change-transform">
+          <img src="corner-frame-combined.svg" alt="" aria-hidden="true" class="w-full h-full object-cover object-center pointer-events-none select-none will-change-transform">
+        </div>
+
+        <!-- LAYER 6 (z-40): Page 1 Hero Intro Layer: Title, Subtitle, and CTA Button -->
+        <div id="hero" class="hero-intro-layer absolute inset-0 z-40 flex flex-col justify-start md:justify-center px-4 xs:px-6 sm:px-8 md:px-16 pt-24 xs:pt-28 sm:pt-32 md:pt-0 pb-14 sm:py-24 pointer-events-none will-change-transform">
+          <div class="pointer-events-auto w-full md:max-w-[50%] lg:max-w-[48%] flex flex-col items-center md:items-start text-center md:text-left gap-3 xs:gap-4 sm:gap-6 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-none mx-auto md:mx-0">
+            <h1 data-design-text-token="display-lg" class="font-serif text-[clamp(28px,7.5vw,76px)] leading-[1.08] text-inverse-on-surface tracking-tight text-balance">Find your people,<br>build your thing</h1>
+
+            <p data-design-text-token="body-lg" class="font-body text-[clamp(13px,3.4vw,20px)] leading-[1.48] text-inverse-on-surface/90 max-w-xs xs:max-w-sm sm:max-w-md text-pretty">You don&#39;t have all it figured out, find your people, and start building something meaningful together.</p>
+
+            <!-- Desktop CTA Button (Visible on md+ desktop view) -->
+          </div>
+
+          <!-- Bottom Action Container: On responsive / mobile view, button appears directly above 'Scroll to explore' -->
+          <div id="hero-bottom-actions" class="absolute bottom-3 xs:bottom-4 sm:bottom-6 inset-x-0 z-10 flex flex-col items-center gap-2 xs:gap-2.5 px-4 pointer-events-auto">
+            <!-- Mobile CTA Button (Only when responsive / minimized / mobile view) -->
+
+
+            <!-- Scroll indicator at bottom -->
+            <div id="scroll-hint" class="flex flex-col items-center gap-1 sm:gap-1.5 text-inverse-muted/70 pointer-events-none transition-opacity duration-300">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAYER 7 (z-45): Page 4 (Waitlist & Bridge Arch) — Overlays on 3rd card in full size -->
+        <div id="waitlist" class="page4-layer absolute inset-0 z-40 w-full h-full bg-[#FAFAFA] text-on-surface overflow-hidden flex flex-col items-center justify-start pt-14 xs:pt-16 sm:pt-24 md:pt-32 pb-10 sm:pb-16 px-4 xs:px-6 sm:px-8 pointer-events-none will-change-transform" style="z-index: 45; background-color: #FAFAFA;">
+
+          <!-- Background image with inner counter-parallax layer -->
+          <div id="page4-bg-container" class="absolute inset-0 z-0 overflow-hidden pointer-events-none will-change-transform" aria-hidden="true">
+            <div id="page4-bg-layer" class="absolute -top-12 inset-x-0 w-full h-[calc(100%+96px)] will-change-transform">
+              <img src="01-image4_clean.png" alt="Two builders standing together on a lush grassy arch overlooking a sea of clouds" class="w-full h-full object-cover object-[center_82%] sm:object-[center_80%]">
+            </div>
+
+            <!-- Atmospheric blends: Top mist blend + Bottom obsidian blend to footer -->
+            <div class="absolute inset-x-0 top-0 h-28 sm:h-44 bg-gradient-to-b from-surface via-surface/60 to-transparent"></div>
+            <div class="absolute inset-x-0 bottom-0 h-24 sm:h-36 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/60 to-transparent"></div>
+          </div>
+
+          <!-- Tactile Deck Sheet Pill Handle -->
+          <div id="page4-sheet-handle" class="relative z-10 w-10 xs:w-12 h-1 rounded-full bg-on-surface/20 mb-2.5 xs:mb-3 sm:mb-4 pointer-events-none transition-opacity duration-300"></div>
+
+          <!-- Content: Early Access, Headline, Paragraph, Join Waitlist Button -->
+          <div id="page4-content" class="relative z-10 max-w-2xl mx-auto w-full flex flex-col items-center text-center gap-3 xs:gap-3.5 sm:gap-gutter-md will-change-transform">
+            <span data-design-text-token="label-sm" class="font-mono text-[10px] xs:text-xs sm:text-label-sm uppercase tracking-widest text-on-surface bg-surface-card/80 backdrop-blur-sm px-3 xs:px-3.5 py-0.5 xs:py-1 rounded-full border border-outline/70 shadow-xs">Early Access</span>
+
+            <h2 data-design-text-token="display-lg" class="font-serif text-[clamp(24px,5.2vw,56px)] text-on-surface text-balance leading-tight">Cross the bridge with the people who get it.</h2>
+
+            <p data-design-text-token="body-lg" class="font-body text-[clamp(13px,3vw,18px)] leading-[1.48] text-on-surface/90 max-w-lg text-pretty">We&#39;re opening Begin in small waves of builders, founders, and curious minds. Join the waitlist and claim your spot.</p>
+
+            <div class="pt-1 xs:pt-1.5 sm:pt-2 w-full sm:w-auto">
+              <button type="button" class="open-waitlist-btn inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 xs:px-7 sm:px-8 py-2.5 xs:py-3 sm:py-3.5 font-label text-sm xs:text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer">
+                <span data-design-text-token="label-lg">Join the waitlist</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-    </header>
+    </section>
+  </main>
 
-    <main>
-      <!-- UNIFIED 3-PAGE PINNED CINEMATIC SCROLL STAGE -->
-      <!-- Page 1: Hero -> Page 2: Reality (Manifesto) -> Page 3: Ecosystem (Appears from behind text) -->
-      <section
-        id="hero-wrapper"
-        class="relative w-full bg-obsidian-surface overflow-hidden"
-      >
-        <!-- Pinned Scroll Stage (100dvh / 100svh / 100vh - fully responsive) -->
-        <div
-          id="scroll-stage"
-          class="relative w-full viewport-screen overflow-hidden bg-obsidian-surface"
-        >
-          <!-- LAYER 1 (z-0): Page 1 Hero Background Image -->
-          <div
-            id="hero-bg-layer"
-            class="absolute inset-0 z-0 overflow-hidden pointer-events-none will-change-transform"
-          >
-            <img
-              src="01-main_image_clean.png"
-              alt="A lone builder sitting with a glowing laptop on a sunlit hill above the clouds"
-              id="hero-bg-img"
-              class="w-full h-full object-cover object-[center_65%] sm:object-[center_82%] will-change-transform"
-            />
+  <!-- Long Editorial Footer (consistent with Floating Pill Navbar & Obsidian Sections) -->
+  <footer class="relative z-50 bg-obsidian-surface text-inverse-on-surface pt-12 sm:pt-16 pb-12 px-5 sm:px-8 md:px-16">
+    <div class="max-w-6xl mx-auto flex flex-col gap-8 sm:gap-12">
 
-            <!-- Bottom blend into obsidian -->
-            <div
-              class="absolute inset-x-0 bottom-0 h-36 sm:h-56 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/70 to-transparent pointer-events-none"
-            ></div>
+      <!-- Main Multi-Column Long Footer Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pt-2 sm:pt-4">
+        <!-- Brand Ethos Column -->
+        <div class="lg:col-span-6 flex flex-col gap-3 sm:gap-gutter-md pr-0 lg:pr-12">
+          <h3 data-design-text-token="headline-lg" class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface">Begin</h3>
+          <p data-design-text-token="body-md" class="font-body text-sm sm:text-body-md text-inverse-muted max-w-sm text-pretty leading-relaxed">A quiet, high-signal home for next-generation founders, student builders, and early-stage teams turning sparks into real companies.</p>
+          <div class="pt-1 sm:pt-gutter-xs">
+            <button type="button" class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer">
+              <span data-design-text-token="label-lg">Claim early access</span>
+            </button>
           </div>
+        </div>
 
-          <!-- LAYER 2 (z-5): Darkening Overlay (Turns background pitch black on transition to Page 2) -->
-          <div
-            id="hero-darken-overlay"
-            class="absolute inset-0 z-5 bg-obsidian-surface opacity-0 pointer-events-none will-change-opacity"
-          ></div>
-
-          <!-- LAYER 3 (z-10): Page 3 (Ecosystem & Boards) — Positioned BEHIND the text! Appears out of background -->
-          <div
-            id="ecosystem"
-            class="page3-layer absolute inset-0 z-10 w-full h-full bg-obsidian-surface text-inverse-on-surface overflow-hidden flex flex-col md:flex-row pointer-events-none opacity-0 will-change-transform"
-          >
-            <!-- Edge Vignette: Dark corners & sides that smoothly clear away to reveal original colors -->
-            <div
-              id="ecosystem-vignette"
-              class="absolute inset-0 pointer-events-none z-20 will-change-opacity"
-              style="
-                background: radial-gradient(
-                  ellipse at center,
-                  rgba(7, 8, 9, 0) 25%,
-                  rgba(7, 8, 9, 0.78) 65%,
-                  rgba(7, 8, 9, 0.98) 100%
-                );
-              "
-            ></div>
-
-            <!-- Left: Image (Side-by-side down to 768px; on mobile, generous height with clear builder framing) -->
-            <div
-              class="relative w-full md:w-1/2 h-[34vh] xs:h-[36vh] sm:h-[40vh] md:h-full max-h-[460px] md:max-h-none overflow-hidden pointer-events-none flex-shrink-0"
-            >
-              <div class="w-full h-full fade-mask-right">
-                <img
-                  src="01-image2_clean.png"
-                  alt="A young builder sitting under a tree on a hillside overlooking a bright future city"
-                  class="w-full h-full object-cover object-[38%_30%] md:object-[40%_35%]"
-                />
-              </div>
-              <!-- Top atmospheric blend -->
-              <div
-                class="absolute inset-x-0 top-0 h-10 sm:h-20 bg-gradient-to-b from-obsidian-surface/60 via-obsidian-surface/30 to-transparent"
-              ></div>
-              <!-- Subtle bottom blend only on mobile stacked view -->
-              <div
-                class="md:hidden absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-obsidian-surface/80 to-transparent"
-              ></div>
-
-              <!-- Bottom-left editorial signature (visible on tablet & desktop) -->
-              <div
-                class="hidden md:flex absolute bottom-6 lg:bottom-8 left-6 lg:left-10 right-8 lg:right-16 z-10 flex-col gap-gutter-sm"
-              >
-                <span
-                  data-design-text-token="headline-lg"
-                  class="font-serif text-xl lg:text-headline-lg text-inverse-on-surface"
-                  >Work fast. Live slow.</span
-                >
-              </div>
-            </div>
-
-            <!-- Right: Editorial Content -->
-            <div
-              id="boards"
-              class="w-full md:w-1/2 flex flex-col justify-center px-4 xs:px-6 sm:px-8 md:px-10 lg:px-16 py-3 xs:py-4 sm:py-6 md:py-10 lg:py-16 gap-2.5 xs:gap-3 sm:gap-4 lg:gap-7 max-w-2xl mx-auto md:mx-0 overflow-visible touch-pan-y pointer-events-auto"
-            >
-              <!-- Beat 1: Ecosystem -->
-              <div class="flex flex-col gap-1.5 xs:gap-2 sm:gap-3">
-                <h2
-                  data-design-text-token="display-md"
-                  class="font-serif text-[clamp(20px,3.6vw,44px)] text-inverse-on-surface text-balance leading-tight"
-                >
-                  Turn early sparks<br />into real momentum.
-                </h2>
-                <p
-                  data-design-text-token="body-md"
-                  class="font-body text-[11px] xs:text-xs sm:text-body-md text-inverse-muted text-pretty leading-relaxed"
-                >
-                  From zero to something real — find your co-founder, ship your
-                  MVP, and build alongside people who actually get it. No vanity
-                  metrics, no performative networking.
-                </p>
-
-                <!-- Tag pills -->
-                <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-0.5">
-                  <span
-                    class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors"
-                    >Co-founders
-                  </span>
-                  <span
-                    class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors"
-                    >MVPs &amp; Shipping
-                  </span>
-                  <span
-                    class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors"
-                    >Early Teams
-                  </span>
-                </div>
-              </div>
-
-              <!-- Divider -->
-              <div class="border-t border-inverse-on-surface/10"></div>
-
-              <!-- Beat 2: Boards -->
-              <div class="flex flex-col gap-1.5 xs:gap-2 sm:gap-3">
-                <h2
-                  data-design-text-token="display-md"
-                  class="font-serif text-[clamp(20px,3.6vw,44px)] text-inverse-on-surface text-balance leading-tight"
-                >
-                  Boards for every<br />stage of the build.
-                </h2>
-                <p
-                  data-design-text-token="body-md"
-                  class="font-body text-[11px] xs:text-xs sm:text-body-md text-inverse-muted text-pretty leading-relaxed"
-                >
-                  The right room for every phase — from idea to fundraise to
-                  first hire. Each board keeps noise low and signal high.
-                </p>
-
-                <div class="flex flex-wrap gap-1.5 sm:gap-2 pt-0.5">
-                  <span
-                    class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors"
-                    >Idea
-                  </span>
-                  <span
-                    class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors"
-                    >Fundraise</span
-                  >
-                  <span
-                    class="rounded-full border border-inverse-on-surface/15 bg-white/[0.04] px-2 xs:px-2.5 py-0.5 sm:px-3.5 sm:py-1 font-mono text-[10px] xs:text-[11px] sm:text-label-sm text-inverse-on-surface hover:border-accent-lime/40 transition-colors"
-                    >Hire</span
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- LAYER 4 (z-20): Page 2 Manifesto / Reality Text Layer (IN FRONT of Page 3!) -->
-          <div
-            id="mission"
-            class="mission-reveal-layer spatial-container absolute inset-0 z-20 flex flex-col justify-center items-center px-4 xs:px-6 sm:px-10 md:px-16 lg:px-20 pointer-events-none opacity-0 will-change-transform"
-          >
-            <div
-              class="max-w-4xl lg:max-w-5xl mx-auto w-full text-center pointer-events-auto px-2 xs:px-4"
-            >
-              <p
-                id="mission-text"
-                class="font-serif text-[clamp(1.02rem,3.2vw,2.85rem)] leading-[1.40] md:leading-[1.44] tracking-normal select-none text-center text-inverse-on-surface"
-              ></p>
-            </div>
-          </div>
-
-          <!-- LAYER 5 (z-30): Page 1 Corner Framing (Vines & Clouds - Page 1 Only!) -->
-          <div
-            id="corner-framing-container"
-            class="corner-framing-container absolute inset-0 z-30 pointer-events-none overflow-hidden will-change-transform"
-          >
-            <img
-              src="corner-frame-combined.svg"
-              alt=""
-              aria-hidden="true"
-              class="w-full h-full object-cover object-center pointer-events-none select-none will-change-transform"
-            />
-          </div>
-
-          <!-- LAYER 6 (z-40): Page 1 Hero Intro Layer: Title, Subtitle, and CTA Button -->
-          <div
-            id="hero"
-            class="hero-intro-layer absolute inset-0 z-40 flex flex-col justify-start md:justify-center px-4 xs:px-6 sm:px-8 md:px-16 pt-24 xs:pt-28 sm:pt-32 md:pt-0 pb-14 sm:py-24 pointer-events-none will-change-transform"
-          >
-            <div
-              class="pointer-events-auto w-full md:max-w-[50%] lg:max-w-[48%] flex flex-col items-center md:items-start text-center md:text-left gap-3 xs:gap-4 sm:gap-6 max-w-sm xs:max-w-md sm:max-w-lg md:max-w-none mx-auto md:mx-0"
-            >
-              <h1
-                data-design-text-token="display-lg"
-                class="font-serif text-[clamp(28px,7.5vw,76px)] leading-[1.08] text-inverse-on-surface tracking-tight text-balance"
-              >
-                Find your people,<br />build your thing
-              </h1>
-
-              <p
-                data-design-text-token="body-lg"
-                class="font-body text-[clamp(13px,3.4vw,20px)] leading-[1.48] text-inverse-on-surface/90 max-w-xs xs:max-w-sm sm:max-w-md text-pretty"
-              >
-                You don&#39;t have all it figured out, find your people, and
-                start building something meaningful together.
-              </p>
-
-              <!-- Desktop CTA Button (Visible on md+ desktop view) -->
-            </div>
-
-            <!-- Bottom Action Container: On responsive / mobile view, button appears directly above 'Scroll to explore' -->
-            <div
-              id="hero-bottom-actions"
-              class="absolute bottom-3 xs:bottom-4 sm:bottom-6 inset-x-0 z-10 flex flex-col items-center gap-2 xs:gap-2.5 px-4 pointer-events-auto"
-            >
-              <!-- Mobile CTA Button (Only when responsive / minimized / mobile view) -->
-
-              <!-- Scroll indicator at bottom -->
-              <div
-                id="scroll-hint"
-                class="flex flex-col items-center gap-1 sm:gap-1.5 text-inverse-muted/70 pointer-events-none transition-opacity duration-300"
-              >
-                <svg
-                  class="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                  ></path>
+        <!-- Column 2: Journey -->
+        <div class="lg:col-span-3 flex flex-col gap-3 sm:gap-gutter-md">
+          <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Journey</span>
+          <ul class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="#hero" class="hover:text-accent-lime transition-colors">Back to top &uarr;</a></li>
+            <li><a href="#mission" class="hover:text-accent-lime transition-colors">Reality</a></li>
+            <li><a href="#ecosystem" class="hover:text-accent-lime transition-colors">Manifesto</a></li>
+            <li>
+              <a href="learn-more.html" target="_blank" class="inline-flex items-center gap-1 hover:text-accent-lime transition-colors group">
+                <span >Learn more</span>
+                <svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7V17"></path>
                 </svg>
-              </div>
-            </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Connect -->
+        <div class="lg:col-span-3 flex flex-col gap-3 sm:gap-gutter-md">
+          <span data-design-text-token="label-sm" class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted">Connect</span>
+          <ul class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface">
+            <li><a href="mailto:thebeginteam@gmail.com" class="hover:text-accent-lime transition-colors break-all">thebeginteam@gmail.com</a></li>
+            <li><a href="https://x.com/getbegin" target="_blank" rel="noopener noreferrer" class="hover:text-accent-lime transition-colors">x/@getbegin</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================== -->
+  <!-- COMPACT WAITLIST APPLICATION MODAL (Begin Design System)       -->
+  <!-- ============================================================== -->
+  <div id="waitlist-modal"
+       class="fixed inset-0 z-[100] flex items-center justify-center p-3 xs:p-4 sm:p-6 bg-obsidian-surface/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 ease-out"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="modal-title">
+
+    <!-- Modal Card Container (Compact sizing: max-w-[460px] to not look too big) -->
+    <div id="modal-card"
+         class="relative w-full max-w-[460px] max-h-[90vh] flex flex-col rounded-2xl sm:rounded-3xl bg-surface border border-outline shadow-2xl text-on-surface transform scale-95 translate-y-3 transition-all duration-300 ease-out overflow-hidden">
+
+      <!-- Top Ambient Gradient Accent Line -->
+      <div class="h-1 w-full bg-gradient-to-r from-accent-lime/30 via-accent-lime to-accent-lime/30 flex-shrink-0"></div>
+
+      <!-- Scrollable Modal Content Container -->
+      <div class="overflow-y-auto px-5 xs:px-6 sm:px-7 py-5 xs:py-6 flex flex-col gap-4 sm:gap-5 custom-modal-scroll">
+
+        <!-- Header: Early Access Badge & Close Button -->
+        <div class="flex items-center justify-between gap-3">
+          <div class="inline-flex items-center gap-1.5 rounded-full border border-outline bg-surface-card px-2.5 py-0.5 font-mono text-[10px] tracking-widest text-on-surface uppercase shadow-xs">
+            <span class="w-1.5 h-1.5 rounded-full bg-accent-lime"></span>
+            Early Access
+          </div>
+          <button type="button"
+                  id="modal-close-btn"
+                  aria-label="Close modal"
+                  class="rounded-full p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-subtle transition-colors cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Title & Subtitle -->
+        <div class="flex flex-col gap-1">
+          <h2 id="modal-title" class="font-serif text-2xl xs:text-[26px] sm:text-3xl text-on-surface leading-tight">
+            Join the inner circle
+          </h2>
+          <p class="font-body text-xs xs:text-[13px] sm:text-sm text-on-surface-variant leading-relaxed">
+            Answer a few quick questions to reserve your early invite to Begin.
+          </p>
+        </div>
+
+        <!-- Form State: Inputs & Questions -->
+        <form id="waitlist-application-form" novalidate class="flex flex-col gap-4">
+
+          <!-- Question 1: Name -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-name" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
+              Your name <span class="text-accent-lime">*</span>
+            </label>
+            <input type="text"
+                   id="form-name"
+                   name="name"
+                   required
+                   autocomplete="name"
+                   placeholder="e.g. Alex Morgan"
+                   class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-name-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
           </div>
 
-          <!-- LAYER 7 (z-45): Page 4 (Waitlist & Bridge Arch) — Overlays on 3rd card in full size -->
-          <div
-            id="waitlist"
-            class="page4-layer absolute inset-0 z-40 w-full h-full bg-[#FAFAFA] text-on-surface overflow-hidden flex flex-col items-center justify-start pt-14 xs:pt-16 sm:pt-24 md:pt-32 pb-10 sm:pb-16 px-4 xs:px-6 sm:px-8 pointer-events-none will-change-transform"
-            style="z-index: 45; background-color: #fafafa"
-          >
-            <!-- Background image with inner counter-parallax layer -->
-            <div
-              id="page4-bg-container"
-              class="absolute inset-0 z-0 overflow-hidden pointer-events-none will-change-transform"
-              aria-hidden="true"
-            >
-              <div
-                id="page4-bg-layer"
-                class="absolute -top-12 inset-x-0 w-full h-[calc(100%+96px)] will-change-transform"
-              >
-                <img
-                  src="01-image4_clean.png"
-                  alt="Two builders standing together on a lush grassy arch overlooking a sea of clouds"
-                  class="w-full h-full object-cover object-[center_82%] sm:object-[center_80%]"
-                />
+          <!-- Question 2: Email (with live verification) -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-email" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
+              Email address <span class="text-accent-lime">*</span>
+            </label>
+            <div class="relative">
+              <input type="email"
+                     id="form-email"
+                     name="email"
+                     required
+                     autocomplete="email"
+                     placeholder="you@domain.com"
+                     class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 pr-9 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+              <div id="form-email-status-icon" class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-0 transition-opacity">
+                <!-- Checkmark / icon injected dynamically -->
               </div>
-
-              <!-- Atmospheric blends: Top mist blend + Bottom obsidian blend to footer -->
-              <div
-                class="absolute inset-x-0 top-0 h-28 sm:h-44 bg-gradient-to-b from-surface via-surface/60 to-transparent"
-              ></div>
-              <div
-                class="absolute inset-x-0 bottom-0 h-24 sm:h-36 bg-gradient-to-t from-obsidian-surface via-obsidian-surface/60 to-transparent"
-              ></div>
             </div>
-
-            <!-- Tactile Deck Sheet Pill Handle -->
-            <div
-              id="page4-sheet-handle"
-              class="relative z-10 w-10 xs:w-12 h-1 rounded-full bg-on-surface/20 mb-2.5 xs:mb-3 sm:mb-4 pointer-events-none transition-opacity duration-300"
-            ></div>
-
-            <!-- Content: Early Access, Headline, Paragraph, Join Waitlist Button -->
-            <div
-              id="page4-content"
-              class="relative z-10 max-w-2xl mx-auto w-full flex flex-col items-center text-center gap-3 xs:gap-3.5 sm:gap-gutter-md will-change-transform"
-            >
-              <span
-                data-design-text-token="label-sm"
-                class="font-mono text-[10px] xs:text-xs sm:text-label-sm uppercase tracking-widest text-on-surface bg-surface-card/80 backdrop-blur-sm px-3 xs:px-3.5 py-0.5 xs:py-1 rounded-full border border-outline/70 shadow-xs"
-                >Early Access</span
-              >
-
-              <h2
-                data-design-text-token="display-lg"
-                class="font-serif text-[clamp(24px,5.2vw,56px)] text-on-surface text-balance leading-tight"
-              >
-                Cross the bridge with the people who get it.
-              </h2>
-
-              <p
-                data-design-text-token="body-lg"
-                class="font-body text-[clamp(13px,3vw,18px)] leading-[1.48] text-on-surface/90 max-w-lg text-pretty"
-              >
-                We&#39;re opening Begin in small waves of builders, founders,
-                and curious minds. Join the waitlist and claim your spot.
-              </p>
-
-              <div class="pt-1 xs:pt-1.5 sm:pt-2 w-full sm:w-auto">
-                <button
-                  type="button"
-                  class="open-waitlist-btn inline-flex w-full sm:w-auto items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 xs:px-7 sm:px-8 py-2.5 xs:py-3 sm:py-3.5 font-label text-sm xs:text-base md:text-lg font-medium shadow-md hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer"
-                >
-                  <span data-design-text-token="label-lg"
-                    >Join the waitlist</span
-                  >
+            <div id="form-email-feedback" class="hidden flex flex-col gap-1 mt-0.5">
+              <p id="form-email-error-text" class="text-[11px] font-mono text-red-500"></p>
+              <div id="form-email-suggestion" class="hidden">
+                <button type="button" id="form-email-suggestion-btn" class="inline-flex items-center gap-1 text-[11px] font-mono text-on-surface hover:text-on-surface hover:underline cursor-pointer">
+                  <span class="text-on-surface-variant">Did you mean </span><strong id="form-email-suggested-domain" class="font-semibold text-on-surface underline decoration-accent-lime decoration-2"></strong><span>? (Click to fix)</span>
                 </button>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </main>
 
-    <!-- Long Editorial Footer (consistent with Floating Pill Navbar & Obsidian Sections) -->
-    <footer
-      class="relative z-50 bg-obsidian-surface text-inverse-on-surface pt-12 sm:pt-16 pb-12 px-5 sm:px-8 md:px-16"
-    >
-      <div class="max-w-6xl mx-auto flex flex-col gap-8 sm:gap-12">
-        <!-- Main Multi-Column Long Footer Grid -->
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-8 pt-2 sm:pt-4"
-        >
-          <!-- Brand Ethos Column -->
-          <div
-            class="lg:col-span-6 flex flex-col gap-3 sm:gap-gutter-md pr-0 lg:pr-12"
-          >
-            <h3
-              data-design-text-token="headline-lg"
-              class="font-serif text-2xl sm:text-headline-lg text-inverse-on-surface"
-            >
-              Begin
-            </h3>
-            <p
-              data-design-text-token="body-md"
-              class="font-body text-sm sm:text-body-md text-inverse-muted max-w-sm text-pretty leading-relaxed"
-            >
-              A quiet, high-signal home for next-generation founders, student
-              builders, and early-stage teams turning sparks into real
-              companies.
-            </p>
-            <div class="pt-1 sm:pt-gutter-xs">
-              <button
-                type="button"
-                class="open-waitlist-btn inline-flex items-center justify-center rounded-full bg-accent-lime text-on-accent-lime px-6 py-2.5 font-label text-label-lg hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inverse-on-surface cursor-pointer"
-              >
-                <span data-design-text-token="label-lg"
-                  >Claim early access</span
-                >
-              </button>
+          <!-- Question 3: Mobile No -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-phone" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
+              Mobile no <span class="text-accent-lime">*</span>
+            </label>
+            <input type="tel"
+                   id="form-phone"
+                   name="phone"
+                   required
+                   autocomplete="tel"
+                   placeholder="+1 (555) 000-0000 or 10-digit number"
+                   class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-phone-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
+          </div>
+
+          <!-- Question 4: LinkedIn Profile -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-linkedin" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
+              LinkedIn profile <span class="text-accent-lime">*</span>
+            </label>
+            <input type="text"
+                   id="form-linkedin"
+                   name="linkedin"
+                   required
+                   placeholder="e.g. linkedin.com/in/yourprofile"
+                   class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-linkedin-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
+          </div>
+
+          <!-- Question 5: City -->
+          <div class="flex flex-col gap-1.5">
+            <label for="form-city" class="font-label text-xs sm:text-[13px] font-medium text-on-surface">
+              Which city are you based in? <span class="text-accent-lime">*</span>
+            </label>
+            <input type="text"
+                   id="form-city"
+                   name="city"
+                   required
+                   placeholder="e.g. Bengaluru, San Francisco, London..."
+                   class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors">
+            <p id="form-city-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
+          </div>
+
+          <!-- Question 6: What describes you the best? (Select one) -->
+          <fieldset class="flex flex-col gap-2 pt-1 border-0 p-0 m-0">
+            <legend class="font-label text-xs sm:text-[13px] font-medium text-on-surface mb-1">
+              What describes you the best? <span class="text-accent-lime">*</span>
+              <span class="block text-[11px] font-normal text-on-surface-variant">Select one option</span>
+            </legend>
+
+            <div class="grid grid-cols-1 gap-2" id="profile-options-container">
+
+              <!-- Option 1 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
+                <span class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Want to start a startup" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-on-surface">Want to start a startup</span>
+                </span>
+              </label>
+
+              <!-- Option 2 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
+                <span class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Already building a startup" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-on-surface">Already building a startup</span>
+                </span>
+              </label>
+
+              <!-- Option 3 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
+                <span class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Interested in joining a startup" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-on-surface">Interested in joining a startup</span>
+                </span>
+              </label>
+
+              <!-- Option 4 -->
+              <label class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all">
+                <span class="flex items-center gap-3">
+                  <input type="radio" name="profile" value="Just curious" required class="sr-only choice-radio">
+                  <span class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors">
+                    <span class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"></span>
+                  </span>
+                  <span class="text-xs sm:text-[13px] font-medium text-on-surface">Just curious</span>
+                </span>
+              </label>
+
             </div>
-          </div>
+            <p id="form-profile-error" class="hidden text-[11px] font-mono text-red-500 mt-0.5"></p>
+          </fieldset>
 
-          <!-- Column 2: Journey -->
-          <div class="lg:col-span-3 flex flex-col gap-3 sm:gap-gutter-md">
-            <span
-              data-design-text-token="label-sm"
-              class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted"
-              >Journey</span
-            >
-            <ul
-              class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface"
-            >
-              <li>
-                <a href="#hero" class="hover:text-accent-lime transition-colors"
-                  >Back to top &uarr;</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#mission"
-                  class="hover:text-accent-lime transition-colors"
-                  >Reality</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#ecosystem"
-                  class="hover:text-accent-lime transition-colors"
-                  >Manifesto</a
-                >
-              </li>
-              <li>
-                <a
-                  href="learn-more.html"
-                  target="_blank"
-                  class="inline-flex items-center gap-1 hover:text-accent-lime transition-colors group"
-                >
-                  <span>Learn more</span>
-                  <svg
-                    class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M7 17L17 7M17 7H7M17 7V17"
-                    ></path>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Column 3: Connect -->
-          <div class="lg:col-span-3 flex flex-col gap-3 sm:gap-gutter-md">
-            <span
-              data-design-text-token="label-sm"
-              class="font-mono text-label-sm uppercase tracking-widest text-inverse-muted"
-              >Connect</span
-            >
-            <ul
-              class="flex flex-col gap-2.5 sm:gap-3 font-body text-body-md text-inverse-on-surface"
-            >
-              <li>
-                <a
-                  href="mailto:thebeginteam@gmail.com"
-                  class="hover:text-accent-lime transition-colors break-all"
-                  >thebeginteam@gmail.com</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://x.com/getbegin"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-accent-lime transition-colors"
-                  >x/@getbegin</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- ============================================================== -->
-    <!-- COMPACT WAITLIST APPLICATION MODAL (Begin Design System)       -->
-    <!-- ============================================================== -->
-    <div
-      id="waitlist-modal"
-      class="fixed inset-0 z-[100] flex items-center justify-center p-3 xs:p-4 sm:p-6 bg-obsidian-surface/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 ease-out"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <!-- Modal Card Container (Compact sizing: max-w-[460px] to not look too big) -->
-      <div
-        id="modal-card"
-        class="relative w-full max-w-[460px] max-h-[90vh] flex flex-col rounded-2xl sm:rounded-3xl bg-surface border border-outline shadow-2xl text-on-surface transform scale-95 translate-y-3 transition-all duration-300 ease-out overflow-hidden"
-      >
-        <!-- Top Ambient Gradient Accent Line -->
-        <div
-          class="h-1 w-full bg-gradient-to-r from-accent-lime/30 via-accent-lime to-accent-lime/30 flex-shrink-0"
-        ></div>
-
-        <!-- Scrollable Modal Content Container -->
-        <div
-          class="overflow-y-auto px-5 xs:px-6 sm:px-7 py-5 xs:py-6 flex flex-col gap-4 sm:gap-5 custom-modal-scroll"
-        >
-          <!-- Header: Early Access Badge & Close Button -->
-          <div class="flex items-center justify-between gap-3">
-            <div
-              class="inline-flex items-center gap-1.5 rounded-full border border-outline bg-surface-card px-2.5 py-0.5 font-mono text-[10px] tracking-widest text-on-surface uppercase shadow-xs"
-            >
-              <span class="w-1.5 h-1.5 rounded-full bg-accent-lime"></span>
-              Early Access
-            </div>
-            <button
-              type="button"
-              id="modal-close-btn"
-              aria-label="Close modal"
-              class="rounded-full p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-subtle transition-colors cursor-pointer"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
+          <!-- Submit Button -->
+          <div class="pt-2">
+            <button type="submit"
+                    id="modal-submit-btn"
+                    class="w-full py-3 px-6 rounded-full bg-accent-lime text-on-accent-lime font-label text-sm sm:text-base font-semibold hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-accent-lime/20">
+              <span id="modal-submit-text">Submit</span>
+              <svg id="modal-submit-spinner" class="hidden animate-spin h-4 w-4 text-on-accent-lime" viewBox="0 0 24 24" fill="none">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
             </button>
           </div>
 
-          <!-- Title & Subtitle -->
-          <div class="flex flex-col gap-1">
-            <h2
-              id="modal-title"
-              class="font-serif text-2xl xs:text-[26px] sm:text-3xl text-on-surface leading-tight"
-            >
-              Join the inner circle
-            </h2>
-            <p
-              class="font-body text-xs xs:text-[13px] sm:text-sm text-on-surface-variant leading-relaxed"
-            >
-              Answer a few quick questions to reserve your early invite to
-              Begin.
+          <p id="form-general-error" class="hidden text-xs text-center text-red-500 font-mono"></p>
+        </form>
+
+        <!-- Success Screen View (Hidden by default, shown upon successful submission) -->
+        <div id="modal-success-view" class="hidden flex-col items-center text-center py-6 gap-4">
+          <div class="w-14 h-14 rounded-full bg-accent-lime/20 border border-accent-lime/40 flex items-center justify-center text-on-surface">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <h3 class="font-serif text-2xl sm:text-3xl text-on-surface">You&#39;re on the list.</h3>
+            <p class="font-body text-xs sm:text-sm text-on-surface-variant max-w-xs mx-auto">
+              We&#39;ve saved your spot for early access. Check your email inbox soon for your invite.
             </p>
           </div>
-
-          <!-- Form State: Inputs & Questions -->
-          <form
-            id="waitlist-application-form"
-            novalidate
-            class="flex flex-col gap-4"
-          >
-            <!-- Question 1: Name -->
-            <div class="flex flex-col gap-1.5">
-              <label
-                for="form-name"
-                class="font-label text-xs sm:text-[13px] font-medium text-on-surface"
-              >
-                Your name <span class="text-accent-lime">*</span>
-              </label>
-              <input
-                type="text"
-                id="form-name"
-                name="name"
-                required
-                autocomplete="name"
-                placeholder="e.g. Alex Morgan"
-                class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors"
-              />
-              <p
-                id="form-name-error"
-                class="hidden text-[11px] font-mono text-red-500 mt-0.5"
-              ></p>
-            </div>
-
-            <!-- Question 2: Email (with live verification) -->
-            <div class="flex flex-col gap-1.5">
-              <label
-                for="form-email"
-                class="font-label text-xs sm:text-[13px] font-medium text-on-surface"
-              >
-                Email address <span class="text-accent-lime">*</span>
-              </label>
-              <div class="relative">
-                <input
-                  type="email"
-                  id="form-email"
-                  name="email"
-                  required
-                  autocomplete="email"
-                  placeholder="you@domain.com"
-                  class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 pr-9 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors"
-                />
-                <div
-                  id="form-email-status-icon"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none opacity-0 transition-opacity"
-                >
-                  <!-- Checkmark / icon injected dynamically -->
-                </div>
-              </div>
-              <div
-                id="form-email-feedback"
-                class="hidden flex flex-col gap-1 mt-0.5"
-              >
-                <p
-                  id="form-email-error-text"
-                  class="text-[11px] font-mono text-red-500"
-                ></p>
-                <div id="form-email-suggestion" class="hidden">
-                  <button
-                    type="button"
-                    id="form-email-suggestion-btn"
-                    class="inline-flex items-center gap-1 text-[11px] font-mono text-on-surface hover:text-on-surface hover:underline cursor-pointer"
-                  >
-                    <span class="text-on-surface-variant">Did you mean </span
-                    ><strong
-                      id="form-email-suggested-domain"
-                      class="font-semibold text-on-surface underline decoration-accent-lime decoration-2"
-                    ></strong
-                    ><span>? (Click to fix)</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Question 3: Mobile No -->
-            <div class="flex flex-col gap-1.5">
-              <label
-                for="form-phone"
-                class="font-label text-xs sm:text-[13px] font-medium text-on-surface"
-              >
-                Mobile no <span class="text-accent-lime">*</span>
-              </label>
-              <input
-                type="tel"
-                id="form-phone"
-                name="phone"
-                required
-                autocomplete="tel"
-                placeholder="+1 (555) 000-0000 or 10-digit number"
-                class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors"
-              />
-              <p
-                id="form-phone-error"
-                class="hidden text-[11px] font-mono text-red-500 mt-0.5"
-              ></p>
-            </div>
-
-            <!-- Question 4: LinkedIn Profile -->
-            <div class="flex flex-col gap-1.5">
-              <label
-                for="form-linkedin"
-                class="font-label text-xs sm:text-[13px] font-medium text-on-surface"
-              >
-                LinkedIn profile <span class="text-accent-lime">*</span>
-              </label>
-              <input
-                type="text"
-                id="form-linkedin"
-                name="linkedin"
-                required
-                placeholder="e.g. linkedin.com/in/yourprofile"
-                class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors"
-              />
-              <p
-                id="form-linkedin-error"
-                class="hidden text-[11px] font-mono text-red-500 mt-0.5"
-              ></p>
-            </div>
-
-            <!-- Question 5: City -->
-            <div class="flex flex-col gap-1.5">
-              <label
-                for="form-city"
-                class="font-label text-xs sm:text-[13px] font-medium text-on-surface"
-              >
-                Which city are you based in?
-                <span class="text-accent-lime">*</span>
-              </label>
-              <input
-                type="text"
-                id="form-city"
-                name="city"
-                required
-                placeholder="e.g. Bengaluru, San Francisco, London..."
-                class="w-full rounded-xl bg-surface-card border border-outline px-3.5 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/40 focus:border-accent-lime focus:ring-1 focus:ring-accent-lime focus:outline-none transition-colors"
-              />
-              <p
-                id="form-city-error"
-                class="hidden text-[11px] font-mono text-red-500 mt-0.5"
-              ></p>
-            </div>
-
-            <!-- Question 6: What describes you the best? (Select one) -->
-            <fieldset class="flex flex-col gap-2 pt-1 border-0 p-0 m-0">
-              <legend
-                class="font-label text-xs sm:text-[13px] font-medium text-on-surface mb-1"
-              >
-                What describes you the best?
-                <span class="text-accent-lime">*</span>
-                <span
-                  class="block text-[11px] font-normal text-on-surface-variant"
-                  >Select one option</span
-                >
-              </legend>
-
-              <div
-                class="grid grid-cols-1 gap-2"
-                id="profile-options-container"
-              >
-                <!-- Option 1 -->
-                <label
-                  class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all"
-                >
-                  <span class="flex items-center gap-3">
-                    <input
-                      type="radio"
-                      name="profile"
-                      value="Want to start a startup"
-                      required
-                      class="sr-only choice-radio"
-                    />
-                    <span
-                      class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors"
-                    >
-                      <span
-                        class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"
-                      ></span>
-                    </span>
-                    <span
-                      class="text-xs sm:text-[13px] font-medium text-on-surface"
-                      >Want to start a startup</span
-                    >
-                  </span>
-                </label>
-
-                <!-- Option 2 -->
-                <label
-                  class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all"
-                >
-                  <span class="flex items-center gap-3">
-                    <input
-                      type="radio"
-                      name="profile"
-                      value="Already building a startup"
-                      required
-                      class="sr-only choice-radio"
-                    />
-                    <span
-                      class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors"
-                    >
-                      <span
-                        class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"
-                      ></span>
-                    </span>
-                    <span
-                      class="text-xs sm:text-[13px] font-medium text-on-surface"
-                      >Already building a startup</span
-                    >
-                  </span>
-                </label>
-
-                <!-- Option 3 -->
-                <label
-                  class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all"
-                >
-                  <span class="flex items-center gap-3">
-                    <input
-                      type="radio"
-                      name="profile"
-                      value="Interested in joining a startup"
-                      required
-                      class="sr-only choice-radio"
-                    />
-                    <span
-                      class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors"
-                    >
-                      <span
-                        class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"
-                      ></span>
-                    </span>
-                    <span
-                      class="text-xs sm:text-[13px] font-medium text-on-surface"
-                      >Interested in joining a startup</span
-                    >
-                  </span>
-                </label>
-
-                <!-- Option 4 -->
-                <label
-                  class="choice-card relative flex items-center justify-between p-3 rounded-xl border border-outline bg-surface-card hover:bg-surface-subtle hover:border-outline/80 cursor-pointer transition-all"
-                >
-                  <span class="flex items-center gap-3">
-                    <input
-                      type="radio"
-                      name="profile"
-                      value="Just curious"
-                      required
-                      class="sr-only choice-radio"
-                    />
-                    <span
-                      class="choice-dot w-4 h-4 rounded-full border border-outline bg-white flex items-center justify-center shrink-0 transition-colors"
-                    >
-                      <span
-                        class="choice-dot-inner w-2 h-2 rounded-full bg-accent-lime scale-0 transition-transform"
-                      ></span>
-                    </span>
-                    <span
-                      class="text-xs sm:text-[13px] font-medium text-on-surface"
-                      >Just curious</span
-                    >
-                  </span>
-                </label>
-              </div>
-              <p
-                id="form-profile-error"
-                class="hidden text-[11px] font-mono text-red-500 mt-0.5"
-              ></p>
-            </fieldset>
-
-            <!-- Submit Button -->
-            <div class="pt-2">
-              <button
-                type="submit"
-                id="modal-submit-btn"
-                class="w-full py-3 px-6 rounded-full bg-accent-lime text-on-accent-lime font-label text-sm sm:text-base font-semibold hover:opacity-95 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-accent-lime/20"
-              >
-                <span id="modal-submit-text">Submit</span>
-                <svg
-                  id="modal-submit-spinner"
-                  class="hidden animate-spin h-4 w-4 text-on-accent-lime"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                >
-                  <circle
-                    class="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    stroke-width="4"
-                  ></circle>
-                  <path
-                    class="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              </button>
-            </div>
-
-            <p
-              id="form-general-error"
-              class="hidden text-xs text-center text-red-500 font-mono"
-            ></p>
-          </form>
-
-          <!-- Success Screen View (Hidden by default, shown upon successful submission) -->
-          <div
-            id="modal-success-view"
-            class="hidden flex-col items-center text-center py-6 gap-4"
-          >
-            <div
-              class="w-14 h-14 rounded-full bg-accent-lime/20 border border-accent-lime/40 flex items-center justify-center text-on-surface"
-            >
-              <svg
-                class="w-7 h-7"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2.5"
-                  d="M5 13l4 4L19 7"
-                ></path>
-              </svg>
-            </div>
-            <div class="flex flex-col gap-1.5">
-              <h3 class="font-serif text-2xl sm:text-3xl text-on-surface">
-                You&#39;re on the list.
-              </h3>
-              <p
-                class="font-body text-xs sm:text-sm text-on-surface-variant max-w-xs mx-auto"
-              >
-                We&#39;ve saved your spot for early access. Check your email
-                inbox soon for your invite.
-              </p>
-            </div>
-            <button
-              type="button"
-              id="modal-success-close-btn"
-              class="mt-2 py-2 px-6 rounded-full bg-surface-subtle hover:bg-outline/50 text-on-surface border border-outline text-xs sm:text-sm font-medium transition-colors cursor-pointer"
-            >
-              Close
-            </button>
-          </div>
+          <button type="button"
+                  id="modal-success-close-btn"
+                  class="mt-2 py-2 px-6 rounded-full bg-surface-subtle hover:bg-outline/50 text-on-surface border border-outline text-xs sm:text-sm font-medium transition-colors cursor-pointer">
+            Close
+          </button>
         </div>
+
       </div>
     </div>
+  </div>
 
-    <script>
-      /* Direct Supabase Client Configuration (Enables direct submissions on VS Code Live Server / Static hosts) */
-      window.BEGIN_SUPABASE_CONFIG = {
-        url: "https://wbbytuqzkotzugdhwtme.supabase.co",
-        anonKey:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiYnl0dXF6a290enVnZGh3dG1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxOTM0OTUsImV4cCI6MjExMDc2OTQ5NX0.Jtn04msrpOWRbyS1JEbTfCqK0NzW6wYU1QAX9-zf1lM",
-      };
+  <script>
+    /* Direct Supabase Client Configuration (Enables direct submissions on VS Code Live Server / Static hosts) */
+    window.BEGIN_SUPABASE_CONFIG = {
+      url: 'https://wbbytuqzkotzugdhwtme.supabase.co',
+      anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndiYnl0dXF6a290enVnZGh3dG1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUxOTM0OTUsImV4cCI6MjExMDc2OTQ5NX0.Jtn04msrpOWRbyS1JEbTfCqK0NzW6wYU1QAX9-zf1lM'
+    };
 
-      /* ── GSAP ScrollTrigger: High-Performance Zoom & 3D Spatial Scroll Fly-Out ── */
-      window.addEventListener("DOMContentLoaded", function () {
-        /* ── Waitlist Application Modal & Form Controller ── */
-        (function initWaitlistModal() {
-          var modal = document.getElementById("waitlist-modal");
-          var modalCard = document.getElementById("modal-card");
-          var closeBtn = document.getElementById("modal-close-btn");
-          var successCloseBtn = document.getElementById(
-            "modal-success-close-btn",
-          );
-          var form = document.getElementById("waitlist-application-form");
-          var successView = document.getElementById("modal-success-view");
-          var openButtons = document.querySelectorAll(".open-waitlist-btn");
+    /* ── GSAP ScrollTrigger: High-Performance Zoom & 3D Spatial Scroll Fly-Out ── */
+    window.addEventListener('DOMContentLoaded', function () {
+      /* ── Waitlist Application Modal & Form Controller ── */
+      (function initWaitlistModal() {
+        var modal = document.getElementById('waitlist-modal');
+        var modalCard = document.getElementById('modal-card');
+        var closeBtn = document.getElementById('modal-close-btn');
+        var successCloseBtn = document.getElementById('modal-success-close-btn');
+        var form = document.getElementById('waitlist-application-form');
+        var successView = document.getElementById('modal-success-view');
+        var openButtons = document.querySelectorAll('.open-waitlist-btn');
 
-          // Form Fields
-          var nameInput = document.getElementById("form-name");
-          var emailInput = document.getElementById("form-email");
-          var phoneInput = document.getElementById("form-phone");
-          var linkedinInput = document.getElementById("form-linkedin");
-          var cityInput = document.getElementById("form-city");
-          var radioCards = document.querySelectorAll(".choice-card");
-          var submitBtn = document.getElementById("modal-submit-btn");
-          var submitText = document.getElementById("modal-submit-text");
-          var submitSpinner = document.getElementById("modal-submit-spinner");
+        // Form Fields
+        var nameInput = document.getElementById('form-name');
+        var emailInput = document.getElementById('form-email');
+        var phoneInput = document.getElementById('form-phone');
+        var linkedinInput = document.getElementById('form-linkedin');
+        var cityInput = document.getElementById('form-city');
+        var radioCards = document.querySelectorAll('.choice-card');
+        var submitBtn = document.getElementById('modal-submit-btn');
+        var submitText = document.getElementById('modal-submit-text');
+        var submitSpinner = document.getElementById('modal-submit-spinner');
 
-          // Error & Feedback Elements
-          var nameError = document.getElementById("form-name-error");
-          var emailBadge = document.getElementById("form-email-badge");
-          var emailStatusIcon = document.getElementById(
-            "form-email-status-icon",
-          );
-          var emailFeedback = document.getElementById("form-email-feedback");
-          var emailErrorText = document.getElementById("form-email-error-text");
-          var emailSuggestion = document.getElementById(
-            "form-email-suggestion",
-          );
-          var emailSuggestedDomain = document.getElementById(
-            "form-email-suggested-domain",
-          );
-          var emailSuggestionBtn = document.getElementById(
-            "form-email-suggestion-btn",
-          );
-          var phoneError = document.getElementById("form-phone-error");
-          var linkedinError = document.getElementById("form-linkedin-error");
-          var cityError = document.getElementById("form-city-error");
-          var profileError = document.getElementById("form-profile-error");
-          var generalError = document.getElementById("form-general-error");
+        // Error & Feedback Elements
+        var nameError = document.getElementById('form-name-error');
+        var emailBadge = document.getElementById('form-email-badge');
+        var emailStatusIcon = document.getElementById('form-email-status-icon');
+        var emailFeedback = document.getElementById('form-email-feedback');
+        var emailErrorText = document.getElementById('form-email-error-text');
+        var emailSuggestion = document.getElementById('form-email-suggestion');
+        var emailSuggestedDomain = document.getElementById('form-email-suggested-domain');
+        var emailSuggestionBtn = document.getElementById('form-email-suggestion-btn');
+        var phoneError = document.getElementById('form-phone-error');
+        var linkedinError = document.getElementById('form-linkedin-error');
+        var cityError = document.getElementById('form-city-error');
+        var profileError = document.getElementById('form-profile-error');
+        var generalError = document.getElementById('form-general-error');
 
-          var currentSuggestedEmail = "";
+        var currentSuggestedEmail = '';
 
-          function openModal() {
-            if (!modal) return;
-            modal.classList.remove("opacity-0", "pointer-events-none");
-            modal.classList.add("opacity-100", "pointer-events-auto");
-            if (modalCard) {
-              modalCard.classList.remove("scale-95", "translate-y-3");
-              modalCard.classList.add("scale-100", "translate-y-0");
-            }
-            document.body.style.overflow = "hidden";
-            if (nameInput)
-              setTimeout(function () {
-                nameInput.focus();
-              }, 150);
+        function openModal() {
+          if (!modal) return;
+          modal.classList.remove('opacity-0', 'pointer-events-none');
+          modal.classList.add('opacity-100', 'pointer-events-auto');
+          if (modalCard) {
+            modalCard.classList.remove('scale-95', 'translate-y-3');
+            modalCard.classList.add('scale-100', 'translate-y-0');
           }
+          document.body.style.overflow = 'hidden';
+          if (nameInput) setTimeout(function () { nameInput.focus(); }, 150);
+        }
 
-          function closeModal() {
-            if (!modal) return;
-            modal.classList.remove("opacity-100", "pointer-events-auto");
-            modal.classList.add("opacity-0", "pointer-events-none");
-            if (modalCard) {
-              modalCard.classList.remove("scale-100", "translate-y-0");
-              modalCard.classList.add("scale-95", "translate-y-3");
-            }
-            document.body.style.overflow = "";
+        function closeModal() {
+          if (!modal) return;
+          modal.classList.remove('opacity-100', 'pointer-events-auto');
+          modal.classList.add('opacity-0', 'pointer-events-none');
+          if (modalCard) {
+            modalCard.classList.remove('scale-100', 'translate-y-0');
+            modalCard.classList.add('scale-95', 'translate-y-3');
           }
+          document.body.style.overflow = '';
+        }
 
-          // Trigger Listeners
-          openButtons.forEach(function (btn) {
-            btn.addEventListener("click", function (e) {
-              e.preventDefault();
-              openModal();
-            });
+        // Trigger Listeners
+        openButtons.forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            openModal();
           });
+        });
 
-          if (closeBtn) closeBtn.addEventListener("click", closeModal);
-          if (successCloseBtn)
-            successCloseBtn.addEventListener("click", closeModal);
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (successCloseBtn) successCloseBtn.addEventListener('click', closeModal);
 
-          // Click outside modal card to close
-          if (modal) {
-            modal.addEventListener("click", function (e) {
-              if (e.target === modal) {
-                closeModal();
-              }
-            });
-          }
-
-          // ESC key to close
-          window.addEventListener("keydown", function (e) {
-            if (
-              e.key === "Escape" &&
-              modal &&
-              modal.classList.contains("opacity-100")
-            ) {
+        // Click outside modal card to close
+        if (modal) {
+          modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
               closeModal();
             }
           });
+        }
 
-          // Radio choice card selection
-          radioCards.forEach(function (card) {
-            var radio = card.querySelector(".choice-radio");
-            card.addEventListener("click", function () {
-              radioCards.forEach(function (c) {
-                c.classList.remove("is-selected");
-              });
-              card.classList.add("is-selected");
-              if (radio) {
-                radio.checked = true;
-              }
-              if (profileError) profileError.classList.add("hidden");
+        // ESC key to close
+        window.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && modal && modal.classList.contains('opacity-100')) {
+            closeModal();
+          }
+        });
+
+        // Radio choice card selection
+        radioCards.forEach(function (card) {
+          var radio = card.querySelector('.choice-radio');
+          card.addEventListener('click', function () {
+            radioCards.forEach(function (c) {
+              c.classList.remove('is-selected');
             });
+            card.classList.add('is-selected');
+            if (radio) {
+              radio.checked = true;
+            }
+            if (profileError) profileError.classList.add('hidden');
           });
+        });
 
-          // Email Verification Logic
-          var commonDomainTypos = {
-            "gmial.com": "gmail.com",
-            "gmaill.com": "gmail.com",
-            "gmai.com": "gmail.com",
-            "gamil.com": "gmail.com",
-            "gmaul.com": "gmail.com",
-            "hotmial.com": "hotmail.com",
-            "hotmai.com": "hotmail.com",
-            "outlok.com": "outlook.com",
-            "outloo.com": "outlook.com",
-            "yaho.com": "yahoo.com",
-            "yahooo.com": "yahoo.com",
-            "iclud.com": "icloud.com",
-          };
+        // Email Verification Logic
+        var commonDomainTypos = {
+          'gmial.com': 'gmail.com',
+          'gmaill.com': 'gmail.com',
+          'gmai.com': 'gmail.com',
+          'gamil.com': 'gmail.com',
+          'gmaul.com': 'gmail.com',
+          'hotmial.com': 'hotmail.com',
+          'hotmai.com': 'hotmail.com',
+          'outlok.com': 'outlook.com',
+          'outloo.com': 'outlook.com',
+          'yaho.com': 'yahoo.com',
+          'yahooo.com': 'yahoo.com',
+          'iclud.com': 'icloud.com'
+        };
 
-          var fakeAddressPrefixes = [
-            "test",
-            "asdf",
-            "fake",
-            "admin",
-            "example",
-            "noreply",
-            "temp",
-          ];
+        var fakeAddressPrefixes = ['test', 'asdf', 'fake', 'admin', 'example', 'noreply', 'temp'];
 
-          function verifyEmailString(email) {
-            email = (email || "").trim().toLowerCase();
-            if (!email)
-              return { isValid: false, reason: "Email address is required." };
+        function verifyEmailString(email) {
+          email = (email || '').trim().toLowerCase();
+          if (!email) return { isValid: false, reason: 'Email address is required.' };
 
-            // Basic RFC 5322 regex format
-            var regex =
-              /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
-            if (!regex.test(email)) {
-              return {
-                isValid: false,
-                reason:
-                  "Please enter a valid email format (e.g. name@domain.com).",
-              };
-            }
-
-            var parts = email.split("@");
-            var user = parts[0];
-            var domain = parts[1];
-
-            // Domain checks
-            if (!domain || domain.indexOf(".") === -1) {
-              return {
-                isValid: false,
-                reason:
-                  "Email domain must have a valid extension (e.g. .com, .io).",
-              };
-            }
-
-            var tld = domain.split(".").pop();
-            if (!tld || tld.length < 2 || /\d/.test(tld)) {
-              return {
-                isValid: false,
-                reason: "Email domain extension is invalid.",
-              };
-            }
-
-            // Typo check
-            if (commonDomainTypos[domain]) {
-              var corrected = user + "@" + commonDomainTypos[domain];
-              return {
-                isValid: false,
-                reason: "Possible typo in email domain.",
-                suggestion: corrected,
-                suggestedDomain: commonDomainTypos[domain],
-              };
-            }
-
-            // Obvious placeholder checks
-            if (
-              fakeAddressPrefixes.indexOf(user) !== -1 &&
-              (domain === "test.com" ||
-                domain === "example.com" ||
-                domain === "fake.com")
-            ) {
-              return {
-                isValid: false,
-                reason: "Please enter a real, active email address.",
-              };
-            }
-
-            // Disposable check
-            var disposableDomains = [
-              "tempmail.com",
-              "mailinator.com",
-              "10minutemail.com",
-              "guerrillamail.com",
-              "trashmail.com",
-            ];
-            if (disposableDomains.indexOf(domain) !== -1) {
-              return {
-                isValid: false,
-                reason:
-                  "Temporary or disposable email addresses are not accepted.",
-              };
-            }
-
-            return { isValid: true };
+          // Basic RFC 5322 regex format
+          var regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+          if (!regex.test(email)) {
+            return { isValid: false, reason: 'Please enter a valid email format (e.g. name@domain.com).' };
           }
 
-          function checkEmailLive() {
-            if (!emailInput) return;
-            var val = emailInput.value.trim();
-            if (!val) {
-              if (emailBadge) emailBadge.classList.add("hidden");
-              if (emailStatusIcon) emailStatusIcon.classList.add("opacity-0");
-              if (emailFeedback) emailFeedback.classList.add("hidden");
-              emailInput.classList.remove(
-                "border-accent-lime",
-                "border-red-500",
-              );
-              return;
+          var parts = email.split('@');
+          var user = parts[0];
+          var domain = parts[1];
+
+          // Domain checks
+          if (!domain || domain.indexOf('.') === -1) {
+            return { isValid: false, reason: 'Email domain must have a valid extension (e.g. .com, .io).' };
+          }
+
+          var tld = domain.split('.').pop();
+          if (!tld || tld.length < 2 || /\d/.test(tld)) {
+            return { isValid: false, reason: 'Email domain extension is invalid.' };
+          }
+
+          // Typo check
+          if (commonDomainTypos[domain]) {
+            var corrected = user + '@' + commonDomainTypos[domain];
+            return { isValid: false, reason: 'Possible typo in email domain.', suggestion: corrected, suggestedDomain: commonDomainTypos[domain] };
+          }
+
+          // Obvious placeholder checks
+          if (fakeAddressPrefixes.indexOf(user) !== -1 && (domain === 'test.com' || domain === 'example.com' || domain === 'fake.com')) {
+            return { isValid: false, reason: 'Please enter a real, active email address.' };
+          }
+
+          // Disposable check
+          var disposableDomains = ['tempmail.com', 'mailinator.com', '10minutemail.com', 'guerrillamail.com', 'trashmail.com'];
+          if (disposableDomains.indexOf(domain) !== -1) {
+            return { isValid: false, reason: 'Temporary or disposable email addresses are not accepted.' };
+          }
+
+          return { isValid: true };
+        }
+
+        function checkEmailLive() {
+          if (!emailInput) return;
+          var val = emailInput.value.trim();
+          if (!val) {
+            if (emailBadge) emailBadge.classList.add('hidden');
+            if (emailStatusIcon) emailStatusIcon.classList.add('opacity-0');
+            if (emailFeedback) emailFeedback.classList.add('hidden');
+            emailInput.classList.remove('border-accent-lime', 'border-red-500');
+            return;
+          }
+
+          var res = verifyEmailString(val);
+          if (res.isValid) {
+            emailInput.classList.remove('border-red-500');
+            emailInput.classList.add('border-accent-lime');
+            if (emailBadge) emailBadge.classList.add('hidden');
+            if (emailStatusIcon) {
+              emailStatusIcon.innerHTML = '<svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>';
+              emailStatusIcon.classList.remove('opacity-0');
+            }
+            if (emailFeedback) emailFeedback.classList.add('hidden');
+          } else {
+            emailInput.classList.remove('border-accent-lime');
+            emailInput.classList.add('border-red-500');
+            if (emailBadge) emailBadge.classList.add('hidden');
+            if (emailStatusIcon) {
+              emailStatusIcon.innerHTML = '<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"></circle><line x1="12" y1="8" x2="12" y2="12" stroke-width="2"></line><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"></line></svg>';
+              emailStatusIcon.classList.remove('opacity-0');
+            }
+            if (emailFeedback) emailFeedback.classList.remove('hidden');
+            if (emailErrorText) emailErrorText.textContent = res.reason;
+            if (res.suggestion && emailSuggestion && emailSuggestedDomain) {
+              currentSuggestedEmail = res.suggestion;
+              emailSuggestedDomain.textContent = '@' + res.suggestedDomain;
+              emailSuggestion.classList.remove('hidden');
+            } else if (emailSuggestion) {
+              emailSuggestion.classList.add('hidden');
+            }
+          }
+        }
+
+        if (emailInput) {
+          emailInput.addEventListener('input', checkEmailLive);
+          emailInput.addEventListener('blur', checkEmailLive);
+        }
+
+        if (emailSuggestionBtn) {
+          emailSuggestionBtn.addEventListener('click', function () {
+            if (currentSuggestedEmail && emailInput) {
+              emailInput.value = currentSuggestedEmail;
+              checkEmailLive();
+            }
+          });
+        }
+
+        // Live reset errors on input
+        if (nameInput) {
+          nameInput.addEventListener('input', function () {
+            if (nameError) nameError.classList.add('hidden');
+            nameInput.classList.remove('border-red-500');
+          });
+        }
+        if (phoneInput) {
+          phoneInput.addEventListener('input', function () {
+            if (phoneError) phoneError.classList.add('hidden');
+            phoneInput.classList.remove('border-red-500');
+          });
+        }
+        if (linkedinInput) {
+          linkedinInput.addEventListener('input', function () {
+            if (linkedinError) linkedinError.classList.add('hidden');
+            linkedinInput.classList.remove('border-red-500');
+          });
+        }
+        if (cityInput) {
+          cityInput.addEventListener('input', function () {
+            if (cityError) cityError.classList.add('hidden');
+            cityInput.classList.remove('border-red-500');
+          });
+        }
+
+        // Form Submit
+        if (form) {
+          form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            if (generalError) generalError.classList.add('hidden');
+
+            var nameVal = (nameInput ? nameInput.value.trim() : '');
+            var emailVal = (emailInput ? emailInput.value.trim() : '');
+            var phoneVal = (phoneInput ? phoneInput.value.trim() : '');
+            var linkedinVal = (linkedinInput ? linkedinInput.value.trim() : '');
+            var cityVal = (cityInput ? cityInput.value.trim() : '');
+            var selectedRadio = form.querySelector('input[name="profile"]:checked');
+            var profileVal = selectedRadio ? selectedRadio.value : '';
+
+            var hasError = false;
+
+            // Validate Name
+            if (!nameVal || nameVal.length < 2) {
+              if (nameError) {
+                nameError.textContent = 'Please enter your full name.';
+                nameError.classList.remove('hidden');
+              }
+              if (nameInput) nameInput.classList.add('border-red-500');
+              if (!hasError && nameInput) nameInput.focus();
+              hasError = true;
             }
 
-            var res = verifyEmailString(val);
-            if (res.isValid) {
-              emailInput.classList.remove("border-red-500");
-              emailInput.classList.add("border-accent-lime");
-              if (emailBadge) emailBadge.classList.add("hidden");
-              if (emailStatusIcon) {
-                emailStatusIcon.innerHTML =
-                  '<svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>';
-                emailStatusIcon.classList.remove("opacity-0");
-              }
-              if (emailFeedback) emailFeedback.classList.add("hidden");
-            } else {
-              emailInput.classList.remove("border-accent-lime");
-              emailInput.classList.add("border-red-500");
-              if (emailBadge) emailBadge.classList.add("hidden");
-              if (emailStatusIcon) {
-                emailStatusIcon.innerHTML =
-                  '<svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-width="2"></circle><line x1="12" y1="8" x2="12" y2="12" stroke-width="2"></line><line x1="12" y1="16" x2="12.01" y2="16" stroke-width="2"></line></svg>';
-                emailStatusIcon.classList.remove("opacity-0");
-              }
-              if (emailFeedback) emailFeedback.classList.remove("hidden");
-              if (emailErrorText) emailErrorText.textContent = res.reason;
-              if (res.suggestion && emailSuggestion && emailSuggestedDomain) {
-                currentSuggestedEmail = res.suggestion;
-                emailSuggestedDomain.textContent = "@" + res.suggestedDomain;
-                emailSuggestion.classList.remove("hidden");
-              } else if (emailSuggestion) {
-                emailSuggestion.classList.add("hidden");
-              }
+            // Validate Email
+            var emailCheck = verifyEmailString(emailVal);
+            if (!emailCheck.isValid) {
+              if (emailFeedback) emailFeedback.classList.remove('hidden');
+              if (emailErrorText) emailErrorText.textContent = emailCheck.reason;
+              if (emailInput) emailInput.classList.add('border-red-500');
+              if (!hasError && emailInput) emailInput.focus();
+              hasError = true;
             }
-          }
 
-          if (emailInput) {
-            emailInput.addEventListener("input", checkEmailLive);
-            emailInput.addEventListener("blur", checkEmailLive);
-          }
-
-          if (emailSuggestionBtn) {
-            emailSuggestionBtn.addEventListener("click", function () {
-              if (currentSuggestedEmail && emailInput) {
-                emailInput.value = currentSuggestedEmail;
-                checkEmailLive();
+            // Validate Phone (allow digits, +, -, space, brackets, min 8 digits)
+            var cleanPhone = phoneVal.replace(/[^0-9+]/g, '');
+            var digitCount = (cleanPhone.match(/\d/g) || []).length;
+            if (!cleanPhone || digitCount < 8 || digitCount > 15) {
+              if (phoneError) {
+                phoneError.textContent = 'Please enter a valid mobile number (min. 10 digits).';
+                phoneError.classList.remove('hidden');
               }
-            });
-          }
+              if (phoneInput) phoneInput.classList.add('border-red-500');
+              if (!hasError && phoneInput) phoneInput.focus();
+              hasError = true;
+            }
 
-          // Live reset errors on input
-          if (nameInput) {
-            nameInput.addEventListener("input", function () {
-              if (nameError) nameError.classList.add("hidden");
-              nameInput.classList.remove("border-red-500");
-            });
-          }
-          if (phoneInput) {
-            phoneInput.addEventListener("input", function () {
-              if (phoneError) phoneError.classList.add("hidden");
-              phoneInput.classList.remove("border-red-500");
-            });
-          }
-          if (linkedinInput) {
-            linkedinInput.addEventListener("input", function () {
-              if (linkedinError) linkedinError.classList.add("hidden");
-              linkedinInput.classList.remove("border-red-500");
-            });
-          }
-          if (cityInput) {
-            cityInput.addEventListener("input", function () {
-              if (cityError) cityError.classList.add("hidden");
-              cityInput.classList.remove("border-red-500");
-            });
-          }
-
-          // Form Submit
-          if (form) {
-            form.addEventListener("submit", async function (e) {
-              e.preventDefault();
-              if (generalError) generalError.classList.add("hidden");
-
-              var nameVal = nameInput ? nameInput.value.trim() : "";
-              var emailVal = emailInput ? emailInput.value.trim() : "";
-              var phoneVal = phoneInput ? phoneInput.value.trim() : "";
-              var linkedinVal = linkedinInput ? linkedinInput.value.trim() : "";
-              var cityVal = cityInput ? cityInput.value.trim() : "";
-              var selectedRadio = form.querySelector(
-                'input[name="profile"]:checked',
-              );
-              var profileVal = selectedRadio ? selectedRadio.value : "";
-
-              var hasError = false;
-
-              // Validate Name
-              if (!nameVal || nameVal.length < 2) {
-                if (nameError) {
-                  nameError.textContent = "Please enter your full name.";
-                  nameError.classList.remove("hidden");
-                }
-                if (nameInput) nameInput.classList.add("border-red-500");
-                if (!hasError && nameInput) nameInput.focus();
-                hasError = true;
+            // Validate LinkedIn Profile
+            if (!linkedinVal || linkedinVal.length < 3) {
+              if (linkedinError) {
+                linkedinError.textContent = 'Please enter your LinkedIn profile link.';
+                linkedinError.classList.remove('hidden');
               }
+              if (linkedinInput) linkedinInput.classList.add('border-red-500');
+              if (!hasError && linkedinInput) linkedinInput.focus();
+              hasError = true;
+            }
 
-              // Validate Email
-              var emailCheck = verifyEmailString(emailVal);
-              if (!emailCheck.isValid) {
-                if (emailFeedback) emailFeedback.classList.remove("hidden");
-                if (emailErrorText)
-                  emailErrorText.textContent = emailCheck.reason;
-                if (emailInput) emailInput.classList.add("border-red-500");
-                if (!hasError && emailInput) emailInput.focus();
-                hasError = true;
+            // Validate City
+            if (!cityVal || cityVal.length < 2) {
+              if (cityError) {
+                cityError.textContent = 'Please enter your current city.';
+                cityError.classList.remove('hidden');
               }
+              if (cityInput) cityInput.classList.add('border-red-500');
+              if (!hasError && cityInput) cityInput.focus();
+              hasError = true;
+            }
 
-              // Validate Phone (allow digits, +, -, space, brackets, min 8 digits)
-              var cleanPhone = phoneVal.replace(/[^0-9+]/g, "");
-              var digitCount = (cleanPhone.match(/\d/g) || []).length;
-              if (!cleanPhone || digitCount < 8 || digitCount > 15) {
-                if (phoneError) {
-                  phoneError.textContent =
-                    "Please enter a valid mobile number (min. 10 digits).";
-                  phoneError.classList.remove("hidden");
-                }
-                if (phoneInput) phoneInput.classList.add("border-red-500");
-                if (!hasError && phoneInput) phoneInput.focus();
-                hasError = true;
+            // Validate Profile Choice
+            if (!profileVal) {
+              if (profileError) {
+                profileError.textContent = 'Please select one option that describes you.';
+                profileError.classList.remove('hidden');
+              }
+              hasError = true;
+            }
+
+            if (hasError) return;
+
+            // Set Loading UI
+            if (submitBtn) submitBtn.disabled = true;
+            if (submitText) submitText.textContent = 'Reserving your spot...';
+            if (submitSpinner) submitSpinner.classList.remove('hidden');
+
+            var cleanLinkedin = linkedinVal;
+            if (cleanLinkedin && !/^https?:\/\//i.test(cleanLinkedin) && /^(www\.)?linkedin\.com/i.test(cleanLinkedin)) {
+              cleanLinkedin = 'https://' + cleanLinkedin;
+            }
+
+            var payload = {
+              name: nameVal,
+              email: emailVal.toLowerCase(),
+              phone: phoneVal,
+              linkedin: cleanLinkedin,
+              city: cityVal,
+              profile: profileVal,
+              submittedAt: new Date().toISOString()
+            };
+
+            // 1. Save locally to localStorage backup so leads are NEVER lost
+            try {
+              var stored = JSON.parse(localStorage.getItem('begin_waitlist_records') || '[]');
+              stored.push(payload);
+              localStorage.setItem('begin_waitlist_records', JSON.stringify(stored));
+            } catch (err) {
+              console.warn('LocalStorage save warning:', err);
+            }
+
+            // 2. Dispatch to /api/waitlist endpoint or direct Supabase
+            var savedSuccessfully = false;
+            var apiError = null;
+
+            async function saveDirectToSupabase() {
+              var cfg = window.BEGIN_SUPABASE_CONFIG;
+              if (!cfg || !cfg.url || !cfg.anonKey) return false;
+              var cleanSbUrl = cfg.url.trim().replace(/\/+$/, '');
+              if (cleanSbUrl.endsWith('/rest/v1')) {
+                cleanSbUrl = cleanSbUrl.slice(0, -'/rest/v1'.length).replace(/\/+$/, '');
               }
 
-              // Validate LinkedIn Profile
-              if (!linkedinVal || linkedinVal.length < 3) {
-                if (linkedinError) {
-                  linkedinError.textContent =
-                    "Please enter your LinkedIn profile link.";
-                  linkedinError.classList.remove("hidden");
-                }
-                if (linkedinInput)
-                  linkedinInput.classList.add("border-red-500");
-                if (!hasError && linkedinInput) linkedinInput.focus();
-                hasError = true;
-              }
-
-              // Validate City
-              if (!cityVal || cityVal.length < 2) {
-                if (cityError) {
-                  cityError.textContent = "Please enter your current city.";
-                  cityError.classList.remove("hidden");
-                }
-                if (cityInput) cityInput.classList.add("border-red-500");
-                if (!hasError && cityInput) cityInput.focus();
-                hasError = true;
-              }
-
-              // Validate Profile Choice
-              if (!profileVal) {
-                if (profileError) {
-                  profileError.textContent =
-                    "Please select one option that describes you.";
-                  profileError.classList.remove("hidden");
-                }
-                hasError = true;
-              }
-
-              if (hasError) return;
-
-              // Set Loading UI
-              if (submitBtn) submitBtn.disabled = true;
-              if (submitText) submitText.textContent = "Reserving your spot...";
-              if (submitSpinner) submitSpinner.classList.remove("hidden");
-
-              var cleanLinkedin = linkedinVal;
-              if (
-                cleanLinkedin &&
-                !/^https?:\/\//i.test(cleanLinkedin) &&
-                /^(www\.)?linkedin\.com/i.test(cleanLinkedin)
-              ) {
-                cleanLinkedin = "https://" + cleanLinkedin;
-              }
-
-              var payload = {
-                name: nameVal,
-                email: emailVal.toLowerCase(),
-                phone: phoneVal,
-                linkedin: cleanLinkedin,
-                city: cityVal,
-                profile: profileVal,
-                submittedAt: new Date().toISOString(),
+              var insertData = {
+                name: payload.name,
+                email: payload.email,
+                phone: payload.phone,
+                linkedin: payload.linkedin,
+                city: payload.city,
+                profile: payload.profile
               };
 
-              // 1. Save locally to localStorage backup so leads are NEVER lost
-              try {
-                var stored = JSON.parse(
-                  localStorage.getItem("begin_waitlist_records") || "[]",
-                );
-                stored.push(payload);
-                localStorage.setItem(
-                  "begin_waitlist_records",
-                  JSON.stringify(stored),
-                );
-              } catch (err) {
-                console.warn("LocalStorage save warning:", err);
+              async function postToTable(data) {
+                return await fetch(cleanSbUrl + '/rest/v1/waitlist', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': cfg.anonKey,
+                    'Authorization': 'Bearer ' + cfg.anonKey,
+                    'Prefer': 'return=minimal'
+                  },
+                  body: JSON.stringify(data)
+                });
               }
 
-              // 2. Dispatch to /api/waitlist endpoint or direct Supabase
-              var savedSuccessfully = false;
-              var apiError = null;
+              var sbResp = await postToTable(insertData);
+              if (sbResp.ok || sbResp.status === 201) {
+                return true;
+              }
+              var sbErrText = await sbResp.text();
 
-              async function saveDirectToSupabase() {
-                var cfg = window.BEGIN_SUPABASE_CONFIG;
-                if (!cfg || !cfg.url || !cfg.anonKey) return false;
-                var cleanSbUrl = cfg.url.trim().replace(/\/+$/, "");
-                if (cleanSbUrl.endsWith("/rest/v1")) {
-                  cleanSbUrl = cleanSbUrl
-                    .slice(0, -"/rest/v1".length)
-                    .replace(/\/+$/, "");
-                }
-
-                var insertData = {
+              // If column 'linkedin' is not yet created in user's Supabase table, retry without it
+              if (sbErrText.includes('linkedin') || (sbResp.status === 400 && sbErrText.includes('column'))) {
+                var fallbackData = {
                   name: payload.name,
                   email: payload.email,
                   phone: payload.phone,
-                  linkedin: payload.linkedin,
                   city: payload.city,
-                  profile: payload.profile,
+                  profile: payload.profile
                 };
-
-                async function postToTable(data) {
-                  return await fetch(cleanSbUrl + "/rest/v1/waitlist", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                      apikey: cfg.anonKey,
-                      Authorization: "Bearer " + cfg.anonKey,
-                      Prefer: "return=minimal",
-                    },
-                    body: JSON.stringify(data),
-                  });
-                }
-
-                var sbResp = await postToTable(insertData);
-                if (sbResp.ok || sbResp.status === 201) {
-                  return true;
-                }
-                var sbErrText = await sbResp.text();
-
-                // If column 'linkedin' is not yet created in user's Supabase table, retry without it
-                if (
-                  sbErrText.includes("linkedin") ||
-                  (sbResp.status === 400 && sbErrText.includes("column"))
-                ) {
-                  var fallbackData = {
-                    name: payload.name,
-                    email: payload.email,
-                    phone: payload.phone,
-                    city: payload.city,
-                    profile: payload.profile,
-                  };
-                  var retryResp = await postToTable(fallbackData);
-                  if (retryResp.ok || retryResp.status === 201) return true;
-                  sbErrText = await retryResp.text();
-                }
-
-                // If duplicate email, consider it already recorded
-                if (
-                  sbResp.status === 409 ||
-                  sbErrText.includes("duplicate key") ||
-                  sbErrText.includes("unique constraint")
-                ) {
-                  return true;
-                }
-                throw new Error(
-                  sbErrText || "Supabase status " + sbResp.status,
-                );
+                var retryResp = await postToTable(fallbackData);
+                if (retryResp.ok || retryResp.status === 201) return true;
+                sbErrText = await retryResp.text();
               }
 
-              // Step A: Attempt serverless /api/waitlist first (works on Vercel & Node server)
-              try {
-                var resp = await fetch("/api/waitlist", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(payload),
-                });
-                var respData = null;
-                try {
-                  respData = await resp.json();
-                } catch (e) {}
+              // If duplicate email, consider it already recorded
+              if (sbResp.status === 409 || sbErrText.includes('duplicate key') || sbErrText.includes('unique constraint')) {
+                return true;
+              }
+              throw new Error(sbErrText || ('Supabase status ' + sbResp.status));
+            }
 
-                if (
-                  resp.ok &&
-                  respData &&
-                  (respData.message ===
-                    "Successfully saved to Supabase waitlist." ||
-                    respData.success)
-                ) {
-                  savedSuccessfully = true;
-                } else {
-                  // If server did not explicitly confirm Supabase save, fall back to direct Supabase insert
-                  try {
-                    savedSuccessfully = await saveDirectToSupabase();
-                  } catch (sbErr) {
-                    if (resp.ok) {
-                      savedSuccessfully = true;
-                    } else {
-                      apiError =
-                        sbErr.message ||
-                        (respData && respData.error) ||
-                        "Server error " + resp.status;
-                    }
-                  }
-                }
-              } catch (netErr) {
-                // Network error or local file preview -> fallback to direct Supabase
+            // Step A: Attempt serverless /api/waitlist first (works on Vercel & Node server)
+            try {
+              var resp = await fetch('/api/waitlist', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              var respData = null;
+              try { respData = await resp.json(); } catch (e) {}
+
+              if (resp.ok && respData && (respData.message === 'Successfully saved to Supabase waitlist.' || respData.success)) {
+                savedSuccessfully = true;
+              } else {
+                // If server did not explicitly confirm Supabase save, fall back to direct Supabase insert
                 try {
                   savedSuccessfully = await saveDirectToSupabase();
                 } catch (sbErr) {
-                  apiError = sbErr.message || "Could not connect to database.";
+                  if (resp.ok) {
+                    savedSuccessfully = true;
+                  } else {
+                    apiError = sbErr.message || (respData && respData.error) || ('Server error ' + resp.status);
+                  }
                 }
               }
+            } catch (netErr) {
+              // Network error or local file preview -> fallback to direct Supabase
+              try {
+                savedSuccessfully = await saveDirectToSupabase();
+              } catch (sbErr) {
+                apiError = sbErr.message || 'Could not connect to database.';
+              }
+            }
 
-              if (!savedSuccessfully && apiError) {
-                if (submitSpinner) submitSpinner.classList.add("hidden");
-                if (submitText) submitText.textContent = "Submit";
-                if (submitBtn) submitBtn.disabled = false;
-                if (generalError) {
-                  generalError.textContent = "Database error: " + apiError;
-                  generalError.classList.remove("hidden");
-                }
-                return;
+            if (!savedSuccessfully && apiError) {
+              if (submitSpinner) submitSpinner.classList.add('hidden');
+              if (submitText) submitText.textContent = 'Submit';
+              if (submitBtn) submitBtn.disabled = false;
+              if (generalError) {
+                generalError.textContent = 'Database error: ' + apiError;
+                generalError.classList.remove('hidden');
+              }
+              return;
+            }
+
+            // Transition to Success State
+            setTimeout(function () {
+              if (submitSpinner) submitSpinner.classList.add('hidden');
+              if (submitText) submitText.textContent = 'Submit';
+              if (submitBtn) submitBtn.disabled = false;
+
+              // Hide form, show success
+              form.classList.add('hidden');
+              if (successView) {
+                successView.classList.remove('hidden');
+                successView.classList.add('flex');
               }
 
-              // Transition to Success State
-              setTimeout(function () {
-                if (submitSpinner) submitSpinner.classList.add("hidden");
-                if (submitText) submitText.textContent = "Submit";
-                if (submitBtn) submitBtn.disabled = false;
+              // Reset form fields
+              form.reset();
+              radioCards.forEach(function (c) { c.classList.remove('is-selected'); });
+              if (emailBadge) emailBadge.classList.add('hidden');
+              if (emailStatusIcon) emailStatusIcon.classList.add('opacity-0');
+              if (emailFeedback) emailFeedback.classList.add('hidden');
+              if (nameInput) nameInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
+              if (emailInput) emailInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
+              if (phoneInput) phoneInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
+              if (linkedinInput) linkedinInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
+              if (cityInput) cityInput.classList.remove('border-accent-lime', 'border-red-400', 'border-red-500');
+            }, 500);
+          });
+        }
+      })();
 
-                // Hide form, show success
-                form.classList.add("hidden");
-                if (successView) {
-                  successView.classList.remove("hidden");
-                  successView.classList.add("flex");
-                }
+      var prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-                // Reset form fields
-                form.reset();
-                radioCards.forEach(function (c) {
-                  c.classList.remove("is-selected");
-                });
-                if (emailBadge) emailBadge.classList.add("hidden");
-                if (emailStatusIcon) emailStatusIcon.classList.add("opacity-0");
-                if (emailFeedback) emailFeedback.classList.add("hidden");
-                if (nameInput)
-                  nameInput.classList.remove(
-                    "border-accent-lime",
-                    "border-red-400",
-                    "border-red-500",
-                  );
-                if (emailInput)
-                  emailInput.classList.remove(
-                    "border-accent-lime",
-                    "border-red-400",
-                    "border-red-500",
-                  );
-                if (phoneInput)
-                  phoneInput.classList.remove(
-                    "border-accent-lime",
-                    "border-red-400",
-                    "border-red-500",
-                  );
-                if (linkedinInput)
-                  linkedinInput.classList.remove(
-                    "border-accent-lime",
-                    "border-red-400",
-                    "border-red-500",
-                  );
-                if (cityInput)
-                  cityInput.classList.remove(
-                    "border-accent-lime",
-                    "border-red-400",
-                    "border-red-500",
-                  );
-              }, 500);
-            });
-          }
-        })();
+      /* Populate editorial words in mission text with 3D spatial wrappers */
+      var missionText = document.getElementById('mission-text');
+      var wordEls = [];
+      if (missionText) {
+        var message = 'Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next \u2014 hoping that somewhere along the way, all the pieces finally come together.';
+        var words = message.split(' ');
+        missionText.innerHTML = words.map(function (w, i) {
+          return '<span class="spatial-word" data-word-idx="' + i + '" style="color:rgba(249,250,251,0.25)">' + w + '</span>';
+        }).join(' ');
+        wordEls = Array.prototype.slice.call(missionText.querySelectorAll('.spatial-word'));
+      }
 
-        var prefersReducedMotion =
-          window.matchMedia &&
-          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-        /* Populate editorial words in mission text with 3D spatial wrappers */
-        var missionText = document.getElementById("mission-text");
-        var wordEls = [];
+      if (prefersReducedMotion || typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
         if (missionText) {
-          var message =
-            "Starting something of your own has somehow become a process of endless searching, scattered opportunities, unanswered questions and uncertain beginnings. You have an idea, maybe the ambition to build something meaningful, but finding the right people, the right guidance, the right resources and the right direction often feels like a journey of its own. You explore communities, reach out to strangers, look for collaborators and try to figure out what comes next \u2014 hoping that somewhere along the way, all the pieces finally come together.";
-          var words = message.split(" ");
-          missionText.innerHTML = words
-            .map(function (w, i) {
-              return (
-                '<span class="spatial-word" data-word-idx="' +
-                i +
-                '" style="color:rgba(249,250,251,0.25)">' +
-                w +
-                "</span>"
-              );
-            })
-            .join(" ");
-          wordEls = Array.prototype.slice.call(
-            missionText.querySelectorAll(".spatial-word"),
-          );
+          wordEls.forEach(function (w) { w.style.color = 'rgba(249,250,251,1)'; });
         }
+        var missionLayer = document.querySelector('.mission-reveal-layer');
+        if (missionLayer) {
+          missionLayer.style.opacity = '1';
+          missionLayer.style.pointerEvents = 'auto';
+        }
+        return;
+      }
 
-        if (
-          prefersReducedMotion ||
-          typeof gsap === "undefined" ||
-          typeof ScrollTrigger === "undefined"
-        ) {
-          if (missionText) {
-            wordEls.forEach(function (w) {
-              w.style.color = "rgba(249,250,251,1)";
-            });
+      gsap.registerPlugin(ScrollTrigger);
+
+      /* Ignore vertical address bar expansions/collapses on mobile browsers, preventing jitter and jumps */
+      ScrollTrigger.config({
+        ignoreMobileResize: true
+      });
+
+      var isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (window.innerWidth < 768);
+      var isMobile = window.innerWidth < 768;
+
+      var heroWrapper = document.getElementById('hero-wrapper');
+      var scrollStage = document.getElementById('scroll-stage');
+      var heroBgImg = document.getElementById('hero-bg-img');
+      var heroDarken = document.getElementById('hero-darken-overlay');
+      var ecosystemLayer = document.getElementById('ecosystem');
+      var ecosystemVignette = document.getElementById('ecosystem-vignette');
+      var heroIntro = document.getElementById('hero');
+      var missionLayer = document.querySelector('.mission-reveal-layer');
+      var missionBadge = document.getElementById('mission-badge');
+      var scrollHint = document.getElementById('scroll-hint');
+      var mainHeader = document.getElementById('main-header');
+      var framingContainer = document.getElementById('corner-framing-container');
+      var waitlistLayer = document.getElementById('waitlist');
+      var page4BgLayer = document.getElementById('page4-bg-layer');
+      var page4Content = document.getElementById('page4-content');
+      var page4SheetHandle = document.getElementById('page4-sheet-handle');
+
+      if (!heroWrapper || !scrollStage || !heroBgImg) return;
+
+      /* Ensure Page 4 starts cleanly translated off-screen without matrix conflict */
+      if (waitlistLayer) {
+        gsap.set(waitlistLayer, { yPercent: 100, y: 0, x: 0 });
+      }
+
+      /* Main Scroll-Triggered Pin Timeline with Natural Responsive Pacing */
+      var zoomTimeline = gsap.timeline({
+        scrollTrigger: {
+          id: 'hero-scroll-zoom',
+          trigger: heroWrapper,
+          start: 'top top',
+          end: function () {
+            return window.innerWidth < 768 ? '+=420%' : '+=640%';
+          },
+          pin: scrollStage,
+          pinSpacing: true,
+          scrub: isTouchDevice ? 0.25 : 0.7,
+          anticipatePin: 0,
+          invalidateOnRefresh: true,
+          onUpdate: function (self) {
+            if (scrollHint) {
+              scrollHint.style.opacity = self.progress > 0.03 ? '0' : '1';
+            }
+            if (waitlistLayer) {
+              waitlistLayer.style.pointerEvents = self.progress >= 0.85 ? 'auto' : 'none';
+            }
+            if (ecosystemLayer) {
+              if (self.progress >= 0.89) {
+                ecosystemLayer.style.visibility = 'hidden';
+              } else {
+                ecosystemLayer.style.visibility = 'visible';
+              }
+            }
           }
-          var missionLayer = document.querySelector(".mission-reveal-layer");
-          if (missionLayer) {
-            missionLayer.style.opacity = "1";
-            missionLayer.style.pointerEvents = "auto";
-          }
-          return;
         }
+      });
 
-        gsap.registerPlugin(ScrollTrigger);
+      /* 1. TOP BAR NAVBAR: Fades out on Page 1 -> Page 2 transition so it never covers the text */
+      if (mainHeader) {
+        zoomTimeline.to(mainHeader, {
+          opacity: 0,
+          y: -25,
+          pointerEvents: 'none',
+          ease: 'power2.in',
+          duration: 0.12
+        }, 0.02);
 
-        /* Ignore vertical address bar expansions/collapses on mobile browsers, preventing jitter and jumps */
-        ScrollTrigger.config({
-          ignoreMobileResize: true,
-        });
+        /* Smoothly returns as Page 3 begins appearing */
+        zoomTimeline.to(mainHeader, {
+          opacity: 1,
+          y: 0,
+          pointerEvents: 'auto',
+          ease: 'power2.out',
+          duration: 0.08
+        }, 0.70);
+      }
 
-        var isTouchDevice =
-          "ontouchstart" in window ||
-          navigator.maxTouchPoints > 0 ||
-          window.innerWidth < 768;
-        var isMobile = window.innerWidth < 768;
+      /* 2. Hero Intro Layer (Page 1) fades out and lifts */
+      zoomTimeline.to(heroIntro, {
+        opacity: 0,
+        y: -45,
+        scale: 1.03,
+        ease: 'power2.in',
+        duration: 0.15,
+        pointerEvents: 'none'
+      }, 0);
 
-        var heroWrapper = document.getElementById("hero-wrapper");
-        var scrollStage = document.getElementById("scroll-stage");
-        var heroBgImg = document.getElementById("hero-bg-img");
-        var heroDarken = document.getElementById("hero-darken-overlay");
-        var ecosystemLayer = document.getElementById("ecosystem");
-        var ecosystemVignette = document.getElementById("ecosystem-vignette");
-        var heroIntro = document.getElementById("hero");
-        var missionLayer = document.querySelector(".mission-reveal-layer");
-        var missionBadge = document.getElementById("mission-badge");
-        var scrollHint = document.getElementById("scroll-hint");
-        var mainHeader = document.getElementById("main-header");
-        var framingContainer = document.getElementById(
-          "corner-framing-container",
-        );
-        var waitlistLayer = document.getElementById("waitlist");
-        var page4BgLayer = document.getElementById("page4-bg-layer");
-        var page4Content = document.getElementById("page4-content");
-        var page4SheetHandle = document.getElementById("page4-sheet-handle");
+      /* 3. Corner Framing (Vines & Clouds): Zooms out past camera & dissolves (Page 1 only!) */
+      if (framingContainer) {
+        zoomTimeline.to(framingContainer, {
+          scale: 2.8,
+          opacity: 0,
+          transformOrigin: 'center center',
+          ease: 'power2.inOut',
+          duration: 0.24,
+          force3D: true
+        }, 0);
+      }
 
-        if (!heroWrapper || !scrollStage || !heroBgImg) return;
+      /* 4. Hero Background Image zooms in smoothly */
+      zoomTimeline.to(heroBgImg, {
+        scale: 1.25,
+        transformOrigin: 'center 75%',
+        ease: 'power1.inOut',
+        duration: 0.32,
+        force3D: true
+      }, 0);
 
-        /* Ensure Page 4 starts cleanly translated off-screen without matrix conflict */
-        if (waitlistLayer) {
-          gsap.set(waitlistLayer, { yPercent: 100, y: 0, x: 0 });
-        }
+      /* 5. BACKGROUND DARKENS: Becomes 100% PITCH BLACK obsidian on transition to Page 2 */
+      zoomTimeline.to(heroDarken, {
+        opacity: 1.0,
+        ease: 'power1.inOut',
+        duration: 0.22
+      }, 0);
 
-        /* Main Scroll-Triggered Pin Timeline with Natural Responsive Pacing */
-        var zoomTimeline = gsap.timeline({
-          scrollTrigger: {
-            id: "hero-scroll-zoom",
-            trigger: heroWrapper,
-            start: "top top",
-            end: function () {
-              return window.innerWidth < 768 ? "+=420%" : "+=640%";
-            },
-            pin: scrollStage,
-            pinSpacing: true,
-            scrub: isTouchDevice ? 0.25 : 0.7,
-            anticipatePin: 0,
-            invalidateOnRefresh: true,
-            onUpdate: function (self) {
-              if (scrollHint) {
-                scrollHint.style.opacity = self.progress > 0.03 ? "0" : "1";
-              }
-              if (waitlistLayer) {
-                waitlistLayer.style.pointerEvents =
-                  self.progress >= 0.85 ? "auto" : "none";
-              }
-              if (ecosystemLayer) {
-                if (self.progress >= 0.89) {
-                  ecosystemLayer.style.visibility = "hidden";
-                } else {
-                  ecosystemLayer.style.visibility = "visible";
-                }
-              }
-            },
-          },
-        });
+      /* 6. Page 2 (Manifesto text) fades in and stabilizes over the dark background */
+      zoomTimeline.fromTo(missionLayer,
+        { opacity: 0, y: 30, scale: 0.96 },
+        { opacity: 1, y: 0, scale: 1.0, ease: 'power2.out', duration: 0.15, pointerEvents: 'auto', force3D: true },
+        0.15
+      );
 
-        /* 1. TOP BAR NAVBAR: Fades out on Page 1 -> Page 2 transition so it never covers the text */
-        if (mainHeader) {
-          zoomTimeline.to(
-            mainHeader,
-            {
-              opacity: 0,
-              y: -25,
-              pointerEvents: "none",
-              ease: "power2.in",
-              duration: 0.12,
-            },
-            0.02,
-          );
+      /* 7. Progressive word illumination to pure crisp white (Progress 0.15 to 0.24) */
+      var total = wordEls.length;
+      wordEls.forEach(function (el, i) {
+        var illumTime = 0.15 + (i / total) * 0.08;
+        zoomTimeline.to(el, {
+          color: 'rgba(249, 250, 251, 1)',
+          ease: 'power1.inOut',
+          duration: 0.025
+        }, illumTime);
+      });
 
-          /* Smoothly returns as Page 3 begins appearing */
-          zoomTimeline.to(
-            mainHeader,
-            {
-              opacity: 1,
-              y: 0,
-              pointerEvents: "auto",
-              ease: "power2.out",
-              duration: 0.08,
-            },
-            0.7,
-          );
-        }
+      /* 8. PEACEFUL READING PAUSE (Progress 0.24 to 0.48): Text is completely white, stable, and clear */
 
-        /* 2. Hero Intro Layer (Page 1) fades out and lifts */
-        zoomTimeline.to(
-          heroIntro,
-          {
-            opacity: 0,
-            y: -45,
-            scale: 1.03,
-            ease: "power2.in",
-            duration: 0.15,
-            pointerEvents: "none",
-          },
-          0,
-        );
-
-        /* 3. Corner Framing (Vines & Clouds): Zooms out past camera & dissolves (Page 1 only!) */
-        if (framingContainer) {
-          zoomTimeline.to(
-            framingContainer,
-            {
-              scale: 2.8,
-              opacity: 0,
-              transformOrigin: "center center",
-              ease: "power2.inOut",
-              duration: 0.24,
-              force3D: true,
-            },
-            0,
-          );
-        }
-
-        /* 4. Hero Background Image zooms in smoothly */
-        zoomTimeline.to(
-          heroBgImg,
-          {
-            scale: 1.25,
-            transformOrigin: "center 75%",
-            ease: "power1.inOut",
-            duration: 0.32,
-            force3D: true,
-          },
-          0,
-        );
-
-        /* 5. BACKGROUND DARKENS: Becomes 100% PITCH BLACK obsidian on transition to Page 2 */
-        zoomTimeline.to(
-          heroDarken,
-          {
-            opacity: 1.0,
-            ease: "power1.inOut",
-            duration: 0.22,
-          },
-          0,
-        );
-
-        /* 6. Page 2 (Manifesto text) fades in and stabilizes over the dark background */
-        zoomTimeline.fromTo(
-          missionLayer,
-          { opacity: 0, y: 30, scale: 0.96 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1.0,
-            ease: "power2.out",
-            duration: 0.15,
-            pointerEvents: "auto",
-            force3D: true,
-          },
-          0.15,
-        );
-
-        /* 7. Progressive word illumination to pure crisp white (Progress 0.15 to 0.24) */
-        var total = wordEls.length;
-        wordEls.forEach(function (el, i) {
-          var illumTime = 0.15 + (i / total) * 0.08;
-          zoomTimeline.to(
-            el,
-            {
-              color: "rgba(249, 250, 251, 1)",
-              ease: "power1.inOut",
-              duration: 0.025,
-            },
-            illumTime,
-          );
-        });
-
-        /* 8. PEACEFUL READING PAUSE (Progress 0.24 to 0.48): Text is completely white, stable, and clear */
-
-        /* 9. 3D SPATIAL ZOOM FLY-OUT FOR WORDS (Progress 0.48 to 0.66):
+      /* 9. 3D SPATIAL ZOOM FLY-OUT FOR WORDS (Progress 0.48 to 0.66):
             Words launch forward in waves towards the camera with responsive screen-width scaling */
-        wordEls.forEach(function (el, i) {
-          var angle = (i / total) * Math.PI * 2 * 3.5 + i * 0.42;
-          var baseDist = 140 + (i % 6) * 80 + ((i * 17) % 190);
-          var startFly = 0.48 + (i / total) * 0.12 + ((i % 10) / 10) * 0.04;
+      wordEls.forEach(function (el, i) {
+        var angle = (i / total) * Math.PI * 2 * 3.5 + (i * 0.42);
+        var baseDist = 140 + (i % 6) * 80 + ((i * 17) % 190);
+        var startFly = 0.48 + (i / total) * 0.12 + ((i % 10) / 10) * 0.04;
 
-          zoomTimeline.to(
-            el,
-            {
-              x: function () {
-                var w = window.innerWidth;
-                var spread = w < 640 ? 0.35 : w < 1024 ? 0.65 : 1.5;
-                return Math.cos(angle) * baseDist * spread;
-              },
-              y: function () {
-                var w = window.innerWidth;
-                var spread = w < 640 ? 0.45 : w < 1024 ? 0.65 : 0.85;
-                return Math.sin(angle) * baseDist * spread;
-              },
-              z: function () {
-                var w = window.innerWidth;
-                var zDepth = 700 + (i % 8) * 120 + ((i * 23) % 400);
-                return w < 640 ? zDepth * 0.65 : zDepth;
-              },
-              scale: function () {
-                var w = window.innerWidth;
-                var baseScale = 2.2 + (i % 5) * 0.35;
-                return w < 640 ? baseScale * 0.8 : baseScale;
-              },
-              opacity: 0,
-              ease: "power2.in",
-              duration: 0.12,
-              force3D: true,
-            },
-            startFly,
-          );
-        });
+        zoomTimeline.to(el, {
+          x: function () {
+            var w = window.innerWidth;
+            var spread = w < 640 ? 0.35 : (w < 1024 ? 0.65 : 1.5);
+            return Math.cos(angle) * baseDist * spread;
+          },
+          y: function () {
+            var w = window.innerWidth;
+            var spread = w < 640 ? 0.45 : (w < 1024 ? 0.65 : 0.85);
+            return Math.sin(angle) * baseDist * spread;
+          },
+          z: function () {
+            var w = window.innerWidth;
+            var zDepth = 700 + (i % 8) * 120 + ((i * 23) % 400);
+            return w < 640 ? zDepth * 0.65 : zDepth;
+          },
+          scale: function () {
+            var w = window.innerWidth;
+            var baseScale = 2.2 + ((i % 5) * 0.35);
+            return w < 640 ? baseScale * 0.8 : baseScale;
+          },
+          opacity: 0,
+          ease: 'power2.in',
+          duration: 0.12,
+          force3D: true
+        }, startFly);
+      });
 
-        /* Badge flies forward into 3D space */
-        if (missionBadge) {
-          zoomTimeline.to(
-            missionBadge,
-            {
-              z: function () {
-                return window.innerWidth < 640 ? 750 : 1100;
-              },
-              scale: function () {
-                return window.innerWidth < 640 ? 2.2 : 2.8;
-              },
-              opacity: 0,
-              ease: "power2.in",
-              duration: 0.12,
-              force3D: true,
-            },
-            0.56,
-          );
-        }
+      /* Badge flies forward into 3D space */
+      if (missionBadge) {
+        zoomTimeline.to(missionBadge, {
+          z: function () { return window.innerWidth < 640 ? 750 : 1100; },
+          scale: function () { return window.innerWidth < 640 ? 2.2 : 2.8; },
+          opacity: 0,
+          ease: 'power2.in',
+          duration: 0.12,
+          force3D: true
+        }, 0.56);
+      }
 
-        /* 10. RIGHT AS ALL TEXT IS ABOUT TO FULLY LAUNCH OFF (at progress 0.62):
+      /* 10. RIGHT AS ALL TEXT IS ABOUT TO FULLY LAUNCH OFF (at progress 0.62):
              - 3rd Page (Ecosystem) appears from behind the text and SLOWLY UNBLURS!
              - Corners and sides are dark at first, then smoothly gain their original color */
-        if (ecosystemLayer) {
-          if (isMobile) {
-            /* On mobile screens, omit filter: blur(...) to avoid high GPU convolution cost that causes stutter */
-            zoomTimeline.fromTo(
-              ecosystemLayer,
-              { opacity: 0, scale: 0.94 },
-              {
-                opacity: 1,
-                scale: 1.0,
-                ease: "power2.out",
-                duration: 0.14,
-                pointerEvents: "auto",
-                force3D: true,
-              },
-              0.62,
-            );
-          } else {
-            zoomTimeline.fromTo(
-              ecosystemLayer,
-              { opacity: 0, scale: 0.9, filter: "blur(12px)" },
-              {
-                opacity: 1,
-                scale: 1.0,
-                filter: "blur(0px)",
-                ease: "power2.out",
-                duration: 0.14,
-                pointerEvents: "auto",
-                force3D: true,
-              },
-              0.62,
-            );
-          }
-        }
-
-        /* Corners and sides dark at first, then fade out vignette so sides & corners gain their original color */
-        if (ecosystemVignette) {
-          zoomTimeline.fromTo(
-            ecosystemVignette,
-            { opacity: 1.0 },
+      if (ecosystemLayer) {
+        if (isMobile) {
+          /* On mobile screens, omit filter: blur(...) to avoid high GPU convolution cost that causes stutter */
+          zoomTimeline.fromTo(ecosystemLayer,
+            { opacity: 0, scale: 0.94 },
             {
-              opacity: 0.0,
-              ease: "power1.inOut",
-              duration: 0.12,
+              opacity: 1,
+              scale: 1.0,
+              ease: 'power2.out',
+              duration: 0.14,
+              pointerEvents: 'auto',
+              force3D: true
             },
-            0.64,
+            0.62
+          );
+        } else {
+          zoomTimeline.fromTo(ecosystemLayer,
+            { opacity: 0, scale: 0.90, filter: 'blur(12px)' },
+            {
+              opacity: 1,
+              scale: 1.0,
+              filter: 'blur(0px)',
+              ease: 'power2.out',
+              duration: 0.14,
+              pointerEvents: 'auto',
+              force3D: true
+            },
+            0.62
           );
         }
+      }
 
-        /* 11. PAGE 3 READING PAUSE (Progress 0.76 to 0.94): Ecosystem content fully visible & interactive.
+      /* Corners and sides dark at first, then fade out vignette so sides & corners gain their original color */
+      if (ecosystemVignette) {
+        zoomTimeline.fromTo(ecosystemVignette,
+          { opacity: 1.0 },
+          {
+            opacity: 0.0,
+            ease: 'power1.inOut',
+            duration: 0.12
+          },
+          0.64
+        );
+      }
+
+      /* 11. PAGE 3 READING PAUSE (Progress 0.76 to 0.94): Ecosystem content fully visible & interactive.
              Provides a deliberate, comfortable pause (1-2 scrolls) so users can absorb the content
              before Page 4 slides into view. */
 
-        /* 12. PAGE 3 CARD SHRINK + PAGE 4 SLIDES ABOVE IN FULL OPACITY (Progress 0.94 to 1.05)
+      /* 12. PAGE 3 CARD SHRINK + PAGE 4 SLIDES ABOVE IN FULL OPACITY (Progress 0.94 to 1.05)
              - Page 3 acts like a physical card: shrinks in size from all sides, rounds corners,
                and fades completely to opacity: 0 as Page 4 overlays above it.
              - Page 4 slides cleanly ABOVE Page 3 (z-index: 45) in full opacity (bg-[#FAFAFA]),
                starting with rounded top corners and ambient drop shadow, then expanding into full bleed! */
-        if (ecosystemLayer) {
-          zoomTimeline.to(
-            ecosystemLayer,
-            {
-              scale: function () {
-                var w = window.innerWidth;
-                if (w < 480) return 0.94;
-                if (w < 768) return 0.92;
-                if (w < 1024) return 0.91;
-                return 0.89;
-              },
-              borderRadius: function () {
-                var w = window.innerWidth;
-                if (w < 480) return "18px";
-                if (w < 768) return "24px";
-                return "36px";
-              },
-              boxShadow: function () {
-                var w = window.innerWidth;
-                if (w < 768) {
-                  return "0 12px 30px -8px rgba(0, 0, 0, 0.75)";
-                }
-                return "0 35px 85px -15px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.11), 0 0 45px rgba(163, 230, 53, 0.08)";
-              },
-              y: function () {
-                return window.innerWidth < 768 ? -12 : -22;
-              },
-              opacity: 0,
-              ease: "power2.inOut",
-              duration: 0.11,
-              force3D: true,
-            },
-            0.94,
-          );
-        }
-
-        if (waitlistLayer) {
-          zoomTimeline.fromTo(
-            waitlistLayer,
-            {
-              yPercent: 100,
-              y: 0,
-              borderTopLeftRadius: function () {
-                var w = window.innerWidth;
-                if (w < 480) return "18px";
-                if (w < 768) return "24px";
-                return "36px";
-              },
-              borderTopRightRadius: function () {
-                var w = window.innerWidth;
-                if (w < 480) return "18px";
-                if (w < 768) return "24px";
-                return "36px";
-              },
-              boxShadow: "0 -28px 70px rgba(0, 0, 0, 0.75)",
-            },
-            {
-              yPercent: 0,
-              y: 0,
-              borderTopLeftRadius: "0px",
-              borderTopRightRadius: "0px",
-              boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
-              ease: "power2.inOut",
-              duration: 0.11,
-              force3D: true,
-            },
-            0.94,
-          );
-        }
-
-        /* Creative Touch: Inner Counter-Parallax on Page 4 background artwork */
-        if (page4BgLayer) {
-          zoomTimeline.fromTo(
-            page4BgLayer,
-            { y: 60, scale: 1.06 },
-            {
-              y: 0,
-              scale: 1.0,
-              ease: "power2.out",
-              duration: 0.11,
-              force3D: true,
-            },
-            0.94,
-          );
-        }
-
-        /* Creative Touch: Parallax float on Page 4 headline, copy and CTA */
-        if (page4Content) {
-          zoomTimeline.fromTo(
-            page4Content,
-            { y: 30, opacity: 0.7 },
-            {
-              y: 0,
-              opacity: 1.0,
-              ease: "power2.out",
-              duration: 0.11,
-              force3D: true,
-            },
-            0.95,
-          );
-        }
-
-        /* Creative Touch: Tactile card sheet handle fades away as full bleed is locked */
-        if (page4SheetHandle) {
-          zoomTimeline.fromTo(
-            page4SheetHandle,
-            { opacity: 1 },
-            { opacity: 0, ease: "power1.in", duration: 0.03 },
-            1.01,
-          );
-        }
-
-        /* 13. PAGE 4 SEAMLESS PRESENCE (Progress 1.05 to 1.08)
-             Page 4 remains visible & interactive, transitioning immediately when scrolling up */
-        zoomTimeline.to({}, { duration: 0.03 }, 1.05);
-
-        /* Smooth Anchor Navigation for #hero, #mission, #ecosystem, and #waitlist */
-        var missionAnchors = document.querySelectorAll('a[href="#mission"]');
-        missionAnchors.forEach(function (link) {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            var trigger = ScrollTrigger.getById("hero-scroll-zoom");
-            if (trigger) {
-              var targetScroll =
-                trigger.start + (trigger.end - trigger.start) * 0.24;
-              window.scrollTo({ top: targetScroll, behavior: "smooth" });
+      if (ecosystemLayer) {
+        zoomTimeline.to(ecosystemLayer, {
+          scale: function () {
+            var w = window.innerWidth;
+            if (w < 480) return 0.94;
+            if (w < 768) return 0.92;
+            if (w < 1024) return 0.91;
+            return 0.89;
+          },
+          borderRadius: function () {
+            var w = window.innerWidth;
+            if (w < 480) return '18px';
+            if (w < 768) return '24px';
+            return '36px';
+          },
+          boxShadow: function () {
+            var w = window.innerWidth;
+            if (w < 768) {
+              return '0 12px 30px -8px rgba(0, 0, 0, 0.75)';
             }
-          });
-        });
+            return '0 35px 85px -15px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.11), 0 0 45px rgba(163, 230, 53, 0.08)';
+          },
+          y: function () { return window.innerWidth < 768 ? -12 : -22; },
+          opacity: 0,
+          ease: 'power2.inOut',
+          duration: 0.11,
+          force3D: true
+        }, 0.94);
+      }
 
-        var ecosystemAnchors = document.querySelectorAll(
-          'a[href="#ecosystem"]',
+      if (waitlistLayer) {
+        zoomTimeline.fromTo(waitlistLayer,
+          {
+            yPercent: 100,
+            y: 0,
+            borderTopLeftRadius: function () {
+              var w = window.innerWidth;
+              if (w < 480) return '18px';
+              if (w < 768) return '24px';
+              return '36px';
+            },
+            borderTopRightRadius: function () {
+              var w = window.innerWidth;
+              if (w < 480) return '18px';
+              if (w < 768) return '24px';
+              return '36px';
+            },
+            boxShadow: '0 -28px 70px rgba(0, 0, 0, 0.75)'
+          },
+          {
+            yPercent: 0,
+            y: 0,
+            borderTopLeftRadius: '0px',
+            borderTopRightRadius: '0px',
+            boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
+            ease: 'power2.inOut',
+            duration: 0.11,
+            force3D: true
+          },
+          0.94
         );
-        ecosystemAnchors.forEach(function (link) {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            var trigger = ScrollTrigger.getById("hero-scroll-zoom");
-            if (trigger) {
-              var targetScroll =
-                trigger.start + (trigger.end - trigger.start) * 0.72;
-              window.scrollTo({ top: targetScroll, behavior: "smooth" });
-            }
-          });
-        });
+      }
 
-        var waitlistAnchors = document.querySelectorAll('a[href="#waitlist"]');
-        waitlistAnchors.forEach(function (link) {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            var trigger = ScrollTrigger.getById("hero-scroll-zoom");
-            if (trigger) {
-              var targetScroll =
-                trigger.start + (trigger.end - trigger.start) * 0.94;
-              window.scrollTo({ top: targetScroll, behavior: "smooth" });
-            }
-          });
-        });
+      /* Creative Touch: Inner Counter-Parallax on Page 4 background artwork */
+      if (page4BgLayer) {
+        zoomTimeline.fromTo(page4BgLayer,
+          { y: 60, scale: 1.06 },
+          { y: 0, scale: 1.0, ease: 'power2.out', duration: 0.11, force3D: true },
+          0.94
+        );
+      }
 
-        var heroAnchors = document.querySelectorAll('a[href="#hero"]');
-        heroAnchors.forEach(function (link) {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          });
-        });
+      /* Creative Touch: Parallax float on Page 4 headline, copy and CTA */
+      if (page4Content) {
+        zoomTimeline.fromTo(page4Content,
+          { y: 30, opacity: 0.70 },
+          { y: 0, opacity: 1.0, ease: 'power2.out', duration: 0.11, force3D: true },
+          0.95
+        );
+      }
 
-        /* Debounced window resize handler: only refreshes if width changes (e.g. orientation change or desktop window resize),
-         preventing mobile address bar show/hide from constantly recalculating layout and jumping */
-        var resizeTimeout;
-        var lastWidth = window.innerWidth;
-        window.addEventListener("resize", function () {
-          if (window.innerWidth !== lastWidth) {
-            lastWidth = window.innerWidth;
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(function () {
-              ScrollTrigger.refresh();
-            }, 150);
+      /* Creative Touch: Tactile card sheet handle fades away as full bleed is locked */
+      if (page4SheetHandle) {
+        zoomTimeline.fromTo(page4SheetHandle,
+          { opacity: 1 },
+          { opacity: 0, ease: 'power1.in', duration: 0.03 },
+          1.01
+        );
+      }
+
+      /* 13. PAGE 4 SEAMLESS PRESENCE (Progress 1.05 to 1.08)
+             Page 4 remains visible & interactive, transitioning immediately when scrolling up */
+      zoomTimeline.to({}, { duration: 0.03 }, 1.05);
+
+      /* Smooth Anchor Navigation for #hero, #mission, #ecosystem, and #waitlist */
+      var missionAnchors = document.querySelectorAll('a[href="#mission"]');
+      missionAnchors.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var trigger = ScrollTrigger.getById('hero-scroll-zoom');
+          if (trigger) {
+            var targetScroll = trigger.start + (trigger.end - trigger.start) * 0.24;
+            window.scrollTo({ top: targetScroll, behavior: 'smooth' });
           }
         });
       });
-    </script>
-  </body>
-</html>
+
+      var ecosystemAnchors = document.querySelectorAll('a[href="#ecosystem"]');
+      ecosystemAnchors.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var trigger = ScrollTrigger.getById('hero-scroll-zoom');
+          if (trigger) {
+            var targetScroll = trigger.start + (trigger.end - trigger.start) * 0.72;
+            window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+          }
+        });
+      });
+
+      var waitlistAnchors = document.querySelectorAll('a[href="#waitlist"]');
+      waitlistAnchors.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var trigger = ScrollTrigger.getById('hero-scroll-zoom');
+          if (trigger) {
+            var targetScroll = trigger.start + (trigger.end - trigger.start) * 0.94;
+            window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+          }
+        });
+      });
+
+      var heroAnchors = document.querySelectorAll('a[href="#hero"]');
+      heroAnchors.forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      /* Debounced window resize handler: only refreshes if width changes (e.g. orientation change or desktop window resize),
+         preventing mobile address bar show/hide from constantly recalculating layout and jumping */
+      var resizeTimeout;
+      var lastWidth = window.innerWidth;
+      window.addEventListener('resize', function () {
+        if (window.innerWidth !== lastWidth) {
+          lastWidth = window.innerWidth;
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function () {
+            ScrollTrigger.refresh();
+          }, 150);
+        }
+      });
+    });
+  </script>
+
+
+
+
+
+
+
+</body></html>
+
+
+
+
+
+

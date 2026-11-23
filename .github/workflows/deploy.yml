@@ -40,7 +40,9 @@ jobs:
             "rules": {
               "no-inline-style": "off",
               "long-title": "off",
-              "prefer-native-element": "off"
+              "prefer-native-element": "off",
+              "void-style": "off",
+              "doctype-style": "off"
             }
           }
           EOF
